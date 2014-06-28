@@ -30,13 +30,13 @@ ______________________________________
 
 Arme pour les unités
 
-A --> epée
-B --> hache
-C --> lance
-D --> lance
-E --> arc
-F --> tome elementaire (feu, foudre, vent)
-G --> tome lumiere + soin
+Epeiste --> epée
+Combattant --> hache
+Lancier --> lance
+Pegase --> lance
+Archer --> arc
+mage --> tome elementaire (feu, foudre, vent)
+moine --> tome lumiere + soin
 
 ______________________________________
 
@@ -62,7 +62,7 @@ ______________________________________
 
 Force / Faiblesse / Stat 
 
-A - 
+epeiste - 
 Hp : normal/faible 
 Force : moyen/faible 
 Intelligence : osef
@@ -71,7 +71,7 @@ Precision : forte
 Vitesse : forte 
 Resistance : faible/moyen
 
-B -
+combattant -
 Hp : forte 
 Force : forte 
 Intelligence : osef
@@ -80,7 +80,7 @@ Precision : faible
 Vitesse : faible/moyenne
 Resistance : faible/faible
 
-C - 
+Lancier - 
 Hp : normal 
 Force : moyen 
 Intelligence : osef
@@ -89,7 +89,7 @@ Precision : moyenne
 Vitesse : moyenne
 Resistance : moyen/forte
 
-D -
+pégase -
 Hp : normal 
 Force : moyen/faible 
 Intelligence : osef
@@ -98,7 +98,7 @@ Precision : forte
 Vitesse : forte 
 Resistance : faible/moyen
 
-E - 
+Archer - 
 Hp : Moyen 
 Force : moyen
 Intelligence : osef
@@ -107,7 +107,7 @@ Precision : forte
 Vitesse : moyenne/forte 
 Resistance : faible
 
-F -
+Mage -
 Hp : faible
 Force : osef 
 Intelligence : forte
@@ -116,7 +116,7 @@ Precision : moyenne/forte
 Vitesse : moyenne/forte
 Resistance : forte
 
-G -
+Moine -
 Hp : faible 
 Force : osef 
 Intelligence : forte
@@ -129,10 +129,10 @@ ______________________________________________
 
 Force Faiblesse part 2
 
-A - Sensible à la magie et lance
-B - Sensible à la magie et epee
-C - Sensible à la magie et hache
-D - Prends x3 face aux fleche et au vent
-E - Sensible au arme et encore plus à la magie
-F - Sensible aux armes
-G - Sensible aux armes
+Epeiste - Sensible à la magie et lance
+Combattant - Sensible à la magie et epee
+Lancier - Sensible à la magie et hache
+Pegase - Prends x3 face aux fleche et au vent
+Archer - Sensible au arme et encore plus à la magie
+Mage - Sensible aux armes
+Moine - Sensible aux armes
