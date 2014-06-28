@@ -1,0 +1,138 @@
+Unité (Base --> Evolution)
+
+A - Epeise --> Bretteur 
+
+B - Combattant --> Berseker 
+
+C - Lancier --> Sentinel
+
+D - Chevalier pégase --> Chevalier faucon
+
+E - Archer --> Tirer d'elite
+
+F - Mage --> Sage (1 carte mage pour 1 tome element)
+
+G - Moine --> Pretre
+
+_______________________________________
+
+Stats
+
+Hp --> point de vie
+Force --> degat physique
+Intelligence --> degat magique
+Précision --> % de toucher ennemi
+Vitesse --> % d'esquive d'une attaque     /*si 4 pts de plus que l'ennemi, attaque 1 fois de plus*/ 
+Defense, --> defense physique
+Resistance --> defense magique
+Critique --> % de taper 3x plus fort
+______________________________________
+
+Arme pour les unités
+
+A --> epée
+B --> hache
+C --> lance
+D --> lance
+E --> arc
+F --> tome elementaire (feu, foudre, vent)
+G --> tome lumiere + soin
+
+______________________________________
+
+Cercle Armes
+(Pour chaque avantage/desaventage)
+=> Soit l'arme A et l'arme B
+	Si A > B alors
+	A : +1 force et +10 précision
+	B : -1 force et -10 en précision
+
+Epée > Hache
+Hache > Lance
+Lance > Epee
+Arc rien
+
+Vent > Foudre
+Foudre > Feu
+Feu > Vent
+
+Tome lumiere > Tome elementaire
+
+______________________________________
+
+Force / Faiblesse / Stat 
+
+A - 
+Hp : normal/faible 
+Force : moyen/faible 
+Intelligence : osef
+Defense : moyenne/faible 
+Precision : forte
+Vitesse : forte 
+Resistance : faible/moyen
+
+B -
+Hp : forte 
+Force : forte 
+Intelligence : osef
+Defense : moyenne/faible 
+Precision : faible
+Vitesse : faible/moyenne
+Resistance : faible/faible
+
+C - 
+Hp : normal 
+Force : moyen 
+Intelligence : osef
+Defense : forte
+Precision : moyenne
+Vitesse : moyenne
+Resistance : moyen/forte
+
+D -
+Hp : normal 
+Force : moyen/faible 
+Intelligence : osef
+Defense : moyenne/faible 
+Precision : forte
+Vitesse : forte 
+Resistance : faible/moyen
+
+E - 
+Hp : Moyen 
+Force : moyen
+Intelligence : osef
+Defense : Faible 
+Precision : forte
+Vitesse : moyenne/forte 
+Resistance : faible
+
+F -
+Hp : faible
+Force : osef 
+Intelligence : forte
+Defense : faible/moyen
+Precision : moyenne/forte
+Vitesse : moyenne/forte
+Resistance : forte
+
+G -
+Hp : faible 
+Force : osef 
+Intelligence : forte
+Defense : faible/faible 
+Precision : faible/moyenne
+Vitesse : moyenne/faible
+Resistance : forte
+
+______________________________________________
+
+Force Faiblesse part 2
+
+A - Sensible à la magie et lance
+B - Sensible à la magie et epee
+C - Sensible à la magie et hache
+D - Prends x3 face aux fleche et au vent
+E - Sensible au arme et encore plus à la magie
+F - Sensible aux armes
+G - Sensible aux armes
