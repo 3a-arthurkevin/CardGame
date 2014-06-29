@@ -25,6 +25,26 @@ Le joueur possède 10 ou 20 points de vie
 Un joueur est attaquable directement si il n'a aucun serviteur devant lui
 Si il a des serviteurs, il perd 1 ou 2 points de vies par serviteur tué
 
+l'invocation de serviteur cout des points de mana
+
+Sur le terrain, il n'y a que 5 emplacements pour les unités et 5 emplacement pour les objets (quelque soit le type --> direct ou equipement)
+Une fois une carte posé, un emplacement est occupé
+ce n'est qu'une fois détrute que l'emplacement se libère
+
+-----------------------------------------
+
+Phase de jeu
+
+Le joueur a 4 points de mana à chaque tour non cumulable
+
+phase 1
+Le joueur peut invoquer un serviteur utiliser des objets, jeter ou donner à un autre servant une arme equiper
+
+phase 2 attaque
+le joueur choisis quelle unité va attaqué quelle unité adverse
+
+--> chagmenet de joueur
+
 __________________________________
 
 Carte Item
