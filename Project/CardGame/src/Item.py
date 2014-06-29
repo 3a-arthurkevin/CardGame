@@ -1,9 +1,3 @@
-'''
-Created on 29 juin 2014
-
-@author: Kevin
-'''
-
 def enum(enumName, *listValueNames):
     listValueNumbers = range(len(listValueNames))
     dictAttrib = dict( zip(listValueNames, listValueNumbers) )
