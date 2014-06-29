@@ -26,6 +26,7 @@ Un joueur est attaquable directement si il n'a aucun serviteur devant lui
 Si il a des serviteurs, il perd 1 ou 2 points de vies par serviteur tué
 
 l'invocation de serviteur cout des points de mana, pareil pour l'utilisation d'objet
+attaquer ne coute pas de mana
 
 Sur le terrain, il n'y a que 5 emplacements pour les unités et 5 emplacement pour les objets (quelque soit le type --> direct ou equipement)
 Une fois une carte posé, un emplacement est occupé
