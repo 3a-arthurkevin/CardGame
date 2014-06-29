@@ -134,6 +134,19 @@ Tome lumiere > Tome elementaire
 
 Baton --> soigne des PV serviteur
 
+_____________________________________
+
+Cout carte
+
+Serviteur niveau 1 --> 1pts
+Serviteur niveau 2 --> 3pts
+
+arme acier --> 1 pts
+arme argent --> 2 pts
+
+potion --> 1pts
+(ajuster les items selon leurs puissances)
+
 ______________________________________
 
 Force / Faiblesse / Stat 
