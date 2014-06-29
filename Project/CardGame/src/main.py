@@ -1,2 +1,1 @@
-if __name__ == '__main__':
-    pass
+# -*- coding : utf-8 -*-

@@ -1,6 +1,8 @@
+# -*- coding : utf-8 -*-
+
 class Stats:
     '''
-    Classe représentant des statistiques
+    Classe representant des statistiques
     '''
 
 

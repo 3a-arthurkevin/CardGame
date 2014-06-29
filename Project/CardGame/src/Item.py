@@ -1,3 +1,5 @@
+# -*- coding : utf-8 -*-
+
 from Stats import Stats
 
 def enum(enumName, *listValueNames):

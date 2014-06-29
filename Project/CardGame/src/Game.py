@@ -1,4 +1,8 @@
-class MyClass(object):
+# -*- coding : utf-8 -*-
+
+from Player import Player
+
+class Game:
     '''
     classdocs
     '''
@@ -9,3 +13,5 @@ class MyClass(object):
         Constructor
         '''
         
+        self.board = [[]] * 2 # Plateau a deux cote, chaque cote correspond a un joueur
+        self.players = [Player(), Player()]
