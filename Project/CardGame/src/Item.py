@@ -8,7 +8,7 @@ def enum(enumName, *listValueNames):
 
 ItemType = enum(
     "ItemType",
-    "POT", "WEAPON"
+    "POT", "WEAPON", "BOOSTER"
     )
 
 class Item:
