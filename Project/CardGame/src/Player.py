@@ -9,6 +9,10 @@ class Player:
         self.hand = []
         self.deck = queue()
         
+        self.servantsOnBoard = []
+        self.itemOnBoard = []
+        
+        
     def load(self, idPlayer):
         
         
