@@ -15,7 +15,7 @@ Mage
 Moine
 
 Une servant peut monter de 1 seul niveau --> amélioration de ses stats (attaque, defense, vie, defense, maniement arme)
-Ce level up ne donne pas le meme boost de stats selon l'unité
+Ce level up ne donne pas le meme boost de stats selon l'unité et seront dérerminé à l'avance (pas de rng)
 
 _______________________________________
 
