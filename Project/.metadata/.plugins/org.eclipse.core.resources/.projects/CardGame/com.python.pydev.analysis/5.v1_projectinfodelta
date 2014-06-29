@@ -1,0 +1,9 @@
+INSTUPItem
+C:\Users\Kevin\Desktop\Python_Card\CardGame\Project\CardGame\src\Item.py
+INFOS:&&2|1|2|0&&3|3|2|0&&1|2|2|0&&2|4|2|2&&3|5|2|6
+Item.__init__=6
+__init__=4
+hp=5
+Item=2
+ItemType=3
+enum=1
