@@ -14,8 +14,19 @@ Mage
 
 Moine
 
+_____________________________________________
+
+Experience
+
 Une servant peut monter de 1 seul niveau --> amélioration de ses stats (attaque, defense, vie, defense, maniement arme)
 Ce level up ne donne pas le meme boost de stats selon l'unité et seront dérerminé à l'avance (pas de rng)
+
+battre 2 unités de meme niveau pour level up (50pts/100pts)
+ou
+battre 1 unité de niveau supérieur pour level up (100pts)
+ou
+combattre sans mourrir un unité de meme niveau (20pts)
+ou combattre sans mourrir une unité de niveau supérieur (40pts)
 
 _______________________________________
 
@@ -122,6 +133,19 @@ Feu > Vent
 Tome lumiere > Tome elementaire
 
 Baton --> soigne des PV serviteur
+
+_____________________________________
+
+Cout carte
+
+Serviteur niveau 1 --> 1pts
+Serviteur niveau 2 --> 3pts
+
+arme acier --> 1 pts
+arme argent --> 2 pts
+
+potion --> 1pts
+(ajuster les items selon leurs puissances)
 
 ______________________________________
 
