@@ -1,14 +1,22 @@
 -- VERSION_4
 -- START DISKCACHE
 C:\Users\Kevin\Desktop\Python_Card\CardGame\Project\.metadata\.plugins\org.eclipse.core.resources\.projects\CardGame\com.python.pydev.analysis\v2_indexcache
+Game.testGame|1404038808488|C:\Users\Kevin\Desktop\Python_Card\CardGame\Project\CardGame\src\Game\testGame.py
+Game.__init__|1404038808487|C:\Users\Kevin\Desktop\Python_Card\CardGame\Project\CardGame\src\Game\__init__.py
 main|1404037118730|C:\Users\Kevin\Desktop\Python_Card\CardGame\Project\CardGame\src\main.py
 -- END DISKCACHE
 -- START DICTIONARY
-0
+3
+3=MyClass.__init__
+1=Game.testGame
+2=MyClass
 -- END DICTIONARY
 -- START TREE 1
-0
+1
+myc|1|MyClass!9@
 -- END TREE
 -- START TREE 2
-0
+2
+__i|1|__init__!2&10@
+tot|1|toto!3&11@
 -- END TREE
