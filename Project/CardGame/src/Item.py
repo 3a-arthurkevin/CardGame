@@ -11,10 +11,10 @@ def enum(enumName, *listValueNames):
     dictAttrib["dictReverse"] = dictReverse
     return type(enumName, (), dictAttrib)
 
-# Remplacer par l'enum pour Item
-Direction = enum(
-    "Direction", #Nom de l'enum
-    "UP", "DOWN", "LEFT", "RIGHT" # Valeur de l'enum
+
+ItemType = enum(
+    "ItemType",
+    "POT", "WEAPON"
     )
 
 class Item:
