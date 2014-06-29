@@ -1,3 +1,5 @@
+from Stats import Stats
+
 def enum(enumName, *listValueNames):
     listValueNumbers = range(len(listValueNames))
     dictAttrib = dict( zip(listValueNames, listValueNumbers) )
@@ -14,4 +16,4 @@ ItemType = enum(
 class Item:
     
     def __init__(self):
-        self.stats = 0
+        self.stats = Stats()
