@@ -45,6 +45,16 @@ epée/hache/lance acier --> niveau 1, épée/hache/lance argent --> niveau 2
 Une carte équipement a une durabilité (nombre d'utilisation possible) et se casse une fois à 0
 Ces cartes donne du bonus et malus dans certaine stats (épée acier +2 en force mais -1 en vitesse et -1 en pression)
 
+______________________________________
+
+Range d'attaque
+
+Utilise des nombres simple entre 1 et 10 par exemple
+
+Pour l'attaque, celle de base se fait selon ses points d'attaque
+Puis, si il a un item Arme equipement, ses points d'attaque sont aditionné à ceux de l'armes par exemple
+
+
 _______________________________________
 
 Stats
