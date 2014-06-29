@@ -21,12 +21,18 @@ Experience
 Une servant peut monter de 1 seul niveau --> amélioration de ses stats (attaque, defense, vie, defense, maniement arme)
 Ce level up ne donne pas le meme boost de stats selon l'unité et seront dérerminé à l'avance (pas de rng)
 
-battre 2 unités de meme niveau pour level up (50pts/100pts)
+pour avoir son level up, avoir 100pts d'XP
+
+Tuer 1 unités de meme niveau pour level up (50 pts)
 ou
-battre 1 unité de niveau supérieur pour level up (100pts)
+battre 1 unité de niveau supérieur pour level up (100pts --> level up direct)
 ou
 combattre sans mourrir un unité de meme niveau (20pts)
-ou combattre sans mourrir une unité de niveau supérieur (40pts)
+ou 
+combattre sans mourrir une unité de niveau supérieur (40pts)
+
+
+Quand un serviteur attaque un autre, les 2 gagnes de l'XP
 
 _______________________________________
 
