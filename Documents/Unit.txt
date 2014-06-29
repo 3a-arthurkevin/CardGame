@@ -1,18 +1,80 @@
-Unité (Base --> Evolution)
+Unité (Servant)
 
-A - Epeise --> Bretteur 
+Epeise
 
-B - Combattant --> Berseker 
+Combattant
 
-C - Lancier --> Sentinel
+Lancier
 
-D - Chevalier pégase --> Chevalier faucon
+Chevalier pégase
 
-E - Archer --> Tirer d'elite
+Archer
 
-F - Mage --> Sage (1 carte mage pour 1 tome element)
+Mage
 
-G - Moine --> Pretre
+Moine
+
+Une servant peut monter de 1 seul niveau --> amélioration de ses stats (attaque, defense, vie, defense, maniement arme)
+Ce level up ne donne pas le meme boost de stats selon l'unité et seront dérerminé à l'avance (pas de rng)
+
+_______________________________________
+
+Comment gagner/perdre
+
+Le joueur possède 10 ou 20 points de vie
+Un joueur est attaquable directement si il n'a aucun serviteur devant lui
+Si il a des serviteurs, il perd 1 ou 2 points de vies par serviteur tué
+
+l'invocation de serviteur cout des points de mana, pareil pour l'utilisation d'objet
+attaquer ne coute pas de mana
+
+Sur le terrain, il n'y a que 5 emplacements pour les unités et 5 emplacement pour les objets (quelque soit le type --> direct ou equipement)
+Une fois une carte posé, un emplacement est occupé
+ce n'est qu'une fois détrute que l'emplacement se libère
+
+-----------------------------------------
+
+Phase de jeu
+
+Le joueur a 4 points de mana à chaque tour non cumulable
+
+phase 1
+Le joueur peut invoquer un serviteur utiliser des objets, jeter ou donner à un autre servant une arme equiper
+
+phase 2 attaque
+le joueur choisis quelle unité va attaqué quelle unité adverse
+
+--> chagmenet de joueur et ainsi de suite
+
+__________________________________
+
+Carte Item
+
+Les cartes items ont 2 types --> item utilisable direct (potion), item d'equipement (epée acier)
+Ces cartes donne un boost de stat
+
+_______________________________________
+
+Arme
+
+Chaque unité a la possibilité d'attaque avec ses points d'attaques (une arme de base : epée de fer, hache de fer, lance de fer avec durabilité illimitée)
+
+un item d'equipement aura un niveau d'utilisation --> 1, 2 (2 est le max)
+
+Carte Item equipement : 
+epée/hache/lance acier --> niveau 1, épée/hache/lance argent --> niveau 2 
+Une carte équipement a une durabilité (nombre d'utilisation possible) et se casse une fois à 0
+Ces cartes donne du bonus et malus dans certaine stats (épée acier +2 en force mais -1 en vitesse et -1 en pression)
+
+______________________________________
+
+Range d'attaque
+
+Utilise des nombres simple entre 1 et 10 par exemple
+
+Pour l'attaque, celle de base se fait selon ses points d'attaque
+Puis, si il a un item Arme equipement, ses points d'attaque sont aditionné à ceux de l'armes par exemple
+
 
 _______________________________________
 
@@ -22,10 +84,11 @@ Hp --> point de vie
 Force --> degat physique
 Intelligence --> degat magique
 Précision --> % de toucher ennemi
-Vitesse --> % d'esquive d'une attaque     /*si 4 pts de plus que l'ennemi, attaque 1 fois de plus*/ 
+Vitesse --> % d'esquive d'une attaque
 Defense, --> defense physique
 Resistance --> defense magique
 Critique --> % de taper 3x plus fort
+
 ______________________________________
 
 Arme pour les unités
@@ -36,7 +99,7 @@ Lancier --> lance
 Pegase --> lance
 Archer --> arc
 mage --> tome elementaire (feu, foudre, vent)
-moine --> tome lumiere + soin
+moine --> tome lumiere + baton soin
 
 ______________________________________
 
@@ -57,6 +120,8 @@ Foudre > Feu
 Feu > Vent
 
 Tome lumiere > Tome elementaire
+
+Baton --> soigne des PV serviteur
 
 ______________________________________
 
@@ -132,7 +197,7 @@ Force Faiblesse part 2
 Epeiste - Sensible à la magie et lance
 Combattant - Sensible à la magie et epee
 Lancier - Sensible à la magie et hache
-Pegase - Prends x3 face aux fleche et au vent
+Pegase - Sensible au Fleche
 Archer - Sensible au arme et encore plus à la magie
 Mage - Sensible aux armes
 Moine - Sensible aux armes

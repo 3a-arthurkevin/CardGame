@@ -11,11 +11,11 @@ class Stats:
         Constructor
         '''
         self.hp = params.get("hp", 0)
-        self.strong = params.get("strong", 0)
-        self.intel = params.get("intel", 0)
-        self.prec = params.get("prec", 0)
-        self.speed = params.get("speed", 0)
-        self.defence = params.get("def", 0)
-        self.res = params.get("res", 0)
-        self.crit = params.get("crit", 0)
+        self.strength = params.get("str", 0)
+        self.intelligence = params.get("int", 0)
+        self.precision = params.get("pre", 0)
+        self.speed = params.get("spe", 0)
+        self.defense = params.get("def", 0)
+        self.resistance = params.get("res", 0)
+        self.critical = params.get("cri", 0)
         
