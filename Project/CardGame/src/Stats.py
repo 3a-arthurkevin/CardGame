@@ -9,7 +9,7 @@ class Stats:
         Constructor
         '''
         self.hp = params.get("hp", 0)
-        self.strong = params.get("strong", 0)
+        self.strength = params.get("strength", 0)
         self.intel = params.get("intel", 0)
         self.prec = params.get("prec", 0)
         self.speed = params.get("speed", 0)
