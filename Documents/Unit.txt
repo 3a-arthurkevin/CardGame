@@ -27,6 +27,8 @@ Il faut 100pts d'expérience pour qu'une unité de level 1 level up (voir pour plu
 * combattre une unité de même niveau sans la tuer rapport 20pts d'expérience
 * combattre une unité de niveau supérieur sans la tuer rapporte 40pts d'expérience
 
+Quand un serviteur attaque un autre, les 2 gagnes de l'XP
+
 _______________________________________
 
 Comment gagner/perdre
