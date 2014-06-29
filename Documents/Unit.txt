@@ -20,34 +20,33 @@ Experience
 
 Une servant peut monter de 1 seul niveau --> amélioration de ses stats (attaque, defense, vie, defense, maniement arme)
 Ce level up ne donne pas le meme boost de stats selon l'unité et seront dérerminé à l'avance (pas de rng)
+Il faut 100pts d'expérience pour qu'une unité de level 1 level up (voir pour plus de level si le temps)
 
-battre 2 unités de meme niveau pour level up (50pts/100pts)
-ou
-battre 1 unité de niveau supérieur pour level up (100pts)
-ou
-combattre sans mourrir un unité de meme niveau (20pts)
-ou combattre sans mourrir une unité de niveau supérieur (40pts)
+* tuer une unité de même niveau fait gagner 50pts d'expérience
+* tuer une unité de niveau supérieur donne 100pts d'expérience
+* combattre une unité de même niveau sans la tuer rapport 20pts d'expérience
+* combattre une unité de niveau supérieur sans la tuer rapporte 40pts d'expérience
 
 _______________________________________
 
 Comment gagner/perdre
 
-Le joueur possède 10 ou 20 points de vie
+Le joueur possède 10 ou 20 points de vie (à revoir après premier essai)
 Un joueur est attaquable directement si il n'a aucun serviteur devant lui
-Si il a des serviteurs, il perd 1 ou 2 points de vies par serviteur tué
+Si il a des serviteurs, il perd 1 ou 2 points de vies par serviteur tué (pareil que pour les points de vie)
 
 l'invocation de serviteur cout des points de mana, pareil pour l'utilisation d'objet
 attaquer ne coute pas de mana
 
 Sur le terrain, il n'y a que 5 emplacements pour les unités et 5 emplacement pour les objets (quelque soit le type --> direct ou equipement)
 Une fois une carte posé, un emplacement est occupé
-ce n'est qu'une fois détrute que l'emplacement se libère
+ce n'est qu'une fois détruite que l'emplacement se libère
 
 -----------------------------------------
 
 Phase de jeu
 
-Le joueur a 4 points de mana à chaque tour non cumulable
+Le joueur a 4 points de mana à chaque tour non cumulable (voir pour incrémentation plutot que nombre fixe)
 
 phase 1
 Le joueur peut invoquer un serviteur utiliser des objets, jeter ou donner à un autre servant une arme equiper
@@ -55,7 +54,7 @@ Le joueur peut invoquer un serviteur utiliser des objets, jeter ou donner à un a
 phase 2 attaque
 le joueur choisis quelle unité va attaqué quelle unité adverse
 
---> chagmenet de joueur et ainsi de suite
+--> changement de joueur et ainsi de suite
 
 __________________________________
 
@@ -68,7 +67,8 @@ _______________________________________
 
 Arme
 
-Chaque unité a la possibilité d'attaque avec ses points d'attaques (une arme de base : epée de fer, hache de fer, lance de fer avec durabilité illimitée)
+Chaque unité aattaque avec ses points d'attaques, ses point d'attaque sont déterminé par son arme et les différents boosts qu'il le concerne
+En effet, il est possible de changer l'arme du serviteur par une autre arme dans sa main
 
 un item d'equipement aura un niveau d'utilisation --> 1, 2 (2 est le max)
 
@@ -81,7 +81,7 @@ ______________________________________
 
 Range d'attaque
 
-Utilise des nombres simple entre 1 et 10 par exemple
+Utilise des nombres simple entre 1 et 10 par exemple (voir après premier test)
 
 Pour l'attaque, celle de base se fait selon ses points d'attaque
 Puis, si il a un item Arme equipement, ses points d'attaque sont aditionné à ceux de l'armes par exemple
