@@ -19,7 +19,6 @@ class Servant(Card):
                            parameters.get("def"),
                            parameters.get("res"),
                            parameters.get("cri"))
-        self.classLevel = 1
         self.level = 1
         #level max pour unité de base = 2 --> si classe up, level 3 et level max = 4
         self.experience = 0
