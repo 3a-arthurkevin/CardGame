@@ -14,4 +14,4 @@ ItemType = enum(
 class Item:
     
     def __init__(self):
-        self.hp = 1
+        self.stats = 0
