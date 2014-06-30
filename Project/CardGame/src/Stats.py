@@ -5,7 +5,6 @@ class Stats:
     Classe representant des statistiques
     '''
 
-
     def __init__(self, params = {}):
         '''
         Constructor
