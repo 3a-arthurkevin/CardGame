@@ -5,6 +5,7 @@ import queue
 class Player:
     
     def __init__(self):
+        self.lifePoint = 10
         self.maxCardInHand = 10
         self.hand = []
         self.deck = queue()

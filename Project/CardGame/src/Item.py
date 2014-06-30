@@ -1,18 +1,11 @@
 # -*- coding : utf-8 -*-
 
+from Utils import *
 from Stats import Stats
-
-def enum(enumName, *listValueNames):
-    listValueNumbers = range(len(listValueNames))
-    dictAttrib = dict( zip(listValueNames, listValueNumbers) )
-    dictReverse = dict( zip(listValueNumbers, listValueNames) )
-    dictAttrib["dictReverse"] = dictReverse
-    return type(enumName, (), dictAttrib)
-
 
 ItemType = enum(
     "ItemType",
-    "POT", "WEAPON", "BOOSTER"
+    "POTION", "WEAPON", "BOOSTER"
     )
 
 class Item:
