@@ -3,6 +3,8 @@
 from Utils import *
 from Card import Card
 from Stats import Stats
+from Item import *
+from random import *
 
 ClassType = enum("Class",
                  "SWORDMASTER", "WARRIOR", "HALBARDIER", "ARCHER", "PEGASUS", "MAGE", "PRIEST")
@@ -53,71 +55,176 @@ class Servant(Card):
         self.experience = params.get("xp")
         self.classType = params.get("classType")
         self.weaponType = params.get("weaponType")
+        self.weaponEquipped = None
         
-    def getBattleData(self, servantSelf, servantEnemy):
-        dicDataAttacker = {"hp" : 0, "dmg" : 0, "pre" : 0, "cri" : 0}
-        dicDataDefender = {"hp" : 0, "dmg" : 0, "pre" : 0, "cri" : 0}
+
+    def getBattleData(self, servantEnemy):
+        """
+        Fonction qui retourne un dictionnaire de données 
+        concernant un combat entre 2 serviteurs
+        """
+        
+        dicDataAttacker = {"hp"  : self.stats.hp, 
+                           "dmg" : self.stats.strength, 
+                           "pre" : self.stats.precision,
+                           "spe" : self.stats.speed,
+                           "cri" : self.stats.critical}        
+        dicDataDefender = {"hp"  : servantEnemy.stats.ph,
+                           "dmg" : servantEnemy.stats.strength,
+                           "pre" : servantEnemy.stats.precision,
+                           "spe" : servantEnemy.stats.speed,
+                           "cri" : servantEnemy.stats.critical}
+        
         dicData = {"dataAttacker" : dicDataAttacker, "dataDefender" : dicDataDefender}
         
+        dicDataBonus = self.getBattleBonus(servantEnemy)
         
+        dicDataAttacker["dmg"] += dicDataBonus.get("bonusAttacker").get("dmg")
+        dicDataAttacker["pre"] += dicDataBonus.get("bonusAttacker").get("pre")
+        dicDataDefender["dmg"] += dicDataBonus.get("bonusDefender").get("dmg")
+        dicDataDefender["pre"] += dicDataBonus.get("bonusDefender").get("pre")
+        
+        if(self.weaponEquipped != None and self.weaponEquipped == ItemType.WEAPON):
+            dicDataAttacker["dmg"] += self.weaponEquipped.stats.strength
+            dicDataAttacker["pre"] += self.weaponEquipped.stats.precision
+            dicDataAttacker["spe"] += self.weaponEquipped.stats.speed
+            dicDataAttacker["cri"] += self.weaponEquipped.stats.critical
+        if(servantEnemy.weaponEquipped != None and servantEnemy.weaponEquipped == ItemType.WEAPON):
+            dicDataDefender["dmg"] += servantEnemy.weaponEquipped.stats.strength
+            dicDataDefender["pre"] += servantEnemy.weaponEquipped.stats.precision
+            dicDataDefender["spe"] += servantEnemy.weaponEquipped.stats.speed
+            dicDataDefender["cri"] += servantEnemy.weaponEquipped.stats.critical
         
         return dicData
         
-    def getWeaponBonus(self, servantAttacker, servantEnemy):
-        dicDataAttacker = {"str" : 0, "pre" : 0}
-        dicDataDefender = {"str" : 0, "pre" : 0}
-        dicData = {"bonusAttacker" : dicDataAttacker, "bonusDefender" : dicDataDefender}
         
-        if(tabBonusBetweenWeapon.get(servantAttacker.weaponType).get("stronger") == servantEnemy.weaponType):
-            dicDataAttacker["str"] += 1
-            dicDataAttacker["pre"] += 1
-            dicDataDefender["str"] += -1
-            dicDataDefender["pre"] += -1
-        elif(tabBonusBetweenWeapon.get(servantEnemy.weaponType).get("stronger") == servantAttacker.weaponType):
-            dicDataAttacker["str"] += -1
-            dicDataAttacker["pre"] += -1
-            dicDataDefender["str"] += 1
-            dicDataDefender["pre"] += 1
-            
-        if(tabBonusBetweenClassAndWeapon.get(servantAttacker.classType).get("weaker") == servantEnemy.weaponType):
-            dicDataAttacker["str"] += 0
-            dicDataAttacker["pre"] += 0
-            dicDataDefender["str"] += 3
-            dicDataDefender["pre"] += 0
-        elif(tabBonusBetweenClassAndWeapon.get(servantEnemy.classType).get("weaker") == servantAttacker.weaponType):
-            dicDataAttacker["str"] += 0
-            dicDataAttacker["pre"] += 0
-            dicDataDefender["str"] += 3
-            dicDataDefender["pre"] += 0
-            
-        return 0
-        
-    def battleBetweenServant(self, servantSelf, servantEnemy):
-        self.attack(servantSelf, servantEnemy)
-        
-    def attack(self, servantSelf, servantEnemy):
-        self.applyDamage(servantEnemy)
-        self.applyDamage(servantSelf)
-        
-    def applyDamage(self, servant):
-        print('applyDamage')
-    """
-    def applyWeekness(self, servant):
-        if(self.classType == "SWORDMASTER" and servant.classType == "WARRIOR"):
-    """     
+    def getBattleBonus(self, servantEnemy):
+        """
+        Fonction qui retourne un dictionnaire de données (sera utilse pour dislpay les infos sur l'ecran)
+        concerant les bonus et malus selon les armes et classe lors d'un combat entre 2 serviteurs 
+            (voir les 2 gros dictionnaires en haut du ficier pour mieux comprendre) 
+            (Le serviteur attaquant est self / le serviteur défendant est servantEnemy)
+        """
     
-    def earnedExperience(self, servantSelf, servantEnemy):
+        dicDataAttacker = {"dmg" : 0, "pre" : 0}
+        dicDataDefender = {"dmg" : 0, "pre" : 0}
+        dicData = {"bonusAttacker" : dicDataAttacker, "bonusDefender" : dicDataDefender}
+        #Checking des bonus malus pour les armes
+        if(tabBonusBetweenWeapon.get(self.weaponType).get("stronger") == servantEnemy.weaponType):
+            dicDataAttacker["dmg"] += 1
+            dicDataAttacker["pre"] += 1
+            dicDataDefender["dmg"] += -1
+            dicDataDefender["pre"] += -1
+        elif(tabBonusBetweenWeapon.get(servantEnemy.weaponType).get("stronger") == self.weaponType):
+            dicDataAttacker["dmg"] += -1
+            dicDataAttacker["pre"] += -1
+            dicDataDefender["dmg"] += 1
+            dicDataDefender["pre"] += 1
+        #Checking des bonus malus de la classe par rapport à l'arme    
+        if(tabBonusBetweenClassAndWeapon.get(self.classType).get("weaker") == servantEnemy.weaponType):
+            dicDataAttacker["dmg"] += 0
+            dicDataAttacker["pre"] += 0
+            dicDataDefender["dmg"] += 3
+            dicDataDefender["pre"] += 0
+        elif(tabBonusBetweenClassAndWeapon.get(servantEnemy.classType).get("weaker") == self.weaponType):
+            dicDataAttacker["dmg"] += 3
+            dicDataAttacker["pre"] += 0
+            dicDataDefender["dmg"] += 0
+            dicDataDefender["pre"] += 0
+            
+        return dicData
+        
+        
+    def battleBetweenServant(self, servantEnemy):
+        """
+        Fonction récupérant toutes les infos des servants
+        Et traite tout le combat
+        """
+        dicData = self.getBattleData(servantEnemy)
+        dicDataAttacker = dicData.get("dataAttacker")
+        dicDataDefenser = dicData.get("dataDefenser")
+        """
+        Tour de l'attaquant
+            On fait du randint pour avoir savoir si le servant touchera la cible et/ou si il fera un coup critique
+            Si le randInt Critique est compris entre 1 et le critique de stat --> dommage*3 et lancement de l'attaque
+            Sinon, si lr randInt de Touche est comprise entre 1 et la précision  --> lancement de l'attaque
+            Sinon attaque manqué
+        Tour du défenseur
+            Verification si le défenseur est en vie
+                Si oui --> Meme schéma que l'attaquant
+        Donner l'expérience du combat
+        Détruire si serviteur mort (avoir 0 hp)
+        """
+        precisionAttacker = (dicDataAttacker.get("pre")*10) - (dicDataDefenser.get("spe")*5)
+        criticalAttacker = randint(1, 100)
+        hitAttacker = randint(1, 100)
+        damageAttacker = dicDataAttacker.get("dmg")
+        
+        if(criticalAttacker >= 1 and criticalAttacker <= self.stats.critical):
+            damageAttacker *= 3
+            self.applyDamage(servantEnemy, damageAttacker)
+        elif(hitAttacker >= 1 and hitAttacker <= precisionAttacker):
+            self.applyDamage(servantEnemy, damageAttacker)
+        else:
+            print("miss")
+            
+        if(servantEnemy.stats.hp > 0):
+            #Tour du defenseur
+            precisionDefenser = (dicDataDefenser.get("pre")*10) - (dicDataAttacker.get("spe")*5)
+            criticalDefenser = randint(1, 100)
+            hitDefenser = randint(1, 100)
+            damageDefenser = dicDataDefenser.get("dmg")
+            
+            if(criticalDefenser >= 1 and criticalDefenser <= servantEnemy.stats.critical):
+                damageDefenser *= 3
+                servantEnemy.applyDamage(self, damageDefenser)
+            elif(hitDefenser >= 1 and hitDefenser <= precisionDefenser):
+                servantEnemy.applyDamage(self, damageDefenser)
+            else:
+                print("miss")
+
+        self.earnedExperience(servantEnemy)
+        servantEnemy.earnedExperience(self)
+
+        if(self.stats.hp <= 0):
+            self.killed()
+        if(servantEnemy.stats.hp <= 0):
+            servantEnemy.killed()
+        
+         
+    def applyDamage(self, servantAttacked, damageToApply):
+        """
+        Fonction qui applique les degat lors d'un combat entre serviteur
+        Si les hp sont inférieur à 0, ils seront remis à 0
+        """
+        servantAttacked.stats.hp -= damageToApply
+        if(servantAttacked.stats.hp < 0):
+            servantAttacked.stats.hp = 0
+    
+    
+    def killed(self):
+        print("killed")
+    
+    
+    def earnedExperience(self, servantEnemy):
+        """
+        Fonction de calcul retournant l'experience gagner lors d'un combar
+            De base on considère que l'ennemi est tué et qu'on gagne 50pts d'xp (sur 100pts pour level up)
+            On multiplie ces 50pts par le niveau de l'ennemi divisé par le sien
+            Et ensuite, si l'ennemi n'est pas mort, on divise par 2 le total avec un cast int pour ne pas avoir de décimale
+        """
         earnedXp = 50
-        earnedXp = earnedXp * (servantEnemy.level/servantSelf.level)
+        earnedXp = earnedXp * (servantEnemy.level/self.level)
         if(servantEnemy.stats.hp > 0):
             earnedXp = int(earnedXp/2)
         return earnedXp
         
-    """
-    Fonction appelé lors d'un level up --> à remplacer par l'utilisation d'un item à utilisation direct
-    car point de stat gagné spécifique selon la class
-    """
+    
     def levelUp(self):
+        """
+        Fonction appelé lors d'un level up --> à remplacer par l'utilisation d'un item à utilisation direct
+        car point de stat gagné spécifique selon la class
+        """
         self.stats.hp += 1
         self.stats.strength += 1
         self.stats.intelligence += 1

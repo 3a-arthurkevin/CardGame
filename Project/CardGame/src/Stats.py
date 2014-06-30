@@ -3,6 +3,21 @@
 class Stats:
     '''
     Classe representant des statistiques
+    
+    Utilisation des stats lors des combats entre servant (sans prendre en compte l'ajout de stat des objets/armes)
+        hp            : 10 --> 30  (pas de post traitement)
+        strength      : 1  --> 10  (pas de post traitement)
+        intelligence  : 1  --> 10  (pas de post traitement)
+        precision     : 1  --> 10  (1pts == 10% <--> 10pts == 100%) % de touche
+        speed         : 1  --> 10  (1pts == 5%  <--> 10pts == 50%)  % d'esquiver
+        defense       : 1  --> 10  (pas de post traitement)
+        resistance    : 1  --> 10  (pas de post traitement)
+        critical      : 1  --> 10  (pas de post traitement)
+    
+    Le précision représente le % de toucher un servant,
+        on y retire le % de vitesse de l'adversaire pour prendre en compte son esquive
+        (à cela s'ajoute les stats de l'arme equipé si il y a et aussi du bonus/malus de l'arme adverse)
+    Avec un traitemenr spécial selon la stat (à tweeker si pas top)
     '''
 
     def __init__(self, params = {}):
