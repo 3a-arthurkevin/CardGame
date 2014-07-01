@@ -48,16 +48,16 @@ class Servant(Card):
     Classe reprsesentant les serviteurs a invoquer qui pourront attaquer l'adversaire et ses serviteurs 
     """
     
-    def __init__(self, params = {}):
-        Card.__init__(self, {params.get("name"), params.get("description"), params.get("cost")})
-        self.stats = Stats({params.get("hp"),
-                           params.get("str"),
-                           params.get("int"),
-                           params.get("pre"),
-                           params.get("spe"),
-                           params.get("def"),
-                           params.get("res"),
-                           params.get("cri")})
+    def __init__(self, params):
+        Card.__init__(self, {"name" : params.get("name"), "description" : params.get("description"), "cost" : params.get("cost")})
+        self.stats = Stats({"hp" : params.get("hp"),
+                            "str" : params.get("str"),
+                            "int" : params.get("int"),
+                            "pre" : params.get("pre"),
+                            "spe" : params.get("spe"),
+                            "def" : params.get("def"),
+                            "res" : params.get("res"),
+                            "cri" : params.get("cri")})
         self.level = params.get("level")
         self.experience = params.get("xp")
         self.classType = params.get("classType")
@@ -76,13 +76,11 @@ class Servant(Card):
                            "pre" : self.stats.precision,
                            "spe" : self.stats.speed,
                            "cri" : self.stats.critical}        
-        dicDataDefender = {"hp"  : servantEnemy.stats.ph,
+        dicDataDefender = {"hp"  : servantEnemy.stats.hp,
                            "dmg" : servantEnemy.stats.strength,
                            "pre" : servantEnemy.stats.precision,
                            "spe" : servantEnemy.stats.speed,
                            "cri" : servantEnemy.stats.critical}
-        
-        dicData = {"dataAttacker" : dicDataAttacker, "dataDefender" : dicDataDefender}
         
         dicDataBonus = self.getBattleBonus(servantEnemy)
         
@@ -102,6 +100,8 @@ class Servant(Card):
             dicDataDefender["spe"] += servantEnemy.weaponEquipped.stats.speed
             dicDataDefender["cri"] += servantEnemy.weaponEquipped.stats.critical
         
+        dicData = {"dataAttacker" : dicDataAttacker, "dataDefender" : dicDataDefender}
+        
         return dicData
         
         
@@ -119,14 +119,14 @@ class Servant(Card):
         #Checking des bonus malus pour les armes
         if(tabBonusBetweenWeapon.get(self.weaponType).get("stronger") == servantEnemy.weaponType):
             dicDataAttacker["dmg"] += 1
-            dicDataAttacker["pre"] += 1
+            dicDataAttacker["pre"] += 2
             dicDataDefender["dmg"] += -1
-            dicDataDefender["pre"] += -1
+            dicDataDefender["pre"] += -2
         elif(tabBonusBetweenWeapon.get(servantEnemy.weaponType).get("stronger") == self.weaponType):
             dicDataAttacker["dmg"] += -1
-            dicDataAttacker["pre"] += -1
+            dicDataAttacker["pre"] += -2
             dicDataDefender["dmg"] += 1
-            dicDataDefender["pre"] += 1
+            dicDataDefender["pre"] += 2
         #Checking des bonus malus de la classe par rapport à l'arme    
         if(tabBonusBetweenClassAndWeapon.get(self.classType).get("weaker") == servantEnemy.weaponType):
             dicDataAttacker["dmg"] += 0
@@ -149,12 +149,13 @@ class Servant(Card):
         """
         dicData = self.getBattleData(servantEnemy)
         dicDataAttacker = dicData.get("dataAttacker")
-        dicDataDefenser = dicData.get("dataDefenser")
+        dicDataDefender = dicData.get("dataDefender")
+
         """
         Tour de l'attaquant
             On fait du randint pour avoir savoir si le servant touchera la cible et/ou si il fera un coup critique
             Si le randInt Critique est compris entre 1 et le critique de stat --> dommage*3 et lancement de l'attaque
-            Sinon, si lr randInt de Touche est comprise entre 1 et la précision  --> lancement de l'attaque
+            Sinon, si le randInt de Touche est comprise entre 1 et la précision  --> lancement de l'attaque
             Sinon attaque manqué
         Tour du défenseur
             Verification si le défenseur est en vie
@@ -162,7 +163,9 @@ class Servant(Card):
         Donner l'expérience du combat
         Détruire si serviteur mort (avoir 0 hp)
         """
-        precisionAttacker = (dicDataAttacker.get("pre")*10) - (dicDataDefenser.get("spe")*5)
+        print(self.stats.hp, " | ", servantEnemy.stats.hp)
+        
+        precisionAttacker =  dicDataAttacker.get("pre")*10 - dicDataDefender.get("spe")*3
         criticalAttacker = randint(1, 100)
         hitAttacker = randint(1, 100)
         damageAttacker = dicDataAttacker.get("dmg")
@@ -170,33 +173,45 @@ class Servant(Card):
         if(criticalAttacker >= 1 and criticalAttacker <= self.stats.critical):
             damageAttacker *= 3
             self.applyDamage(servantEnemy, damageAttacker)
+            print("Critical!!!")
         elif(hitAttacker >= 1 and hitAttacker <= precisionAttacker):
             self.applyDamage(servantEnemy, damageAttacker)
+            print("hit")
         else:
             print("miss")
             
+        print(self.name, " : ", self.stats.hp, " | ", damageAttacker, " | ", hitAttacker, " | ", precisionAttacker, " | ", criticalAttacker, " | ", self.stats.critical)
+            
         if(servantEnemy.stats.hp > 0):
             #Tour du defenseur
-            precisionDefenser = (dicDataDefenser.get("pre")*10) - (dicDataAttacker.get("spe")*5)
-            criticalDefenser = randint(1, 100)
-            hitDefenser = randint(1, 100)
-            damageDefenser = dicDataDefenser.get("dmg")
+            precisionDefender = dicDataDefender.get("pre")*10 - dicDataAttacker.get("spe")*4
+            criticalDefender = randint(1, 100)
+            hitDefender = randint(1, 100)
+            damageDefender = dicDataDefender.get("dmg")
             
-            if(criticalDefenser >= 1 and criticalDefenser <= servantEnemy.stats.critical):
-                damageDefenser *= 3
-                servantEnemy.applyDamage(self, damageDefenser)
-            elif(hitDefenser >= 1 and hitDefenser <= precisionDefenser):
-                servantEnemy.applyDamage(self, damageDefenser)
+            if(criticalDefender >= 1 and criticalDefender <= servantEnemy.stats.critical):
+                damageDefender *= 3
+                servantEnemy.applyDamage(self, damageDefender)
+                print("Critical!!!")
+            elif(hitDefender >= 1 and hitDefender <= precisionDefender):
+                servantEnemy.applyDamage(self, damageDefender)
+                print("hit")
             else:
                 print("miss")
+
+            print(servantEnemy.name ," : ", servantEnemy.stats.hp, " | ", damageDefender, " | ", hitDefender, " | ", precisionDefender, " | " , criticalDefender, " | ", servantEnemy.stats.critical)
 
         self.earnedExperience(servantEnemy)
         servantEnemy.earnedExperience(self)
 
+        print(self.stats.hp, " | ", servantEnemy.stats.hp)
+
         if(self.stats.hp <= 0):
             self.killed()
+            print("s1 killed")
         if(servantEnemy.stats.hp <= 0):
             servantEnemy.killed()
+            print("s2 killed")
         
          
     def applyDamage(self, servantAttacked, damageToApply):
@@ -210,7 +225,7 @@ class Servant(Card):
     
     
     def killed(self):
-        print("killed")
+        print("-")
     
     
     def earnedExperience(self, servantEnemy):
@@ -245,20 +260,39 @@ class Servant(Card):
         self.level = 2
         
 if __name__ == '__main__':
-    s1 = Servant({"name" : "s1", "description" : "ds1", "cost" : 1, "hp" : 10, "str" : 4, "int" : 1, "pre" : 7, "spe" : 7,  "def" : 4, "res" : 2, "cri" : 5, "level" : 1, "xp" : 0, "classType" : 0, "weaponType": 0})
-    #s2 = Servant({})
-    """
-    Card.__init__(self, {params.get("name"), params.get("description"), params.get("cost")})
-        self.stats = Stats(params.get("hp"),
-                           params.get("str"),
-                           params.get("int"),
-                           params.get("pre"),
-                           params.get("spe"),
-                           params.get("def"),
-                           params.get("res"),
-                           params.get("cri"))
-        self.level = params.get("level")
-        self.experience = params.get("xp")
-        self.classType = params.get("classType")
-        self.weaponType = params.get("weaponType")
-    """
+    dicDataServant1 = {"name" : "s1", 
+                  "description" : "ds1", 
+                  "cost" : 1, 
+                  "hp" : 10, 
+                  "str" : 4, 
+                  "int" : 1, 
+                  "pre" : 7, 
+                  "spe" : 7,  
+                  "def" : 4, 
+                  "res" : 2, 
+                  "cri" : 5, 
+                  "level" : 1, 
+                  "xp" : 0, 
+                  "classType" : 0, 
+                  "weaponType": 0}
+    s1 = Servant(dicDataServant1)
+    
+    dicDataServant2 = {"name" : "s2", 
+                  "description" : "ds2", 
+                  "cost" : 3, 
+                  "hp" : 20, 
+                  "str" : 8, 
+                  "int" : 3, 
+                  "pre" : 7, 
+                  "spe" : 6,  
+                  "def" : 6, 
+                  "res" : 3, 
+                  "cri" : 3, 
+                  "level" : 2, 
+                  "xp" : 0, 
+                  "classType" : 1, 
+                  "weaponType": 1}
+    s2 = Servant(dicDataServant2)
+    s1.battleBetweenServant(s2)
+    print("\n----------\n")
+    s2.battleBetweenServant(s1)
