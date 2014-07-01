@@ -42,7 +42,7 @@ class Servant(Card):
     """
     
     def __init__(self, params):
-        Card.__init__(self, {"name" : params.get("name"), "description" : params.get("description"), "cost" : params.get("cost")})
+        Card.__init__(self, params)
         self.stats = Stats(params)
         self.level = params.get("level")
         self.experience = params.get("xp")
