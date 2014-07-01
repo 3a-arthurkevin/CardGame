@@ -6,6 +6,7 @@ class Card:
     """
     
     def __init__(self, params):
+        self.idCard = params.get("idCard")
         self.name = params.get("name")
         self.description = params.get("description")
         self.cost = params.get("cost")

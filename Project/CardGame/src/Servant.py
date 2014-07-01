@@ -14,7 +14,6 @@ WeaponType = enum("Weapon",
 
 """
 Définition des bonus malus directement pour simplifier le code
-<<<<<<< HEAD
 --> permet d'avoir moins de condition pour d�terminer les bonus / malus
 --> comme on a besoin de ces infos à chaque combat entre serviteurs autant les poser un fois pour toute
 --> plus facile à maintenir en cas d'ajout et de retrait d'elements
@@ -43,15 +42,8 @@ class Servant(Card):
     """
     
     def __init__(self, params):
-        Card.__init__(self, {"name" : params.get("name"), "description" : params.get("description"), "cost" : params.get("cost")})
-        self.stats = Stats({"hp" : params.get("hp"),
-                            "str" : params.get("str"),
-                            "int" : params.get("int"),
-                            "pre" : params.get("pre"),
-                            "spe" : params.get("spe"),
-                            "def" : params.get("def"),
-                            "res" : params.get("res"),
-                            "cri" : params.get("cri")})
+        Card.__init__(self, params)
+        self.stats = Stats(params)
         self.level = params.get("level")
         self.experience = params.get("xp")
         self.classType = params.get("classType")
