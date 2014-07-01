@@ -33,3 +33,6 @@ class Stats:
         self.resistance = params.get("res", 0)
         self.critical = params.get("cri", 0)
         
+if __name__ == '__main__':
+    print("éà@ù%$£*è")
+        

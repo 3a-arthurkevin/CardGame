@@ -2,7 +2,7 @@
 
 class Card:
     """
-    Classe mere pour Serviteur et Item
+    Classe mère pour Serviteur et Item
     """
     
     def __init__(self, params):

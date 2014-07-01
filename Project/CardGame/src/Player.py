@@ -70,6 +70,10 @@ class Player:
             return -1
         return len(self.itemOnBoard)
     
+    
+    """
+    Fonction qui retire de la main une carte pos�e
+    """
     def removeCardFromHand(self, card):
         """
         Fonction qui retire de la main une carte posée

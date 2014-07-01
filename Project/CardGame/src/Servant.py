@@ -14,10 +14,17 @@ WeaponType = enum("Weapon",
 
 """
 Définition des bonus malus directement pour simplifier le code
+<<<<<<< HEAD
 --> permet d'avoir moins de condition pour d�terminer les bonus / malus
 --> comme on a besoin de ces infos à chaque combat entre serviteurs autant les poser un fois pour toute
 --> plus facile à maintenir en cas d'ajout et de retrait d'elements
 --> mettre toutes les classes et armes pour ne pas a tester si une clé existe (en dehors du type NONE (jamais attribuer à une class ou arme))
+=======
+--> permet d'avoir moins de condition pour déterminer les bonus / malus
+--> comme on a besoin de ces infos à chaque combat entre serviteurs autant les poser un fois pour toute
+--> plus facile à maintenir en cas d'ajout et de retrait d'elements
+--> mettre toutes les classes et armes pour ne pas à tester si une clé existe (en dehors du type NONE (jamais attribuer à une class ou arme))
+>>>>>>> 832ccf8ca8231a4b4e0c1513558e487169542618
 """
 
 tabBonusBetweenWeapon = {WeaponType.SWORD   :  {"stronger" : WeaponType.AXE,     "weaker" : WeaponType.LANCE},
@@ -42,7 +49,7 @@ class Servant(Card):
     """
     
     def __init__(self, params):
-        Card.__init__(self, params.get("name"), params.get("description"), params.get("cost"))
+        Card.__init__(self, {params.get("name"), params.get("description"), params.get("cost")})
         self.stats = Stats(params.get("hp"),
                            params.get("str"),
                            params.get("int"),
@@ -60,7 +67,7 @@ class Servant(Card):
 
     def getBattleData(self, servantEnemy):
         """
-        Fonction qui retourne un dictionnaire de donn�es 
+        Fonction qui retourne un dictionnaire de données 
         concernant un combat entre 2 serviteurs
         """
         
@@ -100,10 +107,10 @@ class Servant(Card):
         
     def getBattleBonus(self, servantEnemy):
         """
-        Fonction qui retourne un dictionnaire de donn�es (sera utilse pour dislpay les infos sur l'ecran)
+        Fonction qui retourne un dictionnaire de données (sera utilse pour dislpay les infos sur l'ecran)
         concerant les bonus et malus selon les armes et classe lors d'un combat entre 2 serviteurs 
             (voir les 2 gros dictionnaires en haut du ficier pour mieux comprendre) 
-            (Le serviteur attaquant est self / le serviteur d�fendant est servantEnemy)
+            (Le serviteur attaquant est self / le serviteur défendant est servantEnemy)
         """
     
         dicDataAttacker = {"dmg" : 0, "pre" : 0}
@@ -120,7 +127,7 @@ class Servant(Card):
             dicDataAttacker["pre"] += -1
             dicDataDefender["dmg"] += 1
             dicDataDefender["pre"] += 1
-        #Checking des bonus malus de la classe par rapport � l'arme    
+        #Checking des bonus malus de la classe par rapport à l'arme    
         if(tabBonusBetweenClassAndWeapon.get(self.classType).get("weaker") == servantEnemy.weaponType):
             dicDataAttacker["dmg"] += 0
             dicDataAttacker["pre"] += 0
@@ -137,7 +144,7 @@ class Servant(Card):
         
     def battleBetweenServant(self, servantEnemy):
         """
-        Fonction r�cup�rant toutes les infos des servants
+        Fonction récupérant toutes les infos des servants
         Et traite tout le combat
         """
         dicData = self.getBattleData(servantEnemy)
@@ -147,13 +154,13 @@ class Servant(Card):
         Tour de l'attaquant
             On fait du randint pour avoir savoir si le servant touchera la cible et/ou si il fera un coup critique
             Si le randInt Critique est compris entre 1 et le critique de stat --> dommage*3 et lancement de l'attaque
-            Sinon, si lr randInt de Touche est comprise entre 1 et la pr�cision  --> lancement de l'attaque
-            Sinon attaque manqu�
-        Tour du d�fenseur
-            Verification si le d�fenseur est en vie
-                Si oui --> Meme sch�ma que l'attaquant
-        Donner l'exp�rience du combat
-        D�truire si serviteur mort (avoir 0 hp)
+            Sinon, si lr randInt de Touche est comprise entre 1 et la précision  --> lancement de l'attaque
+            Sinon attaque manqué
+        Tour du défenseur
+            Verification si le défenseur est en vie
+                Si oui --> Meme schéma que l'attaquant
+        Donner l'expérience du combat
+        Détruire si serviteur mort (avoir 0 hp)
         """
         precisionAttacker = (dicDataAttacker.get("pre")*10) - (dicDataDefenser.get("spe")*5)
         criticalAttacker = randint(1, 100)
@@ -195,7 +202,7 @@ class Servant(Card):
     def applyDamage(self, servantAttacked, damageToApply):
         """
         Fonction qui applique les degat lors d'un combat entre serviteur
-        Si les hp sont inf�rieur � 0, ils seront remis � 0
+        Si les hp sont inférieur à 0, ils seront remis à 0
         """
         servantAttacked.stats.hp -= damageToApply
         if(servantAttacked.stats.hp < 0):
@@ -209,9 +216,9 @@ class Servant(Card):
     def earnedExperience(self, servantEnemy):
         """
         Fonction de calcul retournant l'experience gagner lors d'un combar
-            De base on consid�re que l'ennemi est tu� et qu'on gagne 50pts d'xp (sur 100pts pour level up)
-            On multiplie ces 50pts par le niveau de l'ennemi divis� par le sien
-            Et ensuite, si l'ennemi n'est pas mort, on divise par 2 le total avec un cast int pour ne pas avoir de d�cimale
+            De base on considère que l'ennemi est tué et qu'on gagne 50pts d'xp (sur 100pts pour level up)
+            On multiplie ces 50pts par le niveau de l'ennemi divisé par le sien
+            Et ensuite, si l'ennemi n'est pas mort, on divise par 2 le total avec un cast int pour ne pas avoir de décimale
         """
         earnedXp = 50
         earnedXp = earnedXp * (servantEnemy.level/self.level)
@@ -222,8 +229,8 @@ class Servant(Card):
     
     def levelUp(self):
         """
-        Fonction appel� lors d'un level up --> � remplacer par l'utilisation d'un item � utilisation direct
-        car point de stat gagn� sp�cifique selon la class
+        Fonction appelé lors d'un level up --> à remplacer par l'utilisation d'un item à utilisation direct
+        car point de stat gagné spécifique selon la class
         """
         self.stats.hp += 1
         self.stats.strength += 1
@@ -238,4 +245,6 @@ class Servant(Card):
         self.level = 2
         
 if __name__ == '__main__':
-    print("�ta��")
+    print("a")
+    #s1 = Servant({})
+    #s2 = Servant({})
