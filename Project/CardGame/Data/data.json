@@ -1,68 +1,68 @@
 {
-	"Cards" : [
-		{
-			"idCard" : 0,
-			"Name" : "ServantExemple",
-			"Desc" : "Carte d'exemple de serviteur",
-			"Cost" : "1",
-			"TypeCard" : "Servant",
-			"Level" : 1,
-			"Exp" : 0,
-			"ClassType" : 0,
-			"WeaponType" : 0,
-			"Stats" : {
-				"hp"  : 100,
-                "str" : 10,
-                "int" : 10,
-                "pre" : 10,
-                "spe" : 10,
-                "def" : 10,
-                "res" : 10,
-                "cri" : 10
-            }
-		},
-		{
-			"idCard" : 1,
-			"Name" : "ExemplePotion",
-			"Desc" : "Carte d'exemple de potion",
-			"Cost" : "1",
-			"TypeCard" : "Item",
-			"ItemType" : 0,
-			"Stats" : {
-				"hp"  : 10,
-                "str" : 0,
-                "int" : 0,
-                "pre" : 0,
-                "spe" : 0,
-                "def" : 0,
-                "res" : 0,
-                "cri" : 0
-            }
-		},
-		{
-			"idCard" : 2,
-			"Name" : "Exemple d'arme",
-			"Desc" : "Carte d'exemple d'arme",
-			"Cost" : "2",
-			"TypeCard" : "Item",
-			"ItemType" : 1,
-			"Stats" : {
-				"hp"  : 1,
-                "str" : 1,
-                "int" : 1,
-                "pre" : 1,
-                "spe" : 1,
-                "def" : 1,
-                "res" : 1,
-                "cri" : 1
-            }
-		}
-	],
-	"Decks" : [
-		{
-			"Name" : "firstTry",
-			"CardList" : [
-			]
-		}
-	]
+ "Cards": [
+  {
+   "Stats": {
+    "pre": 10, 
+    "int": 10, 
+    "res": 10, 
+    "hp": 100, 
+    "str": 10, 
+    "cri": 10, 
+    "spe": 10, 
+    "def": 10
+   }, 
+   "Name": "ServantExemple", 
+   "Level": 1, 
+   "ClassType": 0, 
+   "idCard": 0, 
+   "WeaponType": 0, 
+   "Cost": "1", 
+   "Exp": 0, 
+   "TypeCard": "Servant", 
+   "Desc": "Carte d'exemple de serviteur"
+  }, 
+  {
+   "Stats": {
+    "pre": 0, 
+    "int": 0, 
+    "res": 0, 
+    "hp": 10, 
+    "str": 0, 
+    "cri": 0, 
+    "spe": 0, 
+    "def": 0
+   }, 
+   "Name": "ExemplePotion", 
+   "idCard": 1, 
+   "Cost": "1", 
+   "TypeCard": "Item", 
+   "Desc": "Carte d'exemple de potion", 
+   "ItemType": 0
+  }, 
+  {
+   "Stats": {
+    "pre": 1, 
+    "int": 1, 
+    "res": 1, 
+    "hp": 1, 
+    "str": 1, 
+    "cri": 1, 
+    "spe": 1, 
+    "def": 1
+   }, 
+   "Name": "Exemple d'arme", 
+   "idCard": 2, 
+   "Cost": "2", 
+   "TypeCard": "Item", 
+   "Desc": "Carte d'exemple d'arme", 
+   "ItemType": 1
+  }
+ ], 
+ "toto": "toto", 
+ "Decks": [
+  {
+   "Name": "firstTry", 
+   "CardList": []
+  }
+ ]
 }
