@@ -1,0 +1,20 @@
+{
+	"Cards" : [
+		{
+			"Name" : "",
+			"Desc" : "",
+			"Cost" : "",
+			"TypeCard" : "",
+		},
+		{
+
+		}
+	],
+	"Decks" : [
+		{
+			"Name" : "first",
+			"CardList" : [
+			]
+		}
+	]
+}
