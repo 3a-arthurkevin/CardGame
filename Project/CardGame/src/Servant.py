@@ -43,14 +43,7 @@ class Servant(Card):
     
     def __init__(self, params):
         Card.__init__(self, {"name" : params.get("name"), "description" : params.get("description"), "cost" : params.get("cost")})
-        self.stats = Stats({"hp" : params.get("hp"),
-                            "str" : params.get("str"),
-                            "int" : params.get("int"),
-                            "pre" : params.get("pre"),
-                            "spe" : params.get("spe"),
-                            "def" : params.get("def"),
-                            "res" : params.get("res"),
-                            "cri" : params.get("cri")})
+        self.stats = Stats(params)
         self.level = params.get("level")
         self.experience = params.get("xp")
         self.classType = params.get("classType")

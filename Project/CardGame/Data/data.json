@@ -1,18 +1,26 @@
 {
 	"Cards" : [
 		{
-			"Name" : "",
-			"Desc" : "",
-			"Cost" : "",
-			"TypeCard" : "",
-		},
-		{
-
+			"idCard" : 0,
+			"Name" : "Exemple",
+			"Desc" : "Carte d'exemple",
+			"Cost" : "1",
+			"TypeCard" : "Servant",
+			"Stats" : {
+				"hp"  : 100,
+                "str" : 10,
+                "int" : 10,
+                "pre" : 10,
+                "spe" : 10,
+                "def" : 10,
+                "res" : 10,
+                "cri" : 10
+            }
 		}
 	],
 	"Decks" : [
 		{
-			"Name" : "first",
+			"Name" : "firstTry",
 			"CardList" : [
 			]
 		}
