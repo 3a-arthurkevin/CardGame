@@ -34,7 +34,6 @@ if __name__ == '__main__':
         print("dico vide")
     
     else:
-        d["toto"] = "toto"
         saveConfig(d)
         
         

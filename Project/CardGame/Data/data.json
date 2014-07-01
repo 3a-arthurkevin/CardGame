@@ -1,26 +1,278 @@
 {
  "Cards": [
+ {
+  	"idCard" : 0,
+  	"Name" : "SwordMaster lvl 1",
+  	"Desc" : "Epeiste rapide et précise",
+  	"TypeCard" : "Servant",
+  	"ClassType" : 0,
+  	"WeaponType" : 0,
+  	"Cost" : 1,
+  	"Level" : 0,
+  	"Exp" : 0,
+  	"Stats" : {
+  		"hp"  : 10,
+  		"str" : 5,
+  		"int" : 1,
+  		"pre" : 7,
+  		"spe" : 7,
+  		"def" : 3,
+  		"res" : 3,
+  		"cri" : 5
+  	}
+  },
   {
-   "Stats": {
-    "pre": 10, 
-    "int": 10, 
-    "res": 10, 
-    "hp": 100, 
-    "str": 10, 
-    "cri": 10, 
-    "spe": 10, 
-    "def": 10
-   }, 
-   "Name": "ServantExemple", 
-   "Level": 1, 
-   "ClassType": 0, 
-   "idCard": 0, 
-   "WeaponType": 0, 
-   "Cost": "1", 
-   "Exp": 0, 
-   "TypeCard": "Servant", 
-   "Desc": "Carte d'exemple de serviteur"
-  }, 
+  	"idCard" : 1,
+  	"Name" : "Warrior lvl 1",
+  	"Desc" : "Combattant avec beaucoup de vie et puissant",
+  	"TypeCard" : "Servant",
+  	"ClassType" : 1,
+  	"WeaponType" : 1,
+  	"Cost" : 1,
+  	"Level" : 1,
+  	"Exp" : 0,
+  	"Stats" : {
+  		"hp"  : 15,
+  		"str" : 7,
+  		"int" : 1,
+  		"pre" : 5,
+  		"spe" : 4,
+  		"def" : 4,
+  		"res" : 2,
+  		"cri" : 1
+  	}
+  },
+  {
+  	"idCard" : 2,
+  	"Name" : "Halbardier lvl 1",
+  	"Desc" : "Lancier précis avec une bonne défense",
+  	"TypeCard" : "Servant",
+  	"ClassType" : 2,
+  	"WeaponType" : 2,
+  	"Cost" : 1,
+  	"Level" : 1,
+  	"Exp" : 0,
+  	"Stats" : {
+  		"hp"  : 12,
+  		"str" : 6,
+  		"int" : 2,
+  		"pre" : 8,
+  		"spe" : 6,
+  		"def" : 5,
+  		"res" : 4,
+  		"cri" : 3
+  	}
+  },
+  {
+  	"idCard" : 3,
+  	"Name" : "Archer lvl 1",
+  	"Desc" : "Archer précis et pouvant faire des dégats, efficace contre les chevaliers pégases",
+  	"TypeCard" : "Servant",
+  	"ClassType" : 3,
+  	"WeaponType" : 3,
+  	"Cost" : 1,
+  	"Level" : 1,
+  	"Exp" : 0,
+  	"Stats" : {
+  		"hp"  : 7,
+  		"str" : 6,
+  		"int" : 2,
+  		"pre" : 8,
+  		"spe" : 4,
+  		"def" : 3,
+  		"res" : 2,
+  		"cri" : 5
+  	}
+  },
+  {
+    "idCard" : 4,
+    "Name" : "Pegasus knight lvl 1",
+    "Desc" : "Chevalier chevauchant un pégase, résistant face à la magie",
+    "TypeCard" : "Servant",
+    "ClassType" : 4,
+    "WeaponType" : 2,
+    "Cost" : 1,
+    "Level" : 1,
+    "Exp" : 0,
+    "Stats" : {
+      "hp"  : 9,
+      "str" : 4,
+      "int" : 4,
+      "pre" : 7,
+      "spe" : 7,
+      "def" : 3,
+      "res" : 7,
+      "cri" : 2
+    }
+  },
+  {
+    "idCard" : 5,
+    "Name" : "Mage lvl 1",
+    "Desc" : "Magicien pouvant provoquer de grands dégats",
+    "TypeCard" : "Servant",
+    "ClassType" : 5,
+    "WeaponType" : 4,
+    "Cost" : 1,
+    "Level" : 1,
+    "Exp" : 0,
+    "Stats" : {
+      "hp"  : 7,
+      "str" : 2,
+      "int" : 7,
+      "pre" : 7,
+      "spe" : 5,
+      "def" : 2,
+      "res" : 6,
+      "cri" : 3
+    }
+  },
+  {
+    "idCard" : 6,
+    "Name" : "Priest lvl 1",
+    "Desc" : "Pretre pouvant soigner ses alliés",
+    "TypeCard" : "Servant",
+    "ClassType" : 6,
+    "WeaponType" : 5,
+    "Cost" : 1,
+    "Level" : 1,
+    "Exp" : 0,
+    "Stats" : {
+      "hp"  : 6,
+      "str" : 1,
+      "int" : 5,
+      "pre" : 5,
+      "spe" : 6,
+      "def" : 1,
+      "res" : 7,
+      "cri" : 1
+    }
+  },
+  {
+    "idCard" : 7,
+    "Name" : "SwordMaster lvl 2",
+    "Desc" : "Epeiste rapide et précise",
+    "TypeCard" : "Servant",
+    "ClassType" : 0,
+    "WeaponType" : 0,
+    "Cost" : 1,
+    "Level" : 2,
+    "Exp" : 0,
+    "Stats" : {
+      "hp"  : 12,
+      "str" : 6,
+      "int" : 4,
+      "pre" : 8,
+      "spe" : 9,
+      "def" : 5,
+      "res" : 4,
+      "cri" : 10
+    }
+  },
+  {
+    "idCard" : 8,
+    "Name" : "Warrior lvl 2",
+    "Desc" : "Combattant avec beaucoup de vie et puissant",
+    "TypeCard" : "Servant",
+    "ClassType" : 1,
+    "WeaponType" : 1,
+    "Cost" : 3,
+    "Level" : 2,
+    "Exp" : 0,
+    "Stats" : {
+      "hp"  : 16,
+      "str" : 9,
+      "int" : 2,
+      "pre" : 7,
+      "spe" : 5,
+      "def" : 6,
+      "res" : 2,
+      "cri" : 3
+    }
+  },
+  {
+    "idCard" : 9,
+    "Name" : "Halbardier lvl 1",
+    "Desc" : "Lancier précis capable de résiter avec une bonne défense",
+    "TypeCard" : "Servant",
+    "ClassType" : 2,
+    "WeaponType" : 2,
+    "Cost" : 3,
+    "Level" : 2,
+    "Exp" : 0,
+    "Stats" : {
+      "hp"  : 14,
+      "str" : 7,
+      "int" : 4,
+      "pre" : 9,
+      "spe" : 7,
+      "def" : 7,
+      "res" : 6,
+      "cri" : 7
+    }
+  },
+  {
+    "idCard" : 10,
+    "Name" : "Archer lvl 2",
+    "Desc" : "rcher précis et pouvant faire des dégats, efficace contre les chevalier pégases",
+    "TypeCard" : "Servant",
+    "ClassType" : 3,
+    "WeaponType" : 3,
+    "Cost" : 3,
+    "Level" : 2,
+    "Exp" : 100,
+    "Stats" : {
+      "hp"  : 10,
+      "str" : 7,
+      "int" : 3,
+      "pre" : 10,
+      "spe" : 6,
+      "def" : 4,
+      "res" : 3,
+      "cri" : 8
+    }
+  },
+  {
+    "idCard" : 11,
+    "Name" : "Pegasus knight lvl 3",
+    "Desc" : "Chevalier chevauchant un pégase, résistant face à la magie",
+    "TypeCard" : "Servant",
+    "ClassType" : 4,
+    "WeaponType" : 2,
+    "Cost" : 3,
+    "Level" : 3,
+    "Exp" : 100,
+    "Stats" : {
+      "hp"  : 11,
+      "str" : 6,
+      "int" : 5,
+      "pre" : 8,
+      "spe" : 7,
+      "def" : 5,
+      "res" : 9,
+      "cri" : 5
+    }
+  },
+  {
+    "idCard" : 12,
+    "Name" : "Mage lvl 2",
+    "Desc" : "Magicien pouvant provoquer de grands dégats",
+    "TypeCard" : "Servant",
+    "ClassType" : 5,
+    "WeaponType" : 4,
+    "Cost" : 3,
+    "Level" : 2,
+    "Exp" : 100,
+    "Stats" : {
+      "hp"  : 9,
+      "str" : 4,
+      "int" : 9,
+      "pre" : 7,
+      "spe" : 7,
+      "def" : 4,
+      "res" : 8,
+      "cri" : 5
+    }
+  },
   {
    "Stats": {
     "pre": 0, 
@@ -32,11 +284,11 @@
     "spe": 0, 
     "def": 0
    }, 
-   "Name": "ExemplePotion", 
-   "idCard": 1, 
-   "Cost": "1", 
+   "Name": "Potion de vie", 
+   "idCard": 13, 
+   "Cost": 1, 
    "TypeCard": "Item", 
-   "Desc": "Carte d'exemple de potion", 
+   "Desc": "Redonne des pv à la cible", 
    "ItemType": 0
   }, 
   {
@@ -44,7 +296,7 @@
     "pre": 1, 
     "int": 1, 
     "res": 1, 
-    "hp": 1, 
+    "hp" : 0, 
     "str": 1, 
     "cri": 1, 
     "spe": 1, 
@@ -57,12 +309,5 @@
    "Desc": "Carte d'exemple d'arme", 
    "ItemType": 1
   }
- ], 
- "toto": "toto", 
- "Decks": [
-  {
-   "Name": "firstTry", 
-   "CardList": []
-  }
- ]
+  ]
 }
