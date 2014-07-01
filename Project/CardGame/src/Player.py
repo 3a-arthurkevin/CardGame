@@ -1,5 +1,4 @@
 # -*- coding : utf-8 -*-
-# -*- coding: iso-8859-1 -*-
 
 import queue
 
@@ -69,7 +68,7 @@ class Player:
         return len(self.itemOnBoard)
     
     """
-    Fonction qui retire de la main une carte posée
+    Fonction qui retire de la main une carte posï¿½e
     """
     def removeCardFromHand(self, card):
         self.hand.remove(card)

@@ -1,9 +1,8 @@
 # -*- coding : utf-8 -*-
-# -*- coding: iso-8859-1 -*-
 
 class Card:
     """
-    Classe mere pour Serviteur et Item
+    Classe mère pour Serviteur et Item
     """
     
     def __init__(self, params):
