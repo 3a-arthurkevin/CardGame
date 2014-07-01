@@ -1,4 +1,5 @@
 # -*- coding : utf-8 -*-
+# -*- coding: iso-8859-1 -*-
 
 from Utils import *
 from Card import Card
@@ -27,7 +28,7 @@ tabBonusBetweenWeapon = {WeaponType.SWORD   :  {"stronger" : WeaponType.AXE,    
                          WeaponType.EMAGIC  :  {"stronger" : WeaponType.NONE,    "weaker" : WeaponType.LMAGIC},
                          WeaponType.LMAGIC  :  {"stronger" : WeaponType.EMAGIC,  "weaker" : WeaponType.NONE}}
 
-tabBonusBetweenClassAndWeapon = {ClassType.PEGASE       :  {"stronger" : WeaponType.NONE,  "weaker" : WeaponType.BOW},
+tabBonusBetweenClassAndWeapon = {ClassType.PEGASUS       :  {"stronger" : WeaponType.NONE,  "weaker" : WeaponType.BOW},
                                  ClassType.SWORDMASTER  :  {"stronger" : WeaponType.NONE,  "weaker" : WeaponType.NONE},
                                  ClassType.WARRIOR      :  {"stronger" : WeaponType.NONE,  "weaker" : WeaponType.NONE},
                                  ClassType.HALBARDIER   :  {"stronger" : WeaponType.NONE,  "weaker" : WeaponType.NONE},
@@ -236,3 +237,6 @@ class Servant(Card):
         
         self.experience = 0
         self.level = 2
+        
+if __name__ == '__main__':
+    print("étaûù")
