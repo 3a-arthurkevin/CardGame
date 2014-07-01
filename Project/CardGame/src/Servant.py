@@ -27,7 +27,7 @@ tabBonusBetweenWeapon = {WeaponType.SWORD   :  {"stronger" : WeaponType.AXE,    
                          WeaponType.EMAGIC  :  {"stronger" : WeaponType.NONE,    "weaker" : WeaponType.LMAGIC},
                          WeaponType.LMAGIC  :  {"stronger" : WeaponType.EMAGIC,  "weaker" : WeaponType.NONE}}
 
-tabBonusBetweenClassAndWeapon = {ClassType.PEGASUS       :  {"stronger" : WeaponType.NONE,  "weaker" : WeaponType.BOW},
+tabBonusBetweenClassAndWeapon = {ClassType.PEGASUS      :  {"stronger" : WeaponType.NONE,  "weaker" : WeaponType.BOW},
                                  ClassType.SWORDMASTER  :  {"stronger" : WeaponType.NONE,  "weaker" : WeaponType.NONE},
                                  ClassType.WARRIOR      :  {"stronger" : WeaponType.NONE,  "weaker" : WeaponType.NONE},
                                  ClassType.HALBARDIER   :  {"stronger" : WeaponType.NONE,  "weaker" : WeaponType.NONE},
@@ -41,16 +41,16 @@ class Servant(Card):
     Classe reprsesentant les serviteurs a invoquer qui pourront attaquer l'adversaire et ses serviteurs 
     """
     
-    def __init__(self, params):
+    def __init__(self, params = {}):
         Card.__init__(self, {params.get("name"), params.get("description"), params.get("cost")})
-        self.stats = Stats(params.get("hp"),
+        self.stats = Stats({params.get("hp"),
                            params.get("str"),
                            params.get("int"),
                            params.get("pre"),
                            params.get("spe"),
                            params.get("def"),
                            params.get("res"),
-                           params.get("cri"))
+                           params.get("cri")})
         self.level = params.get("level")
         self.experience = params.get("xp")
         self.classType = params.get("classType")
@@ -238,6 +238,21 @@ class Servant(Card):
         self.level = 2
         
 if __name__ == '__main__':
-    print("ééé")
-    #s1 = Servant({})
+    s1 = Servant({"name" : "s1", "description" : "ds1", "cost" : 1, "hp" : 10, "str" : 4, "int" : 1, "pre" : 7, "spe" : 7,  "def" : 4, "res" : 2, "cri" : 5, "level" : 1, "xp" : 0, "classType" : 0, "weaponType": 0})
     #s2 = Servant({})
+    """
+    Card.__init__(self, {params.get("name"), params.get("description"), params.get("cost")})
+        self.stats = Stats(params.get("hp"),
+                           params.get("str"),
+                           params.get("int"),
+                           params.get("pre"),
+                           params.get("spe"),
+                           params.get("def"),
+                           params.get("res"),
+                           params.get("cri"))
+        self.level = params.get("level")
+        self.experience = params.get("xp")
+        self.classType = params.get("classType")
+        self.weaponType = params.get("weaponType")
+    """
+    
