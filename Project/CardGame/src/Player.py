@@ -4,11 +4,12 @@ import queue
 
 class Player:
     
-    def __init__(self):
+    def __init__(self, namePlayer):
+        self.name = namePlayer
         self.lifePoint = 10
         self.maxCardInHand = 10
         self.hand = []
-        self.deck = queue()
+        self.deck = queue.Queue()
         
         self.maxCardInBoardForServant = 5
         self.maxCardInBoardForItem = 5
@@ -20,13 +21,15 @@ class Player:
         
         
         return True
-    """
-    Pioche une carte dans le deck 
-    si il y en reste
-    si le joueur n'a pas atteint la limite de carte en main maximum
-    """    
+    
     def takeCardIntoDeck(self):
-        if len(self.deck) <= 0:
+        """
+        Pioche une carte dans le deck 
+        si il y en reste
+        si le joueur n'a pas atteint la limite de carte en main maximum
+        """    
+        #if len(self.deck) <= 0:
+        if self.deck.qsize() <= 0:
             return False
         
         if len(self.hand) >= self.maxCardInHand:
@@ -34,11 +37,11 @@ class Player:
             
         self.hand.append(self.deck.get())
         
-    """
-    Fonction qui pose une carte sur le terrain si il y a un remplacement libre
-    pour les cartes serviteurs ou les cartes objets
-    """    
     def putServantInBoard(self, cardServantInHand):
+        """
+        Fonction qui pose une carte sur le terrain si il y a un remplacement libre
+        pour les cartes serviteurs ou les cartes objets
+        """ 
         i = self.findFreeSlotForServant()
         if(i >= 0):
             self.servantsOnBoard[i] = cardServantInHand
@@ -52,12 +55,12 @@ class Player:
             return True
         return False
     
-    """
-    Fonctions qui retoure l'index d'un emplacement libre sur le plateau
-    soit pour les servants, soit pour les objets
-
-    """
+    
     def findFreeSlotForServant(self):
+        """
+        Fonctions qui retoure l'index d'un emplacement libre sur le plateau
+        soit pour les servants, soit pour les objets
+        """
         if(len(self.servantsOnBoard) >= self.maxCardInBoard):
             return -1
         return len(self.servantsOnBoard)
@@ -67,8 +70,17 @@ class Player:
             return -1
         return len(self.itemOnBoard)
     
-    """
-    Fonction qui retire de la main une carte posée
-    """
     def removeCardFromHand(self, card):
+        """
+        Fonction qui retire de la main une carte posÃ©e
+        """
         self.hand.remove(card)
+        
+    def hasLoose(self):
+        if self.lifePoint <= 0:
+            return True
+        
+        if self.deck.qsize() <= 0:
+            return True
+        
+        return False
