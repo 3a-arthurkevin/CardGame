@@ -309,5 +309,20 @@
    "Desc": "Carte d'exemple d'arme", 
    "ItemType": 1
   }
+  ],
+
+  "Decks" : [
+    {
+      "Name" : "first",
+      "CardList" : [
+        1, 2, 3
+      ]
+    },
+    {
+      "Name" : "second",
+      "CardList" : [
+        6, 7, 8
+      ]
+    }
   ]
 }

@@ -1,14 +1,18 @@
 # -*- coding : utf-8 -*-
 
 import queue
+import random
 
 class Player:
+    
+    totalCardIntoDeck = 30
     
     def __init__(self, namePlayer):
         self.name = namePlayer
         self.lifePoint = 10
         self.maxCardInHand = 10
         self.hand = []
+        self.cardsList = []
         self.deck = queue.Queue()
         
         self.maxCardInBoardForServant = 5
@@ -17,8 +21,37 @@ class Player:
         self.itemOnBoard = []
         
         
-    def load(self, idPlayer):
+    def createDeck(self, cardsList):
+        """Fonction qui demande à l'utilisateur de constituer son deck
+        Rempli le tableau cardList des cartes choisit par l'utilisateur
+        """
         
+        if len(cardsList) <= 0:
+            print("CardList empty")
+            return False
+        
+        print("Création du deck du joueur : ", self.name)
+        print("Choississez entre les 3 cartes proposées jusqu'à arriver à un total de ", Player.totalCardIntoDeck , " cartes dans votre deck")
+        
+        while len(self.cardsList) < 30:
+            cards = []
+            print(Player.totalCardIntoDeck - len(self.cardsList), " cartes restante à choisir")
+            
+            for i in range(3):
+                cards.append(cardsList[random.randint(0, len(cardsList)-1)])
+                print(i+1, ")", cards[i])
+            
+            validChoose = False
+            choose = 0
+            
+            while not validChoose:
+                choose = int(input("Quelle carte avez vous choisit ? "))
+                if choose >= 1 and choose <= 3:
+                    validChoose = True
+                else:
+                    print("Choix invalide")
+            
+            self.cardsList.append(cards[choose-1])
         
         return True
     
@@ -27,8 +60,8 @@ class Player:
         Pioche une carte dans le deck 
         si il y en reste
         si le joueur n'a pas atteint la limite de carte en main maximum
-        """    
-        #if len(self.deck) <= 0:
+        """
+        
         if self.deck.qsize() <= 0:
             return False
         
