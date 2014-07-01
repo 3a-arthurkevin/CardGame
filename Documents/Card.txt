@@ -1,0 +1,255 @@
+"SWORDMASTER" 0, "WARRIOR" 1, "HALBARDIER" 2, "ARCHER" 3, "PEGASUS" 4, "MAGE" 5, "PRIEST" 6
+
+"SWORD" 0, "AXE" 1, "LANCE" 2, "BOW" 3, "EMAGIC" 4, "LMAGIC" 5, "NONE" 6
+
+"name" : "SwordMaster lvl 1", 
+"description" : "Epeiste rapide et précise", 
+"cost" : 1, 
+"hp" : 10, 
+"str" : 4, 
+"int" : 1, 
+"pre" : 7, 
+"spe" : 7,  
+"def" : 3, 
+"res" : 3, 
+"cri" : 5, 
+"level" : 1, 
+"xp" : 0, 
+"classType" : 0, 
+"weaponType": 0
+
+------
+
+"name" : "Warrior lvl 1", 
+"description" : "Combattant avec beaucoup de vie et puissant", 
+"cost" : 1, 
+"hp" : 15, 
+"str" : 7, 
+"int" : 1, 
+"pre" : 5, 
+"spe" : 4,  
+"def" : 4, 
+"res" : 2, 
+"cri" : 1, 
+"level" : 1, 
+"xp" : 0, 
+"classType" : 1, 
+"weaponType": 1
+
+------
+
+"name" : "Halbardier lvl 1", 
+"description" : "Lancier précis capable de résiter avec une bonne défense", 
+"cost" : 1, 
+"hp" : 12, 
+"str" : 5, 
+"int" : 2, 
+"pre" : 8, 
+"spe" : 6,  
+"def" : 5, 
+"res" : 4, 
+"cri" : 3, 
+"level" : 1, 
+"xp" : 0, 
+"classType" : 2, 
+"weaponType": 2
+
+-----
+
+"name" : "Archer lvl 1", 
+"description" : "Archer précis et pouvant faire des dégats, efficace contre les chevalier pégases", 
+"cost" : 1, 
+"hp" : 7, 
+"str" : 6, 
+"int" : 2, 
+"pre" : 8, 
+"spe" : 4,  
+"def" : 3, 
+"res" : 2, 
+"cri" : 5, 
+"level" : 1, 
+"xp" : 0, 
+"classType" : 3, 
+"weaponType": 3
+
+-----
+
+"name" : "Pegasus knight lvl 1", 
+"description" : "Chevalier chevauchant un pégase, résistant face à la magie", 
+"cost" : 1, 
+"hp" : 9, 
+"str" : 4, 
+"int" : 4, 
+"pre" : 7, 
+"spe" : 6,  
+"def" : 2, 
+"res" : 7, 
+"cri" : 2, 
+"level" : 1, 
+"xp" : 0, 
+"classType" : 4, 
+"weaponType": 2
+
+-----
+
+"name" : "Mage lvl 1", 
+"description" : "Magicien pouvant provoquer de grands dégats", 
+"cost" : 1, 
+"hp" : 7, 
+"str" : 2, 
+"int" : 7, 
+"pre" : 7, 
+"spe" : 5,  
+"def" : 2, 
+"res" : 6, 
+"cri" : 3, 
+"level" : 1, 
+"xp" : 0, 
+"classType" : 5, 
+"weaponType": 4
+
+-----
+
+"name" : "Priest lvl 1", 
+"description" : "Pretre pouvant soigner ses alliés", 
+"cost" : 1, 
+"hp" : 6, 
+"str" : 1, 
+"int" : 5, 
+"pre" : 5, 
+"spe" : 6,  
+"def" : 1, 
+"res" : 7, 
+"cri" : 1, 
+"level" : 1, 
+"xp" : 0, 
+"classType" : 6, 
+"weaponType": 4
+
+____________________________________________
+
+
+
+"name" : "SwordMaster lvl 1", 
+"description" : "Epeiste rapide et précise", 
+"cost" : 1, 
+"hp" : 12, 
+"str" : 5, 
+"int" : 4, 
+"pre" : 8, 
+"spe" : 9,  
+"def" : 5, 
+"res" : 4, 
+"cri" : 10, 
+"level" : 2, 
+"xp" : 100, 
+"classType" : 0, 
+"weaponType": 0
+
+------
+
+"name" : "Warrior lvl 2", 
+"description" : "Combattant avec beaucoup de vie et puissant", 
+"cost" : 3, 
+"hp" : 16, 
+"str" : 9, 
+"int" : 2, 
+"pre" : 7, 
+"spe" : 5,  
+"def" : 6, 
+"res" : 2, 
+"cri" : 3, 
+"level" : 2, 
+"xp" : 100, 
+"classType" : 1, 
+"weaponType": 1
+
+------
+
+"name" : "Halbardier lvl 1", 
+"description" : "Lancier précis capable de résiter avec une bonne défense", 
+"cost" : 3, 
+"hp" : 14, 
+"str" : 7, 
+"int" : 4, 
+"pre" : 9, 
+"spe" : 7,  
+"def" : 7, 
+"res" : 6, 
+"cri" : 7, 
+"level" : 2, 
+"xp" : 100, 
+"classType" : 2, 
+"weaponType": 2
+
+-----
+
+"name" : "Archer lvl 2", 
+"description" : "Archer précis et pouvant faire des dégats, efficace contre les chevalier pégases", 
+"cost" : 3, 
+"hp" : 10, 
+"str" : 7, 
+"int" : 3, 
+"pre" : 10, 
+"spe" : 6,  
+"def" : 4, 
+"res" : 3, 
+"cri" : 8, 
+"level" : 2, 
+"xp" : 100, 
+"classType" : 3, 
+"weaponType": 3
+
+-----
+
+"name" : "Pegasus knight lvl 2", 
+"description" : "Chevalier chevauchant un pégase, résistant face à la magie", 
+"cost" : 3, 
+"hp" : 11, 
+"str" : 6, 
+"int" : 5, 
+"pre" : 8, 
+"spe" : 7,  
+"def" : 5, 
+"res" : 9, 
+"cri" : 5, 
+"level" : 3, 
+"xp" : 100, 
+"classType" : 4, 
+"weaponType": 2
+
+-----
+
+"name" : "Mage lvl 2", 
+"description" : "Magicien pouvant provoquer de grands dégats", 
+"cost" : 3, 
+"hp" : 9, 
+"str" : 4, 
+"int" : 9, 
+"pre" : 7, 
+"spe" : 7,  
+"def" : 4, 
+"res" : 8, 
+"cri" : 5, 
+"level" : 2, 
+"xp" : 100, 
+"classType" : 5, 
+"weaponType": 4
+
+-----
+
+"name" : "Priest lvl 2", 
+"description" : "Pretre pouvant soigner ses alliés", 
+"cost" : 3, 
+"hp" : 8, 
+"str" : 2, 
+"int" : 7, 
+"pre" : 6, 
+"spe" : 7,  
+"def" : 3, 
+"res" : 9, 
+"cri" : 3, 
+"level" : 2, 
+"xp" : 100, 
+"classType" : 6, 
+"weaponType": 4

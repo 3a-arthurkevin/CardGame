@@ -9,7 +9,7 @@ class Stats:
         strength      : 1  --> 10  (pas de post traitement)
         intelligence  : 1  --> 10  (pas de post traitement)
         precision     : 1  --> 10  (1pts == 10% <--> 10pts == 100%) % de touche
-        speed         : 1  --> 10  (1pts == 5%  <--> 10pts == 50%)  % d'esquiver
+        speed         : 1  --> 10  (1pts == 4%  <--> 10pts == 0%)  % d'esquiver
         defense       : 1  --> 10  (pas de post traitement)
         resistance    : 1  --> 10  (pas de post traitement)
         critical      : 1  --> 10  (pas de post traitement)
