@@ -14,10 +14,10 @@ WeaponType = enum("Weapon",
 
 """
 Définition des bonus malus directement pour simplifier le code
---> permet d'avoir moins de condition pour déterminer les bonus / malus
+--> permet d'avoir moins de condition pour d�terminer les bonus / malus
 --> comme on a besoin de ces infos à chaque combat entre serviteurs autant les poser un fois pour toute
 --> plus facile à maintenir en cas d'ajout et de retrait d'elements
---> mettre toutes les classes et armes pour ne pas à tester si une clé existe (en dehors du type NONE (jamais attribuer à une class ou arme))
+--> mettre toutes les classes et armes pour ne pas a tester si une clé existe (en dehors du type NONE (jamais attribuer à une class ou arme))
 """
 
 tabBonusBetweenWeapon = {WeaponType.SWORD   :  {"stronger" : WeaponType.AXE,     "weaker" : WeaponType.LANCE},
@@ -149,8 +149,12 @@ class Servant(Card):
         Donner l'expérience du combat
         Détruire si serviteur mort (avoir 0 hp)
         """
-        print(self.stats.hp, " | ", servantEnemy.stats.hp)
-        
+        print("_________________________")
+        print("Battle between", self.name, " and ", servantEnemy.name)
+        print("-----")
+        print(self.name," - hp - ", self.stats.hp)
+        print(servantEnemy.name, " - hp - ", servantEnemy.stats.hp)
+        print("-----")
         precisionAttacker =  dicDataAttacker.get("pre")*10 - dicDataDefender.get("spe")*3
         criticalAttacker = randint(1, 100)
         hitAttacker = randint(1, 100)
@@ -159,14 +163,14 @@ class Servant(Card):
         if(criticalAttacker >= 1 and criticalAttacker <= self.stats.critical):
             damageAttacker *= 3
             self.applyDamage(servantEnemy, damageAttacker)
-            print("Critical!!!")
+            print(self.name, " - Critical Hit!!!")
         elif(hitAttacker >= 1 and hitAttacker <= precisionAttacker):
             self.applyDamage(servantEnemy, damageAttacker)
-            print("hit")
+            print(self.name, " - Hit")
         else:
-            print("miss")
+            print(self.name, " - Miss")
             
-        print(self.name, " : ", self.stats.hp, " | ", damageAttacker, " | ", hitAttacker, " | ", precisionAttacker, " | ", criticalAttacker, " | ", self.stats.critical)
+        #print(self.name, " : ", self.stats.hp, " | ", damageAttacker, " | ", hitAttacker, " | ", precisionAttacker, " | ", criticalAttacker, " | ", self.stats.critical)
             
         if(servantEnemy.stats.hp > 0):
             #Tour du defenseur
@@ -178,27 +182,30 @@ class Servant(Card):
             if(criticalDefender >= 1 and criticalDefender <= servantEnemy.stats.critical):
                 damageDefender *= 3
                 servantEnemy.applyDamage(self, damageDefender)
-                print("Critical!!!")
+                print(servantEnemy.name, " - Critical Hit!!!")
             elif(hitDefender >= 1 and hitDefender <= precisionDefender):
                 servantEnemy.applyDamage(self, damageDefender)
-                print("hit")
+                print(servantEnemy.name, " - Hit")
             else:
-                print("miss")
+                print(servantEnemy.name, " - Miss")
 
-            print(servantEnemy.name ," : ", servantEnemy.stats.hp, " | ", damageDefender, " | ", hitDefender, " | ", precisionDefender, " | " , criticalDefender, " | ", servantEnemy.stats.critical)
+            #print(servantEnemy.name ," : ", servantEnemy.stats.hp, " | ", damageDefender, " | ", hitDefender, " | ", precisionDefender, " | " , criticalDefender, " | ", servantEnemy.stats.critical)
 
         self.earnedExperience(servantEnemy)
         servantEnemy.earnedExperience(self)
 
-        print(self.stats.hp, " | ", servantEnemy.stats.hp)
-
+        print("-----")
+        print(self.name," - hp - ", self.stats.hp)
+        print(servantEnemy.name, " - hp - ", servantEnemy.stats.hp)
+        print("-----")
         if(self.stats.hp <= 0):
             self.killed()
-            print("s1 killed")
+            print(self.name, " - killed")
         if(servantEnemy.stats.hp <= 0):
             servantEnemy.killed()
-            print("s2 killed")
+            print(servantEnemy.name, " - killed")
         
+        print("Battle Ended")
          
     def applyDamage(self, servantAttacked, damageToApply):
         """
@@ -279,6 +286,11 @@ if __name__ == '__main__':
                   "classType" : 1, 
                   "weaponType": 1}
     s2 = Servant(dicDataServant2)
+    
+    s1.battleBetweenServant(s2)
+    print("\n----------\n")
+    s2.battleBetweenServant(s1)
+    print("\n----------\n")
     s1.battleBetweenServant(s2)
     print("\n----------\n")
     s2.battleBetweenServant(s1)
