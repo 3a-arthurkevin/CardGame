@@ -1,6 +1,6 @@
 # -*- coding : utf-8 -*-
 
-from Utils import *
+from Utils.Enum import enum
 from Card import Card
 from Stats import Stats
 from Item import *
@@ -14,10 +14,17 @@ WeaponType = enum("Weapon",
 
 """
 Définition des bonus malus directement pour simplifier le code
+<<<<<<< HEAD
+--> permet d'avoir moins de condition pour d�terminer les bonus / malus
+--> comme on a besoin de ces infos à chaque combat entre serviteurs autant les poser un fois pour toute
+--> plus facile à maintenir en cas d'ajout et de retrait d'elements
+--> mettre toutes les classes et armes pour ne pas a tester si une clé existe (en dehors du type NONE (jamais attribuer à une class ou arme))
+=======
 --> permet d'avoir moins de condition pour déterminer les bonus / malus
 --> comme on a besoin de ces infos à chaque combat entre serviteurs autant les poser un fois pour toute
 --> plus facile à maintenir en cas d'ajout et de retrait d'elements
 --> mettre toutes les classes et armes pour ne pas à tester si une clé existe (en dehors du type NONE (jamais attribuer à une class ou arme))
+>>>>>>> 832ccf8ca8231a4b4e0c1513558e487169542618
 """
 
 tabBonusBetweenWeapon = {WeaponType.SWORD   :  {"stronger" : WeaponType.AXE,     "weaker" : WeaponType.LANCE},
@@ -255,4 +262,3 @@ if __name__ == '__main__':
         self.classType = params.get("classType")
         self.weaponType = params.get("weaponType")
     """
-    

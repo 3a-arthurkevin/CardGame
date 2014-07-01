@@ -49,11 +49,11 @@ class Game:
         endTurn = False
         
         while not endTurn:
-            strChoose = """Quel action voulez vous faire :
-            1) Poser une carte
-            2) Attaquer l'adversaire
-            3) Mettre fin au tour
-            """
+            print("""Quel action voulez vous faire :
+                  1) Poser une carte
+                  2) Attaquer l'adversaire
+                  3) Mettre fin au tour
+                  """)
             choose = int(input("Choix : "))
             
             if choose == 1:
