@@ -6,7 +6,7 @@
 "description" : "Epeiste rapide et précise", 
 "cost" : 1, 
 "hp" : 10, 
-"str" : 4, 
+"str" : 5, 
 "int" : 1, 
 "pre" : 7, 
 "spe" : 7,  
@@ -39,10 +39,10 @@
 ------
 
 "name" : "Halbardier lvl 1", 
-"description" : "Lancier précis capable de résiter avec une bonne défense", 
+"description" : "Lancier précis avec une bonne défense", 
 "cost" : 1, 
 "hp" : 12, 
-"str" : 5, 
+"str" : 6, 
 "int" : 2, 
 "pre" : 8, 
 "spe" : 6,  
@@ -57,7 +57,7 @@
 -----
 
 "name" : "Archer lvl 1", 
-"description" : "Archer précis et pouvant faire des dégats, efficace contre les chevalier pégases", 
+"description" : "Archer précis et pouvant faire des dégats, efficace contre les chevaliers pégases", 
 "cost" : 1, 
 "hp" : 7, 
 "str" : 6, 
@@ -81,8 +81,8 @@
 "str" : 4, 
 "int" : 4, 
 "pre" : 7, 
-"spe" : 6,  
-"def" : 2, 
+"spe" : 7,  
+"def" : 3, 
 "res" : 7, 
 "cri" : 2, 
 "level" : 1, 
@@ -124,17 +124,17 @@
 "level" : 1, 
 "xp" : 0, 
 "classType" : 6, 
-"weaponType": 4
+"weaponType": 5
 
 ____________________________________________
 
 
 
-"name" : "SwordMaster lvl 1", 
+"name" : "SwordMaster lvl 2", 
 "description" : "Epeiste rapide et précise", 
 "cost" : 1, 
 "hp" : 12, 
-"str" : 5, 
+"str" : 6, 
 "int" : 4, 
 "pre" : 8, 
 "spe" : 9,  

@@ -149,16 +149,24 @@ class Servant(Card):
         Donner l'expérience du combat
         Détruire si serviteur mort (avoir 0 hp)
         """
+        damageAttacker = dicDataAttacker.get("dmg")
+        precisionAttacker =  dicDataAttacker.get("pre")*10 - dicDataDefender.get("spe")*4
+        damageDefender = dicDataDefender.get("dmg")
+        precisionDefender = dicDataDefender.get("pre")*10 - dicDataAttacker.get("spe")*4
+        
         print("_________________________")
         print("Battle between", self.name, " and ", servantEnemy.name)
+        print("-----")
+        print("Stats of this battle")
+        print(self.name, " - atk ", damageAttacker, " | pre ", precisionAttacker, " | def", self.stats.defense, " | res ", self.stats.resistance, " | crit ", self.stats.critical)
+        print(servantEnemy.name, " - atk ", damageDefender, " | pre ", precisionDefender, " | def", servantEnemy.stats.defense, " | res ", servantEnemy.stats.resistance, " | crit ", servantEnemy.stats.critical)
         print("-----")
         print(self.name," - hp - ", self.stats.hp)
         print(servantEnemy.name, " - hp - ", servantEnemy.stats.hp)
         print("-----")
-        precisionAttacker =  dicDataAttacker.get("pre")*10 - dicDataDefender.get("spe")*3
+            
         criticalAttacker = randint(1, 100)
         hitAttacker = randint(1, 100)
-        damageAttacker = dicDataAttacker.get("dmg")
         
         if(criticalAttacker >= 1 and criticalAttacker <= self.stats.critical):
             damageAttacker *= 3
@@ -174,10 +182,8 @@ class Servant(Card):
             
         if(servantEnemy.stats.hp > 0):
             #Tour du defenseur
-            precisionDefender = dicDataDefender.get("pre")*10 - dicDataAttacker.get("spe")*4
             criticalDefender = randint(1, 100)
             hitDefender = randint(1, 100)
-            damageDefender = dicDataDefender.get("dmg")
             
             if(criticalDefender >= 1 and criticalDefender <= servantEnemy.stats.critical):
                 damageDefender *= 3
