@@ -1,5 +1,4 @@
 # -*- coding : utf-8 -*-
-# -*- coding: iso-8859-1 -*-
 
 class Stats:
     '''
@@ -15,10 +14,10 @@ class Stats:
         resistance    : 1  --> 10  (pas de post traitement)
         critical      : 1  --> 10  (pas de post traitement)
     
-    Le précision représente le % de toucher un servant,
+    Le prï¿½cision reprï¿½sente le % de toucher un servant,
         on y retire le % de vitesse de l'adversaire pour prendre en compte son esquive
-        (à cela s'ajoute les stats de l'arme equipé si il y a et aussi du bonus/malus de l'arme adverse)
-    Avec un traitemenr spécial selon la stat (à tweeker si pas top)
+        (ï¿½ cela s'ajoute les stats de l'arme equipï¿½ si il y a et aussi du bonus/malus de l'arme adverse)
+    Avec un traitemenr spï¿½cial selon la stat (ï¿½ tweeker si pas top)
     '''
 
     def __init__(self, params = {}):

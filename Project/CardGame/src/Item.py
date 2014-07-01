@@ -1,7 +1,6 @@
 # -*- coding : utf-8 -*-
-# -*- coding: iso-8859-1 -*-
 
-from Utils import *
+from Utils.Enum import enum
 from Stats import Stats
 
 ItemType = enum(
