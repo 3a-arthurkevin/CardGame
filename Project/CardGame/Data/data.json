@@ -286,10 +286,10 @@
    }, 
    "Name": "Potion de vie", 
    "idCard": 13, 
-   "ItemType": 0, 
    "Cost": 1, 
    "TypeCard": "Item", 
-   "Desc": "Redonne des pv \u00c3\u00a0 la cible"
+   "Desc": "Redonne des pv \u00c3\u00a0 la cible", 
+   "ItemType": 0
   }, 
   {
    "Stats": {
@@ -304,10 +304,10 @@
    }, 
    "Name": "Exemple d'arme", 
    "idCard": 2, 
-   "ItemType": 1, 
    "Cost": "2", 
    "TypeCard": "Item", 
-   "Desc": "Carte d'exemple d'arme"
+   "Desc": "Carte d'exemple d'arme", 
+   "ItemType": 1
   }
  ], 
  "Decks": [

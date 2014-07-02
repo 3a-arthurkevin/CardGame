@@ -7,9 +7,9 @@ class Card:
     
     def __init__(self, params):
         self.idCard = params.get("idCard")
-        self.name = params.get("name")
-        self.description = params.get("description")
-        self.cost = params.get("cost")
+        self.name = params.get("Name")
+        self.description = params.get("Desc")
+        self.cost = params.get("Cost")
         
     def destroyCard(self):
         print("destroy")

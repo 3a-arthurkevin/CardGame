@@ -43,11 +43,11 @@ class Servant(Card):
     
     def __init__(self, params):
         Card.__init__(self, params)
-        self.stats = Stats(params)
-        self.level = params.get("level")
-        self.experience = params.get("xp")
-        self.classType = params.get("classType")
-        self.weaponType = params.get("weaponType")
+        self.stats = Stats(params.get("Stats"))
+        self.level = params.get("Level")
+        self.experience = params.get("Exp")
+        self.classType = params.get("ClassType")
+        self.weaponType = params.get("WeaponType")
         self.weaponEquipped = None
         
 

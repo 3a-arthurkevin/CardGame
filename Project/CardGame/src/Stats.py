@@ -14,10 +14,10 @@ class Stats:
         resistance    : 1  --> 10  (pas de post traitement)
         critical      : 1  --> 10  (pas de post traitement)
     
-    Le pr�cision repr�sente le % de toucher un servant,
+    Le précision représente le % de toucher un servant,
         on y retire le % de vitesse de l'adversaire pour prendre en compte son esquive
-        (� cela s'ajoute les stats de l'arme equip� si il y a et aussi du bonus/malus de l'arme adverse)
-    Avec un traitemenr sp�cial selon la stat (� tweeker si pas top)
+        (à cela s'ajoute les stats de l'arme equip� si il y a et aussi du bonus/malus de l'arme adverse)
+    Avec un traitemenr spécial selon la stat (� tweeker si pas top)
     '''
 
     def __init__(self, params = {}):
@@ -34,14 +34,14 @@ class Stats:
         self.critical = params.get("cri", 0)
         
     def __str__(self):
-        return  "hp"  + str(self.hp)             + " | " + \
-                "atk" + str(self.strength)       + " | " + \
-                "int" + str(self.intelligence)   + " | " + \
-                "pre" + str(self.precision)      + " | " + \
-                "spe" + str(self.speed)          + " | " + \
-                "def" + str(self.defense)        + " | " + \
-                "res" + str(self.resistance)     + " | " + \
-                "cri" + str(self.critical)
+        return  "hp : "  + str(self.hp)             + " | " + \
+                "atk : " + str(self.strength)       + " | " + \
+                "int : " + str(self.intelligence)   + " | " + \
+                "pre : " + str(self.precision)      + " | " + \
+                "spe : " + str(self.speed)          + " | " + \
+                "def : " + str(self.defense)        + " | " + \
+                "res : " + str(self.resistance)     + " | " + \
+                "cri : " + str(self.critical)
         
 if __name__ == '__main__':
     print("éà@ù%$£*è")
