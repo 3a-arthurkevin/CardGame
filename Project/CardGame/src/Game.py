@@ -1,20 +1,126 @@
 # -*- coding : utf-8 -*-
 
+from Utils import Config
 from Player import Player
+from Servant import Servant
+from Item import Item
 
 class Game:
     '''
-    classdocs
+    La classe Game représente une partie de jeu
+    Elle s'occupe de l'instanciation des player et de lancer les actions relative au jeu (Tour, création de deck)
     '''
 
 
     def __init__(self, params):
         '''
-        Constructor
+        Initialisation d'une partie
+        Création des player
         '''
-        
+        self.config = Config.loadConfig()
+        self.cards = []
+        self.setupCard()
+
         self.players = [Player(params.get("playerName1")), Player(params.get("playerName2"))]
         
+        self.setupPlayer(self.players[0])
+        self.setupPlayer(self.players[1])
+    
+    def setupCard(self):
+        cards = self.config.get("Cards")
+        
+        for jsonCard in cards:
+            if jsonCard["TypeCard"] == "Servant":
+                self.cards.append(Servant(jsonCard))
+                
+            elif jsonCard["TypeCard"] == "Item":
+                self.cards.append(Item(jsonCard))
+                
+        
+        return
+    def setupPlayer(self, player):
+        print("Création du joueur : ", player.name)
+        
+        choose = input("Voulez-vous utiliser un deck existant ? (Y/N)")
+        
+        if choose == "Y":
+            deck = self.getDeck()
+            
+            if deck != None:
+                player.cardsList = deck
+                return
+            
+            else:
+                print("Error lors de la récupération d'un deck existant")
+        
+        
+        if choose != "N" and choose != "Y":
+            print("Choix invalide")
+            
+        print("Création d'un nouveau deck")
+        
+        player.createDeck(self.cards)
+        
+        choose = input("Voulez-vous sauvegarder votre deck ? (Y/N)")
+        
+        if choose == "Y":
+            self.saveDeck(player)
+            return
+        
+        elif choose != "N":
+            print("Choix invalide")
+            
+        print("Le deck ne sera pas sauvegardé")
+        return
+    
+    def getDeck(self):
+        
+        self.deck = self.config.get("Decks", None)
+        
+        if len(self.deck) <= 0:
+            return None
+        
+        deckName = input("Quel deck voulez-vous charger ?")
+        
+        jsonDeck = [ deck for deck in self.deck if deck["Name"] == deckName ]
+        deck = []
+        
+        if len(jsonDeck) >= 1:
+            jsonDeck = jsonDeck[0]
+            for idCard in jsonDeck["CardList"]:
+                card = [c for c in self.cards if c.idCard == idCard]
+                deck.append(card)
+                
+        if len(deck) == Player.totalCardIntoDeck:
+            print(deck)
+            return deck
+        
+        else:
+            print("Nombre de carte insufisante dans le deck")
+            
+        return None
+    
+    def saveDeck(self, player):
+        
+        if len(player.cardsList) < Player.totalCardIntoDeck:
+            print("Le nombre de carte dans le deck du joueur n'est pas suffisant")
+            return False
+        
+        cardList = [ card.idCard for card in player.cardsList ]
+        deckName = input("Choisissez le nom de votre deck : ")
+        decks = self.config["Decks"]
+        
+        deck = [ deck for deck in decks if deck["Name"] == deckName ]
+        
+        if len(deck) <= 0:
+            decks.append({"Name":deckName, "CardList" : cardList})
+        else:
+            deck[0]["CardList"] = cardList
+        
+        Config.saveConfig(self.config)
+        
+        return True
+    
     def loop(self):
         '''Chaque appel de cette fonction fait avancer la partie d'un tour pour chaque joueur
         retourne un booleen si le tour a mis fin a la partie
