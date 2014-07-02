@@ -252,6 +252,8 @@ class Servant(Card):
     def endBattleManaging(self, servantEnemy):
         """
         Fonction qui s'occupe de la fin du combat (vérification si servant est mort et/ou attribution de l'xp + level up)
+            Si servant a 0 ou moins hp --> mort
+            Sinon servant gagne xp du combat + check si assez xp pour level up (si oui application du level up)
         """
         if(self.stats.hp <= 0):
             self.killed()
@@ -290,6 +292,9 @@ class Servant(Card):
         return earnedXp
         
     def displayServantInfo(self):
+        """
+        Fonction affichant toutes les infos à propos d'un servant
+        """
         print("name : ", self.name, "\n",
               "description : ", self.description, "\n",
               "cost : ", self.cost, "\n", 
@@ -346,6 +351,36 @@ class Servant(Card):
         
         self.experience = 100
         self.level = 2
+        self.name += "++"
+    
+    def checkWeaponState(self):
+        if(self.weaponEquipped):
+            self.weaponEquipped.useWeapon()
+            if(self.weaponEquipped.durability == 0):
+                self.unequipped()
+        
+    def equipWeapon(self, weapon):
+        """
+        Fonction appeler pour equiper le servant d'une arme
+        """
+        self.weaponEquipped = weapon
+        
+    def unequipped(self):
+        self.weaponEquipped = None
+        print("The weapon is broken...")
+        
+    def attackPlayer(self, player):
+        damageToApply = 0
+        
+        if(self.classType == ClassType.MAGE):
+            damageToApply += self.stats.intelligence
+        else:
+            damageToApply += self.stats.strength
+        
+        if(self.weaponEquipped):
+            damageToApply = self.weaponEquipped.stats.strength
+        
+        player.lifePoint -= damageToApply
         
 if __name__ == '__main__':
     dicDataServant1 = {"name" : "s1", 
@@ -385,7 +420,10 @@ if __name__ == '__main__':
     #s1.displayServantInfo()
     
     s1.battleBetweenServant(s2)
+    
     s2.battleBetweenServant(s1)
+    s1.displayServantInfo()
+    """
     s1.battleBetweenServant(s2)
     s2.battleBetweenServant(s1)
-    
+    """

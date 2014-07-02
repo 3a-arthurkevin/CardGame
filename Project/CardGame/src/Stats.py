@@ -9,14 +9,14 @@ class Stats:
         strength      : 1  --> 10  (pas de post traitement)
         intelligence  : 1  --> 10  (pas de post traitement)
         precision     : 1  --> 10  (1pts == 10% <--> 10pts == 100%) % de touche
-        speed         : 1  --> 10  (1pts == 4%  <--> 10pts == 0%)  % d'esquiver
+        speed         : 1  --> 10  (1pts == 4%  <--> 10pts == 40%)  % d'esquiver
         defense       : 1  --> 10  (pas de post traitement)
         resistance    : 1  --> 10  (pas de post traitement)
         critical      : 1  --> 10  (pas de post traitement)
     
-    Le pr�cision repr�sente le % de toucher un servant,
+    Le précision représente le % de toucher un servant,
         on y retire le % de vitesse de l'adversaire pour prendre en compte son esquive
-        (� cela s'ajoute les stats de l'arme equip� si il y a et aussi du bonus/malus de l'arme adverse)
+        (à cela s'ajoute les stats de l'arme equipé si il y a et aussi du bonus/malus de l'arme adverse)
     Avec un traitemenr sp�cial selon la stat (� tweeker si pas top)
     '''
 
