@@ -45,7 +45,11 @@ class Player:
             choose = 0
             
             while not validChoose:
-                choose = int(input("Quelle carte avez vous choisit ? "))
+                try:
+                    choose = int(input("Quelle carte avez vous choisit ? "))
+                except ValueError:
+                    choose = 0
+                    
                 if choose >= 1 and choose <= 3:
                     validChoose = True
                 else:

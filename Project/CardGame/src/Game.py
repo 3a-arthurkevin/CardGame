@@ -1,7 +1,9 @@
 # -*- coding : utf-8 -*-
 
-from Player import Player
 from Utils import Config
+from Player import Player
+from Servant import Servant
+from Item import Item
 
 class Game:
     '''
@@ -16,9 +18,26 @@ class Game:
         Création des player
         '''
         self.config = Config.loadConfig()
-        self.cards = self.config["Cards"]
+        self.cards = []
+        self.setupCard()
+
         self.players = [Player(params.get("playerName1")), Player(params.get("playerName2"))]
+        
+        self.setupPlayer(self.players[0])
+        self.setupPlayer(self.players[1])
     
+    def setupCard(self):
+        cards = self.config.get("Cards")
+        
+        for jsonCard in cards:
+            if jsonCard["TypeCard"] == "Servant":
+                self.cards.append(Servant(jsonCard))
+                
+            elif jsonCard["TypeCard"] == "Item":
+                self.cards.append(Item(jsonCard))
+                
+        
+        return
     def setupPlayer(self, player):
         print("Création du joueur : ", player.name)
         
@@ -35,12 +54,12 @@ class Game:
                 print("Error lors de la récupération d'un deck existant")
         
         
-        if choose != "N":
+        if choose != "N" and choose != "Y":
             print("Choix invalide")
             
         print("Création d'un nouveau deck")
         
-        player.createDeck()
+        player.createDeck(self.cards)
         
         choose = input("Voulez-vous sauvegarder votre deck ? (Y/N)")
         
@@ -56,7 +75,7 @@ class Game:
     
     def getDeck(self):
         
-        self.deck = self.config["Deck"]
+        self.deck = self.config.get("Decks", None)
         
         if len(self.deck) <= 0:
             return None
@@ -65,12 +84,15 @@ class Game:
         
         jsonDeck = [ deck for deck in self.deck if deck["Name"] == deckName ]
         deck = []
-        if len(deck) >= 1:
+        
+        if len(jsonDeck) >= 1:
+            jsonDeck = jsonDeck[0]
             for idCard in jsonDeck["CardList"]:
                 card = [c for c in self.cards if c.idCard == idCard]
                 deck.append(card)
                 
         if len(deck) == Player.totalCardIntoDeck:
+            print(deck)
             return deck
         
         else:
@@ -87,11 +109,15 @@ class Game:
         cardList = [ card.idCard for card in player.cardsList ]
         deckName = input("Choisissez le nom de votre deck : ")
         decks = self.config["Decks"]
-        decks.append({"Name":deckName, "CardList" : cardList})
         
-        #self.config["Decks"] = decks
+        deck = [ deck for deck in decks if deck["Name"] == deckName ]
         
-        print(self.config["Decks"])
+        if len(deck) <= 0:
+            decks.append({"Name":deckName, "CardList" : cardList})
+        else:
+            deck[0]["CardList"] = cardList
+        
+        Config.saveConfig(self.config)
         
         return True
     

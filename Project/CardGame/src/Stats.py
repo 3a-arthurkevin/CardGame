@@ -33,6 +33,16 @@ class Stats:
         self.resistance = params.get("res", 0)
         self.critical = params.get("cri", 0)
         
+    def __str__(self):
+        return  "hp"  + str(self.hp)             + " | " + \
+                "atk" + str(self.strength)       + " | " + \
+                "int" + str(self.intelligence)   + " | " + \
+                "pre" + str(self.precision)      + " | " + \
+                "spe" + str(self.speed)          + " | " + \
+                "def" + str(self.defense)        + " | " + \
+                "res" + str(self.resistance)     + " | " + \
+                "cri" + str(self.critical)
+        
 if __name__ == '__main__':
     print("éà@ù%$£*è")
         

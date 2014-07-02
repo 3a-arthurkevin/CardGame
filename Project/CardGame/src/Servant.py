@@ -289,18 +289,11 @@ class Servant(Card):
                 earnedXp = int(earnedXp/2)
         return earnedXp
         
-    def displayServantInfo(self):
-        print("name : ", self.name, "\n",
-              "description : ", self.description, "\n",
-              "cost : ", self.cost, "\n", 
-              "hp", self.stats.hp, " | ",
-              "atk", self.stats.strength, " | ",
-              "int", self.stats.intelligence, " | ",
-              "pre", self.stats.precision, " | ",
-              "spe", self.stats.speed, " | ",
-              "def", self.stats.defense, " | ",
-              "res", self.stats.resistance, " | ",
-              "cri", self.stats.critical)
+    def __str__(self):
+        return "name : " + self.name + "\n" + \
+                "description : " + self.description + "\n" + \
+                "cost : " + str(self.cost) + "\n" + \
+                self.stats.__str__()
     
     def checkLevelUp(self):
         """
@@ -310,7 +303,7 @@ class Servant(Card):
         if(self.experience >= 100):
             print("Level up !!!")        
             self.levelUp()
-            self.displayServantInfo()
+            print(self)
     
     def levelUp(self):
         """
