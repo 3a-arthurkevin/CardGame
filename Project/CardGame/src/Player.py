@@ -22,7 +22,7 @@ class Player:
         
         self.mana = 0
         
-    def displayhand(self):
+    def displayHand(self):
         for card in self.hand:
             print(card)
     
@@ -68,7 +68,7 @@ class Player:
         
         return True
     
-    def takeCardIntoDeck(self):
+    def takeCardFromDeck(self):
         """
         Pioche une carte dans le deck 
         si il y en reste
@@ -76,12 +76,14 @@ class Player:
         """
         
         if self.deck.qsize() <= 0:
+            print("no card")
             return False
         
         if len(self.hand) >= self.maxCardInHand:
             del self.hand[self.maxCardInHand]
             
         self.hand.append(self.deck.get())
+        return True
         
     def putServantInBoard(self, cardServantInHand):
         """

@@ -5,6 +5,7 @@ from Player import Player
 from Servant import Servant
 from Item import Item
 from Weapon import Weapon
+from Card import Card
 import random
 
 class Game:
@@ -158,11 +159,14 @@ class Game:
         
         print(mainPlayer.name, " à vous de jouer")
         
-        if not mainPlayer.takeCardIntoDeck():
-            print(mainPlayer.name , " n'a plus de carte dans son deck !")
+        if(not mainPlayer.takeCardFromDeck()):
+            print(mainPlayer.name, " n'a plus de carte dans son deck !")
             return
         
-        print("vous avez tiré la carte :", mainPlayer.hand[len(mainPlayer.hand) - 1])
+        card = mainPlayer.hand[len(mainPlayer.hand) - 1]
+        card.destroyCard()
+
+        print("vous avez tiré la carte :", card.name)
         
         putCardMode = True
         attackMode = False
@@ -190,9 +194,10 @@ class Game:
                     self.putCard(mainPlayer)
                 elif choice == 2:
                     attackMode = True
-                    putCardMode = False
+                    putCardMode = True
                 elif choice == 3:
                     endTurn = True
+                    putCardMode = False
                 else:
                     print("Choix invalide")
             
@@ -210,6 +215,7 @@ class Game:
                     self.attackPlayer(mainPlayer, attackablePlayer)
                 elif choice == 3:
                     endTurn = True
+                    attackMode = False
                 else:
                     print("Choix invalide")
             
@@ -373,6 +379,8 @@ class Game:
 if __name__ == "__main__":
     game = Game({"playerName1":"arthur", "playerName2":"kevin"})
     
-    game.loop()
+    while(game.loop()):
+        print()
+    
     
     
