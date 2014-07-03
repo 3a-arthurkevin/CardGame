@@ -5,20 +5,20 @@ import random
 
 class Player:
     
-    totalCardIntoDeck = 30
+    totalCardIntoDeck = 5
     
     def __init__(self, namePlayer):
         self.name = namePlayer
         self.lifePoint = 10
         self.maxCardInHand = 10
-        self.hand = []
+        self.hand = [None] * self.maxCardInHand 
         self.cardsList = []
         self.deck = queue.Queue()
         
         self.maxCardInBoardForServant = 5
         self.maxCardInBoardForItem = 5
-        self.servantsOnBoard = []
-        self.itemOnBoard = []
+        self.servantsOnBoard = [None] * self.totalCardIntoDeck
+        self.itemOnBoard = [None] * self.totalCardIntoDeck
         
         self.mana = 0
         
@@ -42,7 +42,7 @@ class Player:
         print("Création du deck du joueur : ", self.name)
         print("Choississez entre les 3 cartes proposées jusqu'à arriver à un total de ", Player.totalCardIntoDeck , " cartes dans votre deck")
         
-        while len(self.cardsList) < 30:
+        while len(self.cardsList) < self.totalCardIntoDeck:
             cards = []
             print(Player.totalCardIntoDeck - len(self.cardsList), " cartes restante à choisir")
             
@@ -80,17 +80,18 @@ class Player:
             return False
         
         if len(self.hand) >= self.maxCardInHand:
-            del self.hand[self.maxCardInHand]
+            del self.hand[(self.maxCardInHand) - 1]
             
         self.hand.append(self.deck.get())
         return True
         
     def putServantInBoard(self, cardServantInHand):
         """
-        Fonction qui pose une carte sur le terrain si il y a un remplacement libre
+        Fonction qui pose une carte sur le terrain si il y a un emplacement libre
         pour les cartes serviteurs ou les cartes objets
         """ 
         i = self.findFreeSlotForServant()
+        print(i)
         if(i >= 0):
             self.servantsOnBoard[i] = cardServantInHand
             self.hand.remove(cardServantInHand)
@@ -99,6 +100,7 @@ class Player:
     
     def putItemInBoard(self, cardItemInHand):
         i = self.findFreeSlotForItem()
+        print(i)
         if(i >= 0):
             self.itemOnBoard[i] = cardItemInHand
             self.hand.remove(cardItemInHand)
@@ -111,18 +113,22 @@ class Player:
         Fonctions qui retoure l'index d'un emplacement libre sur le plateau
         soit pour les servants
         """
-        if(len(self.servantsOnBoard) >= self.maxCardInBoard):
-            return -1
-        return len(self.servantsOnBoard)
+        i = -1
+        for j in range(len(self.servantsOnBoard)):
+            if(self.servantsOnBoard[j] == None):
+                return j
+        return i
     
     def findFreeSlotForItem(self):
         """
         Fonctions qui retoure l'index d'un emplacement libre sur le plateau
         pour les card autre que Servant (Item et Weapon --> on pose les Weapons et les Items dans le même tableau)
         """
-        if(len(self.itemOnBoard) >= self.maxCardInBoardForItem):
-            return -1
-        return len(self.itemOnBoard)
+        i = -1
+        for j in range(len(self.itemOnBoard)):
+            if(self.itemOnBoard[j] == None):
+                return j
+        return i
     
 
     def removeCardFromHand(self, card):

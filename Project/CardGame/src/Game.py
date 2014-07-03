@@ -102,7 +102,7 @@ class Game:
             return deck
         
         else:
-            print("Nombre de carte insufisante dans le deck")
+            print("Nombre de carte insuffisante dans le deck")
             
         return None
     
@@ -164,9 +164,9 @@ class Game:
             return
         
         card = mainPlayer.hand[len(mainPlayer.hand) - 1]
-        card.destroyCard()
+        #card.destroyCard()
 
-        print("vous avez tiré la carte :", card.name)
+        print("vous avez tiré la carte :", card)
         
         putCardMode = True
         attackMode = False
@@ -380,7 +380,7 @@ if __name__ == "__main__":
     game = Game({"playerName1":"arthur", "playerName2":"kevin"})
     
     while(game.loop()):
-        print()
+        continue
     
     
     
