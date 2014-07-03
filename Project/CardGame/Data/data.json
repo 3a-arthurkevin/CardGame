@@ -303,7 +303,7 @@
     "def": 1
    }, 
    "Name": "Exemple d'arme", 
-   "idCard": 2, 
+   "idCard": 14, 
    "Cost": "2", 
    "TypeCard": "Item", 
    "Desc": "Carte d'exemple d'arme", 
