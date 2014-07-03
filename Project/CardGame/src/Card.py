@@ -12,7 +12,7 @@ class Card:
         self.cost = params.get("Cost")
         
     def destroyCard(self):
-        print("destroy")
+        print(self.name, " goes to the card graveyard")
         
     def __str__(self):
         return "Name : " + self.name + ", Desc : " + self.description + ", Coût : " + str(self.cost)

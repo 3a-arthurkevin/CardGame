@@ -49,6 +49,7 @@ class Servant(Card):
         self.classType = params.get("ClassType")
         self.weaponType = params.get("WeaponType")
         self.weaponEquipped = None
+        self.canFight = True
         
 
     def getBattleData(self, servantEnemy):
@@ -82,12 +83,12 @@ class Servant(Card):
         dicDataDefender["dmg"] += dicDataBonus.get("bonusDefender").get("dmg")
         dicDataDefender["pre"] += dicDataBonus.get("bonusDefender").get("pre")
         
-        if(self.weaponEquipped != None and self.weaponEquipped == ItemType.WEAPON):
+        if(self.weaponEquipped != None):
             dicDataAttacker["dmg"] += self.weaponEquipped.stats.strength
             dicDataAttacker["pre"] += self.weaponEquipped.stats.precision
             dicDataAttacker["spe"] += self.weaponEquipped.stats.speed
             dicDataAttacker["cri"] += self.weaponEquipped.stats.critical
-        if(servantEnemy.weaponEquipped != None and servantEnemy.weaponEquipped == ItemType.WEAPON):
+        if(servantEnemy.weaponEquipped != None):
             dicDataDefender["dmg"] += servantEnemy.weaponEquipped.stats.strength
             dicDataDefender["pre"] += servantEnemy.weaponEquipped.stats.precision
             dicDataDefender["spe"] += servantEnemy.weaponEquipped.stats.speed
@@ -153,8 +154,8 @@ class Servant(Card):
         Tour du défenseur
             Verification si le défenseur est en vie
                 Si oui --> Meme schéma que l'attaquant
-        Donner l'expérience du combat
-        Détruire si serviteur mort (avoir 0 hp)
+        Donner l'expérience du combat si serviteurs vivants
+        Détruire si serviteurs morts (avoir 0 hp)
         """
         
         damageAttacker = dicDataAttacker.get("dmg")
@@ -206,6 +207,8 @@ class Servant(Card):
             print(self.name, " - Hit")
         else:
             print(self.name, " - Miss")
+        
+        self.canFight = False
             
         #print(self.name, " : ", self.stats.hp, " | ", damageAttacker, " | ", hitAttacker, " | ", precisionAttacker, " | ", criticalAttacker, " | ", self.stats.critical)
             
@@ -223,8 +226,6 @@ class Servant(Card):
                 print(servantEnemy.name, " - Hit")
             else:
                 print(servantEnemy.name, " - Miss")
-
-            #print(servantEnemy.name ," : ", servantEnemy.stats.hp, " | ", damageDefender, " | ", hitDefender, " | ", precisionDefender, " | " , criticalDefender, " | ", servantEnemy.stats.critical)
 
         self.earnedExperience(servantEnemy)
         servantEnemy.earnedExperience(self)
@@ -258,6 +259,7 @@ class Servant(Card):
         if(self.stats.hp <= 0):
             self.killed()
         elif(self.level == 1):
+            self.checkWeapon(servantEnemy)
             earnedXp = self.earnedExperience(servantEnemy)
             self.experience += self.earnedExperience(servantEnemy)
             print(self.name, "exp earned :", earnedXp, " | total exp : ", self.experience)
@@ -266,14 +268,19 @@ class Servant(Card):
         if(servantEnemy.stats.hp <= 0):
             servantEnemy.killed()
         elif(servantEnemy.level == 1):
+            servantEnemy.checkWeapon(self)
             earnedXp = servantEnemy.earnedExperience(self)
             servantEnemy.experience += servantEnemy.earnedExperience(self)
             print(servantEnemy.name, "exp earned :", earnedXp, " | total exp : ", servantEnemy.experience)
             servantEnemy.checkLevelUp()
             
     
-    def killed(self):
-        print(self.name, " - killed")
+    def checkWeapon(self):
+        if(self.weaponEquipped):
+            self.weaponEquipped.durability -= 1
+            if(self.weaponEquipped.durability <= 0):
+                return False
+        return True
     
     
     def earnedExperience(self, servantEnemy):
@@ -331,14 +338,14 @@ class Servant(Card):
         else:
             print("Error")
         """
-        self.stats.hp += 1
-        self.stats.strength += 1
-        self.stats.intelligence += 1
-        self.stats.precision += 1
-        self.stats.speed += 1
-        self.stats.defense += 1
-        self.stats.resistance += 1
-        self.stats.critical += 1
+        self.stats.hp += 3
+        self.stats.strength += 3
+        self.stats.intelligence += 3
+        self.stats.precision += 3
+        self.stats.speed += 3
+        self.stats.defense += 3
+        self.stats.resistance += 3
+        self.stats.critical += 3
         
         self.experience = 100
         self.level = 2
@@ -374,9 +381,10 @@ class Servant(Card):
         player.lifePoint -= damageToApply
         
 if __name__ == '__main__':
-    dicDataServant1 = {"name" : "s1", 
-                  "description" : "ds1", 
-                  "cost" : 1,
+    dicDataServant1 = {"Name" : "s1", 
+                  "Desc" : "ds1",
+                  "Cost" : 1, 
+                  "Stats" : {"cost" : 1,
                   "hp" : 10, 
                   "str" : 6, 
                   "int" : 1, 
@@ -387,14 +395,14 @@ if __name__ == '__main__':
                   "cri" : 5, 
                   "level" : 1, 
                   "xp" : 0, 
-                  "classType" : 0, 
-                  "weaponType": 0}
+                  "ClassType" : 0, 
+                  "WeaponType": 0}}
     s1 = Servant(dicDataServant1)
     
-    dicDataServant2 = {"name" : "s2", 
-                  "description" : "ds2", 
-                  "cost" : 3, 
-                  "hp" : 16, 
+    dicDataServant2 = {"Name" : "s2", 
+                  "Desc" : "ds2", 
+                  "Cost" : 3, 
+                  "Stats" : {"hp" : 16, 
                   "str" : 9, 
                   "int" : 2, 
                   "pre" : 7, 
@@ -404,17 +412,19 @@ if __name__ == '__main__':
                   "cri" : 3, 
                   "level" : 2, 
                   "xp" : 100, 
-                  "classType" : 1, 
-                  "weaponType": 1}
+                  "ClassType" : 1, 
+                  "WeaponType": 1}}
     s2 = Servant(dicDataServant2)
     
+    print(s1)
+    print(s2)
     #s1.displayServantInfo()
-    
+    """
     s1.battleBetweenServant(s2)
     
     s2.battleBetweenServant(s1)
     s1.displayServantInfo()
-    """
+    
     s1.battleBetweenServant(s2)
     s2.battleBetweenServant(s1)
     """

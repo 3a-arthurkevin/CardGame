@@ -44,5 +44,17 @@ class Stats:
                 "cri : " + str(self.critical)
         
 if __name__ == '__main__':
-    print("éà@ù%$£*è")
+    s = Stats({"hp" : 16, 
+                  "str" : 9, 
+                  "int" : 2, 
+                  "pre" : 7, 
+                  "spe" : 5,  
+                  "def" : 5, 
+                  "res" : 2, 
+                  "cri" : 3, 
+                  "level" : 2, 
+                  "xp" : 100, 
+                  "ClassType" : 1, 
+                  "WeaponType": 1})
+    print(s)
         

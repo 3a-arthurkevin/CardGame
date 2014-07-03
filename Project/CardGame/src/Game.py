@@ -4,6 +4,7 @@ from Utils import Config
 from Player import Player
 from Servant import Servant
 from Item import Item
+from Weapon import Weapon
 
 class Game:
     '''
@@ -35,9 +36,12 @@ class Game:
                 
             elif jsonCard["TypeCard"] == "Item":
                 self.cards.append(Item(jsonCard))
-                
+            
+            elif jsonCard["TypeCard"] == "Weapon":
+                self.cards.append(Weapon(jsonCard))    
         
         return
+    
     def setupPlayer(self, player):
         print("Création du joueur : ", player.name)
         
@@ -136,7 +140,7 @@ class Game:
         
         return True
     
-    def turn(self, mainPlayer, playerAttackable):
+    def turn(self, mainPlayer, attackablePlayer):
         '''Fait jouer le joueur mainPlayer face à playerAttackable
         Plusieurs action sont réalisé a la suite:
         Player pioche une carte
@@ -152,31 +156,210 @@ class Game:
         
         print("vous avez tiré la carte :", mainPlayer.hand[len(mainPlayer.hand) - 1])
         
+        putCardMode = True
+        attackMode = False
         endTurn = False
         
+        mainPlayer.addManaForPlayerTurn()
+        
         while not endTurn:
-            print("""Quel action voulez vous faire :
-                  1) Poser une carte
-                  2) Attaquer l'adversaire
-                  3) Mettre fin au tour
-                  """)
-            choose = int(input("Choix : "))
+            putCardMode = True
+            attackMode = False
+            endTurn = False
             
-            if choose == 1:
-                self.putCard(mainPlayer)
-            elif choose == 2:
-                self.attackServant(mainPlayer, playerAttackable)
-            elif choose == 3:
-                endTurn = True
-            else:
-                print("Choix invalide")
+            while(putCardMode):
+                print("""Quel action voulez vous faire :
+                      0) Voir la main
+                      1) Poser une carte
+                      2) Passer à l'attaquer
+                      3) Mettre fin au tour
+                      """)
+                choice = int(input("Choix : "))
+                
+                if choice == 0:
+                    mainPlayer.displayHand()
+                elif choice == 1:
+                    self.putCard(mainPlayer)
+                elif choice == 2:
+                    attackMode = True
+                    putCardMode = False
+                elif choice == 3:
+                    endTurn = True
+                else:
+                    print("Choix invalide")
+            
+            while(attackMode):
+                print("""Quel action voulez vous faire :
+                      1) Attaquer un serviteur
+                      2) Attaquer l'adversaire
+                      3) Mettre fin au tour
+                      """)
+                choice = int(input("Choix : "))
+                
+                if choice == 1:
+                    self.attackServant(mainPlayer, attackablePlayer)
+                elif choice == 2:
+                    self.attackPlayer(mainPlayer, attackablePlayer)
+                elif choice == 3:
+                    endTurn = True
+                else:
+                    print("Choix invalide")
             
     def putCard(self, player):
-        print("putCard")
+        if(player.mana <= 0):
+            print("Vous n'avez pas assez de mana pour poser des cartes")
+            return
+        nbCardInHand = len(player.hand)
+        
+        print("Quelle carte voulez vous poser ?")
+        print("-1) Annuler l'action")
+        for i in range(nbCardInHand):
+            print(i+1,")", " poser ", player.hand[i].name)
+        
+        choice = int(input("Choix : "))
+        
+        if(choice == -1):
+            return
+        elif(choice >= 1 and choice <= nbCardInHand):
+            
+            if(type(player.hand[choice-1]) is Servant):
+                if(player.putServantInBoard(player.hand[choice-1])):
+                    print("Serviteur posé sur le terrain")
+                else:
+                    print("Impossible de poser plus de Serviteur sur le terrain")
+            
+            elif(type(player.hand[choice-1]) is Item):
+                item = player.hand[choice-1]
+                if(player.putItemInBoard(player.hand[choice-1])):
+                    print("Item utilisé")
+                    player.removeItemFromBoard(item)
+                else:
+                    print("Plus assez de place pour utiliser un item")
+            
+            elif(type(player.hand[choice-1]) is Weapon):
+                slotIndex = player.findFreeSlotForItem()
+                
+                if(slotIndex >= 0):
+                    
+                    if(len(player.servantsOnBoard) > 0):
+                        nbServantOnBoard = len(player.servantsOnBoard) 
+                        print("-1) Annuler l'action")
+                        for i in range(nbServantOnBoard):
+                            print(i+1,")", " utiliser ", player.servantsOnBoard[i].name)
+                        servantChoice = int(input("Choix"))
+                        
+                        if(servantChoice == -1):
+                            return
+        
+                        elif(servantChoice >= 1 and servantChoice <= nbServantOnBoard):
+                            if(player.servantsOnBoard[servantChoice-1].weaponType == player.hand[choice-1].weaponType):
+                                weapon = player.hand[choice-1]
+                                player.findFreeSlotForItem(weapon)
+                                player.servantsOnBoard[servantChoice-1].equipWeapon(weapon)
+                                print("Arme équipée")
+                            elif(player.servantsOnBoard[servantChoice-1].weaponEquipped != None):
+                                print("Ce servant a deja une arme d'équipée")
+                            else:
+                                ("Ce servant ne peux pas équiper ce type arme")
+                        
+                        else:
+                            print("Choix invalide")
+                            
+                    else:
+                        print("Impossible d'équiper une arme si aucun servant se trouve sur le terrain")
+                else:
+                    print("Plus assez de place sur le terrain pour équiper une arme")
+        
+        else:
+            print("Choix invalide")
+        return
+        
+    """
+    récupérer la liste des servant canAttack du mainPlayer
+    et traiter avec
+    """
+    def attackServant(self, mainPlayer, attackablePlayer):
+        
+        nbServantAttackable = len(attackablePlayer.servantsOnBoard)
+        
+        if(nbServantAttackable <= 0):
+            print("Le joueur adverse n'a aucun serviteur sur le terrain")
+            return
+        else:
+            lstServantUsable = mainPlayer.getServantsCanFight()
+            nbServantMain = len(lstServantUsable)
+            
+            print("Choisir un servant pour attaquer")
+            if(nbServantMain > 0):
+                print("-1) Annuler l'action")
+                for i in range(nbServantMain):
+                    print(i+1, ") utiliser ", mainPlayer.servantsOnBoard[i].name)
+                servantAttacker = int(input("Choix : "))
+                
+                if(servantAttacker == -1):
+                    return
+                
+                elif(servantAttacker >= 1 and servantAttacker <= nbServantMain):
+                    print("Choisir un servant avec qui attaquer : ")
+                    print("-1) Annuler Action")
+                    for i in range(nbServantMain):
+                        print(i+1, ") ", lstServantUsable[i].name)
+                    choiceServantAttacker = int(input("Choix : "))
+                    
+                    if(choiceServantAttacker == -1):
+                        return
+                    
+                    elif(choiceServantAttacker >= 1 and choiceServantAttacker <= nbServantMain):
+                        lstServantAttackable = attackablePlayer.servantsOnBoard
+                        nbServantMain = len(lstServantAttackable)
+                        
+                        print("Choisir un serviteur ennemi à attaquer : ")
+                        print("-1) Annuler action")
+                        for i in range(nbServantAttackable):
+                            print(i+1, ") Attaquer ", lstServantAttackable[i].name)
+                        choiceServantToAttack = int(input("Choix : "))
+                        
+                        if(choiceServantToAttack == -1):
+                            return
+                        elif(choiceServantToAttack >= 1 and choiceServantToAttack <= nbServantAttackable):
+                            servantAttacker = lstServantUsable[choiceServantAttacker-1]
+                            servantAttacked = lstServantAttackable[choiceServantToAttack-1]
+                            
+                            servantAttacker.battleBetweenServant(servantAttacked)
+                            
+                            if(servantAttacker.weaponEquipped):
+                                if(not servantAttacker.checkWeapon()):
+                                    mainPlayer.removeItemFromBoard(servantAttacker.weaponEquipped)
+                                    servantAttacker.weaponEquipped = None
+                            if(servantAttacker.stats.hp <= 0):
+                                mainPlayer.removeServantFromBoard(servantAttacker)
+                             
+                            if(servantAttacked.weaponEquipped):
+                                if(not servantAttacked.checkWeapon()):
+                                    attackablePlayer.removeItemFromBoard(servantAttacked.weaponEquipped)
+                                    servantAttacked.weaponEquipped = None
+                            if(servantAttacked.stats.hp <= 0):
+                                attackablePlayer.removeServantFromBoard(servantAttacked)
+
+                        else:
+                            print("Choix invalide")
+                            return
+                    
+                    else:
+                        print("Choix invalide")
+                        return
+                
+                else:
+                    print("Choix invalide")
+                    return
+            else:
+                print("Aucun servant sur le plateau peut attaquer")
+                return
+
         return
     
-    def attackServant(self, mainPlayer, attackablePlayer):
-        print("Attack servant")
+    def attackPlayer(self, mainPlayer, attackablePlayer):
+        
         return
     
 if __name__ == "__main__":
