@@ -5,6 +5,7 @@ from Player import Player
 from Servant import Servant
 from Item import Item
 from Weapon import Weapon
+import random
 
 class Game:
     '''
@@ -26,6 +27,7 @@ class Game:
         
         self.setupPlayer(self.players[0])
         self.setupPlayer(self.players[1])
+        self.setupDeck()
     
     def setupCard(self):
         cards = self.config.get("Cards")
@@ -96,7 +98,6 @@ class Game:
                 deck.append(card)
                 
         if len(deck) == Player.totalCardIntoDeck:
-            print(deck)
             return deck
         
         else:
@@ -124,6 +125,13 @@ class Game:
         Config.saveConfig(self.config)
         
         return True
+    
+    def setupDeck(self):
+        for player in self.players:
+            while len(player.cardsList) > 0:
+                cardRandom = random.randint(0, len(player.cardsList) - 1)
+                player.deck.put(player.cardsList[cardRandom])
+                del player.cardsList[cardRandom]
     
     def loop(self):
         '''Chaque appel de cette fonction fait avancer la partie d'un tour pour chaque joueur
