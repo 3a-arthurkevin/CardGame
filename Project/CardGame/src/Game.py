@@ -96,13 +96,14 @@ class Game:
             jsonDeck = jsonDeck[0]
             for idCard in jsonDeck["CardList"]:
                 card = [c for c in self.cards if c.idCard == idCard]
-                deck.append(card)
+                if len(card) > 0:
+                    deck.append(card[0])
                 
         if len(deck) == Player.totalCardIntoDeck:
             return deck
         
         else:
-            print("Nombre de carte insuffisante dans le deck")
+            print("Erreur dans le deck")
             
         return None
     

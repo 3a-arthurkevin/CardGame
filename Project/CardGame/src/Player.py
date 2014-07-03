@@ -5,7 +5,7 @@ import random
 
 class Player:
     
-    totalCardIntoDeck = 5
+    totalCardIntoDeck = 30
     
     def __init__(self, namePlayer):
         self.name = namePlayer
