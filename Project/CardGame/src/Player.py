@@ -5,13 +5,13 @@ import random
 
 class Player:
     
-    totalCardIntoDeck = 30
+    totalCardIntoDeck = 5
     
     def __init__(self, namePlayer):
         self.name = namePlayer
         self.lifePoint = 10
-        self.maxCardInHand = 10
-        self.hand = [None] * self.maxCardInHand 
+        self.maxCardInHand = 5
+        self.hand = [] #* self.maxCardInHand 
         self.cardsList = []
         self.deck = queue.Queue()
         
@@ -23,10 +23,19 @@ class Player:
         self.mana = 0
         
     def displayHand(self):
-        for card in self.hand:
-            print(card)
+        if(len(self.hand) <= 0):
+            print("Aucune Carte en main")
+        else:
+            for card in self.hand:
+                print("-----")
+                print(card)
+                print("-----")
     
     def addManaForPlayerTurn(self):
+        """
+        Action appelée à chaque debut de tour d'un joueur
+        Renouvellement du mana pour utiliser les cartes
+        """
         self.mana = 4 
         
     def createDeck(self, cardsList):
@@ -76,59 +85,100 @@ class Player:
         """
         
         if self.deck.qsize() <= 0:
-            print("no card")
             return False
         
-        if len(self.hand) >= self.maxCardInHand:
-            del self.hand[(self.maxCardInHand) - 1]
-            
-        self.hand.append(self.deck.get())
-        return True
+        if(not self.findFreeSlotInHand()):
+            del self.hand[0]
         
-    def putServantInBoard(self, cardServantInHand):
+        self.hand.append(self.deck.get())     
+            
+        return True
+    
+    def countServantOnBoard(self):
+        i = 0
+        for elem in self.servantsOnBoard:
+            if(elem != None):
+                i += 1
+        return i
+    
+    def countItemOnBoard(self):
+        i = 0
+        for elem in self.itemOnBoard:
+            if(elem != None):
+                i += 1
+        return i
+    
+    def getServantOnBoard(self):
+        lstServantOnBoard = []
+        for elem in self.servantsOnBoard:
+            if(elem != None):
+                lstServantOnBoard.append(elem)
+        return lstServantOnBoard
+            
+    def getItemOnBoard(self):
+        lstItemOnBoard = []
+        for elem in self.itemOnBoard:
+            if(elem != None):
+                lstItemOnBoard.append(elem)
+        return lstItemOnBoard
+        
+    def putServantInBoard(self, cardServant):
         """
-        Fonction qui pose une carte sur le terrain si il y a un emplacement libre
-        pour les cartes serviteurs ou les cartes objets
+        Fonction qui pose un serviteur sur le terrain si il y a un emplacement libre
         """ 
         i = self.findFreeSlotForServant()
-        print(i)
         if(i >= 0):
-            self.servantsOnBoard[i] = cardServantInHand
-            self.hand.remove(cardServantInHand)
+            self.servantsOnBoard[i] = cardServant
+            self.hand.remove(cardServant)
             return True
         return False
     
-    def putItemInBoard(self, cardItemInHand):
+    def canPutItemInBoard(self):
+        """
+        Fonction qui regarde si il y a un emplacement libre sur le terrain pour utilier un item/weapon
+        """ 
         i = self.findFreeSlotForItem()
-        print(i)
         if(i >= 0):
-            self.itemOnBoard[i] = cardItemInHand
-            self.hand.remove(cardItemInHand)
             return True
         return False
     
+    def putItemInBoard(self, cardItem):
+        """
+        Fonction qui utilise/equipe un item/weapon si il y a un emplacement libre sur le terrain
+        """ 
+        i = self.findFreeSlotForItem()
+        if(i >= 0):
+            self.itemOnBoard[i] = cardItem
+            self.hand.remove(cardItem)
+            return True
+        return False
+    
+    def findFreeSlotInHand(self):
+        """
+        Fonction qui retourne Vrai si il y a de la place pour prendre un nouvelle carte dans sa main
+        """
+        if(len(self.hand) >= self.maxCardInHand):
+            return False
+        return True
     
     def findFreeSlotForServant(self):
         """
-        Fonctions qui retoure l'index d'un emplacement libre sur le plateau
-        soit pour les servants
+        Fonctions qui retourne l'index d'un emplacement libre (None) sur le plateau pour les servants
         """
-        i = -1
-        for j in range(len(self.servantsOnBoard)):
-            if(self.servantsOnBoard[j] == None):
-                return j
-        return i
+        for i in range(len(self.servantsOnBoard)):
+            if(self.servantsOnBoard[i] == None):
+                return i
+        return -1
     
     def findFreeSlotForItem(self):
         """
-        Fonctions qui retoure l'index d'un emplacement libre sur le plateau
+        Fonctions qui retoure l'index d'un emplacement libre (None) sur le plateau
         pour les card autre que Servant (Item et Weapon --> on pose les Weapons et les Items dans le même tableau)
         """
-        i = -1
-        for j in range(len(self.itemOnBoard)):
-            if(self.itemOnBoard[j] == None):
-                return j
-        return i
+        for i in range(len(self.itemOnBoard)):
+            if(self.itemOnBoard[i] == None):
+                return i
+        return -1
     
 
     def removeCardFromHand(self, card):
@@ -142,22 +192,59 @@ class Player:
         Fonction retirant un Servant passé en paramètre
         Utilisé lorsque le servant est mort (hp <= 0)
         """
-        self.servantsOnBoard.remove(servant)
-        
+        index = self.findServantInBoard(servant)
+        if(index >= 0):
+            self.servantsOnBoard[index] = None
+            print("Serviteur parti au cimtière")
+        else:
+            print("Erreur, serviteur non présent sur le terrain")
+    
+    def findServantInBoard(self, servant):
+        found = False
+        sizeBoardServant = len(self.servantsOnBoard)
+        i=0
+        while(not found and i<sizeBoardServant):
+            if(self.servantsOnBoard[i] == servant):
+                return i
+            i += 1
+        return -1
+    
     def removeItemFromBoard(self, item):
         """
         Fonction retirant un card autre que Servant passée en paramètre
         Utilisé lorsque l'item n'est plus equipé/ lorsqu'il est utilisé
         """
-        self.itemOnBoard.remove(item)
+        index = self.findItemInBoard(item)
+        if(index >= 0):
+            self.itemOnBoard[index] = None
+        else:
+            print("Erreur, item non présent sur le terrain")
+        
+    def findItemInBoard(self, item):
+        found = False
+        sizeBoardItem = len(self.itemOnBoard)
+        i=0
+        while(not found and i<sizeBoardItem):
+            if(self.itemOnBoard[i] == item):
+                return i
+            i += 1
+        return -1
        
     def setCanFightForServantsOnBoard(self):
+        """
+        Fonction appelée à chaque debut de tour pour set la possibilité au serviteur sur le terrain d'attaquer
+        """
         for servant in self.servantsOnBoard:
-            servant.canAttack = True
+            if(servant != None):
+                servant.canFight = True
 
     def getServantsCanFight(self):
-        "Fonction qui retourne uen liste de tout les serviteurs pouvant attaquer l'adveraire ou ses seerviteurs"
-        lstServantCanFight = [servant for servant in self.servantsOnBoard if servant.canFight]
+        "Fonction qui retourne une liste de tous les serviteurs pouvant attaquer l'adveraire ou ses serviteurs"
+        lstServantCanFight = []
+        for elem in self.servantsOnBoard:
+            if(elem != None):
+                if(elem.canFight):
+                    lstServantCanFight.append(elem)
         return lstServantCanFight
         
     def hasLoose(self):
@@ -169,7 +256,6 @@ class Player:
         """
         if self.lifePoint <= 0:
             return True
-        
         if self.deck.qsize() <= 0:
             return True
         

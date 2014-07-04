@@ -49,7 +49,7 @@ class Servant(Card):
         self.classType = params.get("ClassType")
         self.weaponType = params.get("WeaponType")
         self.weaponEquipped = None
-        self.canFight = True
+        self.canFight = False
         
 
     def getBattleData(self, servantEnemy):
@@ -114,22 +114,26 @@ class Servant(Card):
         if(tabBonusBetweenWeapon.get(self.weaponType).get("stronger") == servantEnemy.weaponType):
             dicDataAttacker["dmg"] += 1
             dicDataAttacker["pre"] += 2
+            #
             dicDataDefender["dmg"] += -1
             dicDataDefender["pre"] += -2
         elif(tabBonusBetweenWeapon.get(servantEnemy.weaponType).get("stronger") == self.weaponType):
             dicDataAttacker["dmg"] += -1
             dicDataAttacker["pre"] += -2
+            #
             dicDataDefender["dmg"] += 1
             dicDataDefender["pre"] += 2
         #Checking des bonus malus de la classe par rapport à l'arme    
         if(tabBonusBetweenClassAndWeapon.get(self.classType).get("weaker") == servantEnemy.weaponType):
             dicDataAttacker["dmg"] += 0
             dicDataAttacker["pre"] += 0
+            #
             dicDataDefender["dmg"] += 3
             dicDataDefender["pre"] += 0
         elif(tabBonusBetweenClassAndWeapon.get(servantEnemy.classType).get("weaker") == self.weaponType):
             dicDataAttacker["dmg"] += 3
             dicDataAttacker["pre"] += 0
+            #
             dicDataDefender["dmg"] += 0
             dicDataDefender["pre"] += 0
             
@@ -209,9 +213,7 @@ class Servant(Card):
             print(self.name, " - Miss")
         
         self.canFight = False
-            
-        #print(self.name, " : ", self.stats.hp, " | ", damageAttacker, " | ", hitAttacker, " | ", precisionAttacker, " | ", criticalAttacker, " | ", self.stats.critical)
-            
+               
         if(servantEnemy.stats.hp > 0):
             #Tour du defenseur
             criticalDefender = randint(1, 100)
@@ -259,7 +261,7 @@ class Servant(Card):
         if(self.stats.hp <= 0):
             self.killed()
         elif(self.level == 1):
-            self.checkWeapon(servantEnemy)
+            self.checkWeapon()
             earnedXp = self.earnedExperience(servantEnemy)
             self.experience += self.earnedExperience(servantEnemy)
             print(self.name, "exp earned :", earnedXp, " | total exp : ", self.experience)
@@ -268,12 +270,15 @@ class Servant(Card):
         if(servantEnemy.stats.hp <= 0):
             servantEnemy.killed()
         elif(servantEnemy.level == 1):
-            servantEnemy.checkWeapon(self)
+            servantEnemy.checkWeapon()
             earnedXp = servantEnemy.earnedExperience(self)
             servantEnemy.experience += servantEnemy.earnedExperience(self)
             print(servantEnemy.name, "exp earned :", earnedXp, " | total exp : ", servantEnemy.experience)
             servantEnemy.checkLevelUp()
             
+    
+    def killed(self):
+        print(self.name, "just died")
     
     def checkWeapon(self):
         if(self.weaponEquipped):
@@ -367,7 +372,7 @@ class Servant(Card):
         self.weaponEquipped = None
         print("The weapon is broken...")
         
-    def attackPlayer(self, player):
+    def attackPlayer(self, playerAttacked):
         damageToApply = 0
         
         if(self.classType == ClassType.MAGE):
@@ -378,7 +383,11 @@ class Servant(Card):
         if(self.weaponEquipped):
             damageToApply = self.weaponEquipped.stats.strength
         
-        player.lifePoint -= damageToApply
+        print(playerAttacked.name, "life point : ", playerAttacked.lifePoint, " - ", damageToApply, " = ", playerAttacked.lifePoint-damageToApply)
+        
+        playerAttacked.lifePoint -= damageToApply
+        self.canFight = False
+        
         
 if __name__ == '__main__':
     dicDataServant1 = {"Name" : "s1", 
