@@ -15,4 +15,4 @@ class Card:
         print(self.name, " goes to the card graveyard")
         
     def __str__(self):
-        return "Name : " + self.name + ", Desc : " + self.description + ", Coût : " + str(self.cost)
+        return "Name : " + self.name + ", Desc : " + self.description + ", Coût : " + str(self.cost) + "\n"

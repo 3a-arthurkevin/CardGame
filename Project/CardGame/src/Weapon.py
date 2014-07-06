@@ -7,6 +7,13 @@ from Card import *
 WeaponType = enum("WeaponType",
                   "SWORD", "AXE", "LANCE", "BOW", "EMAGIC", "LMAGIC", "NONE")
 
+dicWeaponToString = {WeaponType.SWORD   : "Epée",
+                     WeaponType.AXE     : "Hache",
+                     WeaponType.LANCE   : "Lance",
+                     WeaponType.BOW     : "Arc",
+                     WeaponType.EMAGIC  : "Magie élémantaire",
+                     WeaponType.LMAGIC  : "Magie blanche"}
+
 class Weapon(Card):
     
     def __init__(self, params):

@@ -10,7 +10,7 @@ PLus besoin du Type item dans ce cas la ? comme on a que des objets qui modifien
 
 ItemType = enum(
     "ItemType",
-    "POTION", "WEAPON", "BOOSTER"
+    "BOOSTER", "WEAPON"
     )
 
 class Item(Card):

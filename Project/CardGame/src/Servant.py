@@ -35,6 +35,14 @@ tabBonusBetweenClassAndWeapon = {ClassType.PEGASUS      :  {"stronger" : WeaponT
                                  ClassType.MAGE         :  {"stronger" : WeaponType.NONE,  "weaker" : WeaponType.NONE},
                                  ClassType.PRIEST       :  {"stronger" : WeaponType.NONE,  "weaker" : WeaponType.NONE}}
 
+tabGetWeaponTypeFromClassType = {ClassType.PEGASUS      : "Lance",
+                                 ClassType.SWORDMASTER  : "Epée",
+                                 ClassType.WARRIOR      : "Hache",
+                                 ClassType.HALBARDIER   : "Lance",
+                                 ClassType.ARCHER       : "Arc",
+                                 ClassType.MAGE         : "Magie élémentaire",
+                                 ClassType.PRIEST       : "Magie blache"}
+
 class Servant(Card):
     """
     Derive de Card 
@@ -264,6 +272,8 @@ class Servant(Card):
             self.checkWeapon()
             earnedXp = self.earnedExperience(servantEnemy)
             self.experience += self.earnedExperience(servantEnemy)
+            if(self.experience > 100):
+                self.experience = 100
             print(self.name, "exp earned :", earnedXp, " | total exp : ", self.experience)
             self.checkLevelUp()
             
@@ -273,6 +283,8 @@ class Servant(Card):
             servantEnemy.checkWeapon()
             earnedXp = servantEnemy.earnedExperience(self)
             servantEnemy.experience += servantEnemy.earnedExperience(self)
+            if(servantEnemy.experience > 100):
+                servantEnemy.experience = 100
             print(servantEnemy.name, "exp earned :", earnedXp, " | total exp : ", servantEnemy.experience)
             servantEnemy.checkLevelUp()
             
@@ -305,10 +317,14 @@ class Servant(Card):
         
         
     def __str__(self):
-        return "name : " + self.name + "\n" + \
-                "description : " + self.description + "\n" + \
-                "cost : " + str(self.cost) + "\n" + \
-                self.stats.__str__()
+        equipableWeapon = tabGetWeaponTypeFromClassType[self.classType]
+        return "Name : " + self.name + "\n" + \
+                "Description : " + self.description + "\n" + \
+                "Coût : " + str(self.cost) + "\n" + \
+                "Xp : " + str(self.experience) + "\n" + \
+                self.stats.__str__() + "\n" + \
+                "Arme équipable : "+ equipableWeapon + "\n" + \
+                "Arme équipé : " + str(self.weaponEquipped)
     
     def checkLevelUp(self):
         """
@@ -387,53 +403,3 @@ class Servant(Card):
         
         playerAttacked.lifePoint -= damageToApply
         self.canFight = False
-        
-        
-if __name__ == '__main__':
-    dicDataServant1 = {"Name" : "s1", 
-                  "Desc" : "ds1",
-                  "Cost" : 1, 
-                  "Stats" : {"cost" : 1,
-                  "hp" : 10, 
-                  "str" : 6, 
-                  "int" : 1, 
-                  "pre" : 7, 
-                  "spe" : 7,  
-                  "def" : 3, 
-                  "res" : 3, 
-                  "cri" : 5, 
-                  "level" : 1, 
-                  "xp" : 0, 
-                  "ClassType" : 0, 
-                  "WeaponType": 0}}
-    s1 = Servant(dicDataServant1)
-    
-    dicDataServant2 = {"Name" : "s2", 
-                  "Desc" : "ds2", 
-                  "Cost" : 3, 
-                  "Stats" : {"hp" : 16, 
-                  "str" : 9, 
-                  "int" : 2, 
-                  "pre" : 7, 
-                  "spe" : 5,  
-                  "def" : 5, 
-                  "res" : 2, 
-                  "cri" : 3, 
-                  "level" : 2, 
-                  "xp" : 100, 
-                  "ClassType" : 1, 
-                  "WeaponType": 1}}
-    s2 = Servant(dicDataServant2)
-    
-    print(s1)
-    print(s2)
-    #s1.displayServantInfo()
-    """
-    s1.battleBetweenServant(s2)
-    
-    s2.battleBetweenServant(s1)
-    s1.displayServantInfo()
-    
-    s1.battleBetweenServant(s2)
-    s2.battleBetweenServant(s1)
-    """

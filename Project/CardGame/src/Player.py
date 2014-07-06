@@ -5,7 +5,7 @@ import random
 
 class Player:
     
-    totalCardIntoDeck = 5
+    totalCardIntoDeck = 10
     
     def __init__(self, namePlayer):
         self.name = namePlayer
@@ -15,8 +15,8 @@ class Player:
         self.cardsList = []
         self.deck = queue.Queue()
         
-        self.maxCardInBoardForServant = 5
-        self.maxCardInBoardForItem = 5
+        self.maxCardInBoardForServant = 3
+        self.maxCardInBoardForItem = 3
         self.servantsOnBoard = [None] * self.totalCardIntoDeck
         self.itemOnBoard = [None] * self.totalCardIntoDeck
         
@@ -31,13 +31,20 @@ class Player:
                 print(card)
                 print("-----")
     
+    def useMana(self, manaValue):
+        self.mana -= manaValue
+    
     def addManaForPlayerTurn(self):
         """
         Action appelée à chaque debut de tour d'un joueur
         Renouvellement du mana pour utiliser les cartes
         """
         self.mana = 4 
-        
+    
+    def useWeapon(self, weapon, slotToPut):
+        self.itemOnBoard[slotToPut] = weapon
+        self.hand.remove(weapon)
+    
     def createDeck(self, cardsList):
         """
         Fonction qui demande à l'utilisateur de constituer son deck
@@ -49,22 +56,23 @@ class Player:
             return False
         
         print("Création du deck du joueur : ", self.name)
-        print("Choississez entre les 3 cartes proposées jusqu'à arriver à un total de ", Player.totalCardIntoDeck , " cartes dans votre deck")
+        print("Choississez entre les 3 cartes proposées jusqu'à arriver à un total de ", Player.totalCardIntoDeck , " cartes dans votre deck\n")
         
         while len(self.cardsList) < self.totalCardIntoDeck:
             cards = []
-            print(Player.totalCardIntoDeck - len(self.cardsList), " cartes restante à choisir")
+            print(Player.totalCardIntoDeck - len(self.cardsList), " cartes restante à choisir \n")
             
             for i in range(3):
                 cards.append(cardsList[random.randint(0, len(cardsList)-1)])
                 print(i+1, ")", cards[i])
+                print("-----")
             
             validChoose = False
             choose = 0
             
             while not validChoose:
                 try:
-                    choose = int(input("Quelle carte avez vous choisit ? "))
+                    choose = int(input("Quelle carte avez vous choisit ? \n"))
                 except ValueError:
                     choose = 0
                     
@@ -93,6 +101,15 @@ class Player:
         self.hand.append(self.deck.get())     
             
         return True
+    
+    def drawCardForBegining(self):
+        """
+        Fonction appelé en debut de partie
+        Fait piocher 3 cartes au joueur en début de partie
+        """
+        for i in range(3):
+            self.takeCardFromDeck()
+        
     
     def countServantOnBoard(self):
         i = 0
@@ -247,7 +264,7 @@ class Player:
                     lstServantCanFight.append(elem)
         return lstServantCanFight
         
-    def hasLoose(self):
+    def hasLoose(self, enemyName):
         """
         Fonction qui vérifie si le joueur a perdu la partie
             -->Si il n'a plus de point de vit
@@ -255,8 +272,10 @@ class Player:
         Retourne Vrai si perdu, Faux sinon
         """
         if self.lifePoint <= 0:
+            print(self.name, "n'a plus de point de vie ! \nVictoire de", enemyName)
             return True
         if self.deck.qsize() <= 0:
+            print(self.name, "n'a plus de carte dans son deck ! \nVictoire de", enemyName)
             return True
         
         return False
