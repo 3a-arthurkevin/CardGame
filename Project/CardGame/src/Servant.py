@@ -120,16 +120,16 @@ class Servant(Card):
         dicData = {"bonusAttacker" : dicDataAttacker, "bonusDefender" : dicDataDefender}
         #Checking des bonus malus pour les armes
         if(tabBonusBetweenWeapon.get(self.weaponType).get("stronger") == servantEnemy.weaponType):
-            dicDataAttacker["dmg"] += 1
+            dicDataAttacker["dmg"] += 2
             dicDataAttacker["pre"] += 2
             #
-            dicDataDefender["dmg"] += -1
+            dicDataDefender["dmg"] += -2
             dicDataDefender["pre"] += -2
         elif(tabBonusBetweenWeapon.get(servantEnemy.weaponType).get("stronger") == self.weaponType):
-            dicDataAttacker["dmg"] += -1
+            dicDataAttacker["dmg"] += -2
             dicDataAttacker["pre"] += -2
             #
-            dicDataDefender["dmg"] += 1
+            dicDataDefender["dmg"] += 2
             dicDataDefender["pre"] += 2
         #Checking des bonus malus de la classe par rapport à l'arme    
         if(tabBonusBetweenClassAndWeapon.get(self.classType).get("weaker") == servantEnemy.weaponType):
