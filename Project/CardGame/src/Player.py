@@ -2,10 +2,11 @@
 
 import queue
 import random
+import copy
 
 class Player:
     
-    totalCardIntoDeck = 10
+    totalCardIntoDeck = 20
     
     def __init__(self, namePlayer):
         self.name = namePlayer
@@ -81,7 +82,7 @@ class Player:
                 else:
                     print("Choix invalide")
             
-            self.cardsList.append(cards[choose-1])
+            self.cardsList.append(copy.copy(cards[choose-1]))
         
         return True
     
