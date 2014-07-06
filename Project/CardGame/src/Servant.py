@@ -136,10 +136,10 @@ class Servant(Card):
             dicDataAttacker["dmg"] += 0
             dicDataAttacker["pre"] += 0
             #
-            dicDataDefender["dmg"] += 3
+            dicDataDefender["dmg"] += 5
             dicDataDefender["pre"] += 0
         elif(tabBonusBetweenClassAndWeapon.get(servantEnemy.classType).get("weaker") == self.weaponType):
-            dicDataAttacker["dmg"] += 3
+            dicDataAttacker["dmg"] += 5
             dicDataAttacker["pre"] += 0
             #
             dicDataDefender["dmg"] += 0
@@ -184,8 +184,8 @@ class Servant(Card):
             damageDefender -= self.stats.defense
             
         
-        precisionAttacker =  dicDataAttacker.get("pre")*10 - dicDataDefender.get("spe")*4
-        precisionDefender = dicDataDefender.get("pre")*10 - dicDataAttacker.get("spe")*4
+        precisionAttacker =  dicDataAttacker.get("pre")*10 - dicDataDefender.get("spe")*3
+        precisionDefender = dicDataDefender.get("pre")*10 - dicDataAttacker.get("spe")*3
         
         if(damageAttacker < 0):
             damageAttacker = 0

@@ -17,8 +17,8 @@ class Player:
         
         self.maxCardInBoardForServant = 3
         self.maxCardInBoardForItem = 3
-        self.servantsOnBoard = [None] * self.totalCardIntoDeck
-        self.itemOnBoard = [None] * self.totalCardIntoDeck
+        self.servantsOnBoard = [None] * self.maxCardInBoardForServant
+        self.itemOnBoard = [None] * self.maxCardInBoardForItem
         
         self.mana = 0
         
@@ -41,7 +41,7 @@ class Player:
         """
         self.mana = 4 
     
-    def useWeapon(self, weapon, slotToPut):
+    def putWeaponOnBoard(self, weapon, slotToPut):
         self.itemOnBoard[slotToPut] = weapon
         self.hand.remove(weapon)
     
@@ -211,6 +211,8 @@ class Player:
         """
         index = self.findServantInBoard(servant)
         if(index >= 0):
+            print("Point de vie restant à ", self.name, " : ", self.lifePoint , " - ", servant.level, " = ", self.lifePoint - servant.level)
+            self.lifePoint -= servant.level
             self.servantsOnBoard[index] = None
             print("Serviteur parti au cimtière")
         else:

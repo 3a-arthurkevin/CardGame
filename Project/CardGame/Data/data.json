@@ -270,7 +270,7 @@
    }, 
    "Name": "Potion de vie", 
    "idCard": 13, 
-   "Cost": 2, 
+   "Cost": 3, 
    "TypeCard": "Item", 
    "Desc": "Redonne 5 pv à la cible", 
    "ItemType": 0
@@ -404,7 +404,8 @@
    "TypeCard": "Weapon", 
    "Desc": "Epée d'acier", 
    "ItemType": 1,
-   "WeaponType": 0 
+   "WeaponType": 0,
+   "Durability" : 3 
   }, 
   {
    "Stats": {
@@ -424,7 +425,8 @@
    "TypeCard": "Weapon", 
    "Desc": "Hache d'acier", 
    "ItemType": 1,
-   "WeaponType": 1 
+   "WeaponType": 1,
+   "Durability" : 3 
   }, 
   {
    "Stats": {
@@ -444,7 +446,8 @@
    "TypeCard": "Weapon", 
    "Desc": "Lance d'acier", 
    "ItemType": 1,
-   "WeaponType": 2 
+   "WeaponType": 2,
+   "Durability" : 3 
   }, 
   {
    "Stats": {
@@ -464,7 +467,8 @@
    "TypeCard": "Weapon", 
    "Desc": "Arc d'acier", 
    "ItemType": 1,
-   "WeaponType": 3 
+   "WeaponType": 3,
+   "Durability" : 3 
   }, 
   {
    "Stats": {
@@ -484,7 +488,8 @@
    "TypeCard": "Weapon", 
    "Desc": "Tome mystique", 
    "ItemType": 1,
-   "WeaponType": 4 
+   "WeaponType": 4,
+   "Durability" : 3
   }, 
   {
    "Stats": {
@@ -504,7 +509,8 @@
    "TypeCard": "Weapon", 
    "Desc": "Tome mystique", 
    "ItemType": 1,
-   "WeaponType": 4 
+   "WeaponType": 4,
+   "Durability" : 3
   }
  ],
 

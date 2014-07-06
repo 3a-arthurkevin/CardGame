@@ -174,6 +174,8 @@ class Game:
         
         
         mainPlayer.addManaForPlayerTurn()
+        print("Mana restant : ", mainPlayer.mana)
+        
         mainPlayer.setCanFightForServantsOnBoard()
         
         card = mainPlayer.hand[len(mainPlayer.hand) - 1]
@@ -237,9 +239,11 @@ class Game:
                 if(choice == 0):
                     self.seeBoard(mainPlayer, attackablePlayer)
                 elif choice == 1:
-                    self.attackServant(mainPlayer, attackablePlayer)
+                    if(self.attackServant(mainPlayer, attackablePlayer)):
+                        return True
                 elif choice == 2:
-                    self.attackPlayer(mainPlayer, attackablePlayer)
+                    if(self.attackPlayer(mainPlayer, attackablePlayer)):
+                        return True
                 elif choice == 3:
                     endTurn = True
                     attackMode = False
@@ -280,6 +284,7 @@ class Game:
                     if(player.putServantInBoard(servant)):
                         player.useMana(servant.cost)
                         print("Serviteur posé sur le terrain")
+                        print("Mana restant : ", player.mana)
                         #player.mana -=
                     else:
                         print("Impossible de poser plus de Serviteur sur le terrain")
@@ -315,6 +320,7 @@ class Game:
                             player.useMana(item.cost)
                             print("Item utilisé")
                             player.removeItemFromBoard(item)
+                            print("Mana restant : ", player.mana)
                         else:
                             print("Choix invalide")
                     
@@ -329,10 +335,10 @@ class Game:
                         nbServantOnBoard = len(lstServantOnBoard)
                         
                         if(nbServantOnBoard > 0):
-                            print("Sur quel serviteur voulez vous equiper l'arme :")
+                            print("Sur quel serviteur voulez vous équiper l'arme :")
                             print("-1) Annuler l'action")
                             for i in range(nbServantOnBoard):
-                                print(i+1,")", " utiliser ", lstServantOnBoard[i].name)
+                                print(i+1,")", " équiper sur ", lstServantOnBoard[i].name)
                                 
                             try:
                                 servantChoice = int(input("Choix : "))
@@ -346,16 +352,17 @@ class Game:
                                 
                                 weapon = player.hand[choice-1]
                                 servant = lstServantOnBoard[servantChoice-1]
-                                
+
                                 if(servant.weaponEquipped != None):
                                     print("Ce servant a deja une arme d'équipée")
                                 elif(servant.weaponType == weapon.weaponType):
                                     servant.equipWeapon(weapon)
-                                    player.useWeapon(weapon, slotIndex)
+                                    player.putWeaponOnBoard(weapon, slotIndex)
                                     player.useMana(weapon.cost)
                                     print("Arme équipée")
+                                    print("Mana restant : ", player.mana)
                                 else:
-                                    ("Ce servant ne peux pas équiper ce type arme")
+                                    print("Ce servant ne peux pas équiper ce type arme")
                             
                             else:
                                 print("Choix invalide")
@@ -427,13 +434,19 @@ class Game:
                                 #servantAttacker.weaponEquipped = None
                         if(servantAttacker.stats.hp <= 0):
                             mainPlayer.removeServantFromBoard(servantAttacker)
+                            print("Il reste ", mainPlayer.lifePoint, "point de vie à ", mainPlayer.name)
+                            if(mainPlayer.hasLoose(attackablePlayer.name)):
+                                return True
                          
                         if(servantAttacked.weaponEquipped):
                             if(not servantAttacked.checkWeapon()):
                                 attackablePlayer.removeItemFromBoard(servantAttacked.weaponEquipped)
-                                #servantAttacked.weaponEquipped = None
+
                         if(servantAttacked.stats.hp <= 0):
                             attackablePlayer.removeServantFromBoard(servantAttacked)
+                            print("Il reste ", attackablePlayer.lifePoint, "point de vie à ", attackablePlayer.name)
+                            if(attackablePlayer.hasLoose(mainPlayer.name)):
+                                return True
 
                     else:
                         print("Choix invalide")
@@ -473,6 +486,8 @@ class Game:
                 
             elif(servantAttacker >= 1 and servantAttacker <= nbServantMain):
                 lstServantUsable[servantAttacker-1].attackPlayer(attackablePlayer)
+                if(attackablePlayer.hasLoose(mainPlayer.name)):
+                    return True
                 return
                 
             else:
@@ -490,11 +505,13 @@ class Game:
         """
         print("_____________________________")
         print("Terrain de ", mainPlayer.name)
+        print("Serviteurs : ")
         for elem in mainPlayer.servantsOnBoard:
             if(elem != None):
                 print("-----")
                 print(elem)
                 print("-----")
+        print("Items : ")
         for elem in mainPlayer.itemOnBoard:
             if(elem != None):
                 print("-----")
@@ -502,11 +519,13 @@ class Game:
                 print("-----")
         print("_____________________________")
         print("Terrain de ", otherPlayer.name)
+        print("Serviteurs : ")
         for elem in otherPlayer.servantsOnBoard:
             if(elem != None):
                 print("-----")
                 print(elem)
                 print("-----")
+        print("Items : ")
         for elem in otherPlayer.itemOnBoard:
             if(elem != None):
                 print("-----")
