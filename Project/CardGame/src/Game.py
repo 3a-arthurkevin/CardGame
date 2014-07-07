@@ -1,12 +1,15 @@
 # -*- coding : utf-8 -*-
 
-from Utils import Config
+import copy
+import random
+
+from Card import Card
+from Item import Item
 from Player import Player
 from Servant import Servant
-from Item import Item
+from Utils import Config
 from Weapon import Weapon
-from Card import Card
-import random
+
 
 class Game:
     '''
@@ -104,7 +107,7 @@ class Game:
             for idCard in jsonDeck["CardList"]:
                 card = [c for c in self.cards if c.idCard == idCard]
                 if len(card) > 0:
-                    deck.append(card[0])
+                    deck.append(copy.copy(card[0]))
                 
         if len(deck) == Player.totalCardIntoDeck:
             return deck
@@ -222,6 +225,7 @@ class Game:
                     putCardMode = False
                 else:
                     print("Choix invalide")
+                    print("Mana restant : ", mainPlayer.mana)
             
             #Mode attacquer
             while(attackMode):
