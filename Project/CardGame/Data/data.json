@@ -19,7 +19,7 @@
    "Cost": 1, 
    "Exp": 0, 
    "TypeCard": "Servant", 
-   "Desc": "Epeiste rapide et précise"
+   "Desc": "Epeiste rapide et pr\u00e9cise"
   }, 
   {
    "Stats": {
@@ -61,7 +61,7 @@
    "Cost": 1, 
    "Exp": 0, 
    "TypeCard": "Servant", 
-   "Desc": "Lancier précis avec une bonne défense"
+   "Desc": "Lancier pr\u00e9cis avec une bonne d\u00e9fense"
   }, 
   {
    "Stats": {
@@ -82,7 +82,7 @@
    "Cost": 1, 
    "Exp": 0, 
    "TypeCard": "Servant", 
-   "Desc": "Archer précis et efficace contre les chevaliers pégases"
+   "Desc": "Archer pr\u00e9cis et efficace contre les chevaliers p\u00e9gases"
   }, 
   {
    "Stats": {
@@ -103,7 +103,7 @@
    "Cost": 1, 
    "Exp": 0, 
    "TypeCard": "Servant", 
-   "Desc": "Chevalier chevauchant un pégase, résistant face à la magie"
+   "Desc": "Chevalier chevauchant un p\u00e9gase, r\u00e9sistant face \u00e0 la magie"
   }, 
   {
    "Stats": {
@@ -124,7 +124,7 @@
    "Cost": 1, 
    "Exp": 0, 
    "TypeCard": "Servant", 
-   "Desc": "Magicien pouvant provoquer de grands dégats aux unités conventionnelles"
+   "Desc": "Magicien pouvant provoquer de grands d\u00e9gats aux unit\u00e9s conventionnelles"
   }, 
   {
    "Stats": {
@@ -136,9 +136,7 @@
     "cri": 8, 
     "spe": 8, 
     "def": 4
-   },
-
-   
+   }, 
    "Name": "SwordMaster++", 
    "Level": 2, 
    "ClassType": 0, 
@@ -147,7 +145,7 @@
    "Cost": 3, 
    "Exp": 0, 
    "TypeCard": "Servant", 
-   "Desc": "Epeiste rapide et précise"
+   "Desc": "Epeiste rapide et pr\u00e9cise"
   }, 
   {
    "Stats": {
@@ -189,7 +187,7 @@
    "Cost": 3, 
    "Exp": 0, 
    "TypeCard": "Servant", 
-   "Desc": "Lancier précis, avec une bonne défense"
+   "Desc": "Lancier pr\u00e9cis, avec une bonne d\u00e9fense"
   }, 
   {
    "Stats": {
@@ -210,7 +208,7 @@
    "Cost": 3, 
    "Exp": 0, 
    "TypeCard": "Servant", 
-   "Desc": "Archer précis et efficace contre les chevalier pégases"
+   "Desc": "Archer pr\u00e9cis et efficace contre les chevalier p\u00e9gases"
   }, 
   {
    "Stats": {
@@ -231,7 +229,7 @@
    "Cost": 3, 
    "Exp": 0, 
    "TypeCard": "Servant", 
-   "Desc": "Chevalier chevauchant un pégase, résistant face à la magie"
+   "Desc": "Chevalier chevauchant un p\u00e9gase, r\u00e9sistant face \u00e0 la magie"
   }, 
   {
    "Stats": {
@@ -252,11 +250,8 @@
    "Cost": 3, 
    "Exp": 0, 
    "TypeCard": "Servant", 
-   "Desc": "Magicien pouvant provoquer de grands dégats"
-  },
-
-  
-  
+   "Desc": "Magicien pouvant provoquer de grands d\u00e9gats"
+  }, 
   {
    "Stats": {
     "pre": 0, 
@@ -270,10 +265,10 @@
    }, 
    "Name": "Potion de vie", 
    "idCard": 13, 
+   "ItemType": 0, 
    "Cost": 3, 
    "TypeCard": "Item", 
-   "Desc": "Redonne 5 pv à la cible", 
-   "ItemType": 0
+   "Desc": "Redonne 5 pv \u00e0 la cible"
   }, 
   {
    "Stats": {
@@ -288,10 +283,10 @@
    }, 
    "Name": "Cape mystique", 
    "idCard": 14, 
+   "ItemType": 0, 
    "Cost": 2, 
    "TypeCard": "Item", 
-   "Desc": "Augmente la résistance de la cible de 1", 
-   "ItemType": 0
+   "Desc": "Augmente la r\u00e9sistance de la cible de 1"
   }, 
   {
    "Stats": {
@@ -306,11 +301,11 @@
    }, 
    "Name": "Bouclier d'acier", 
    "idCard": 15, 
+   "ItemType": 0, 
    "Cost": 2, 
    "TypeCard": "Item", 
-   "Desc": "Augmente la défense de la cible de 1", 
-   "ItemType": 0
-  },
+   "Desc": "Augmente la d\u00e9fense de la cible de 1"
+  }, 
   {
    "Stats": {
     "pre": 0, 
@@ -324,11 +319,11 @@
    }, 
    "Name": "Bras d'acier", 
    "idCard": 16, 
+   "ItemType": 0, 
    "Cost": 2, 
    "TypeCard": "Item", 
-   "Desc": "Augmente la force de la cible de 1", 
-   "ItemType": 0
-  },
+   "Desc": "Augmente la force de la cible de 1"
+  }, 
   {
    "Stats": {
     "pre": 0, 
@@ -340,13 +335,13 @@
     "spe": 1, 
     "def": 0
    }, 
-   "Name": "Botte de pégase", 
+   "Name": "Botte de p\u00e9gase", 
    "idCard": 17, 
+   "ItemType": 0, 
    "Cost": 2, 
    "TypeCard": "Item", 
-   "Desc": "Augmente la vitesse de la cible de 1", 
-   "ItemType": 0
-  },
+   "Desc": "Augmente la vitesse de la cible de 1"
+  }, 
   {
    "Stats": {
     "pre": 1, 
@@ -360,11 +355,11 @@
    }, 
    "Name": "Oeil de faucon", 
    "idCard": 18, 
+   "ItemType": 0, 
    "Cost": 2, 
    "TypeCard": "Item", 
-   "Desc": "Augmente la précision de la cible de 1", 
-   "ItemType": 0
-  },
+   "Desc": "Augmente la pr\u00e9cision de la cible de 1"
+  }, 
   {
    "Stats": {
     "pre": 0, 
@@ -378,17 +373,13 @@
    }, 
    "Name": "Esprit mystique", 
    "idCard": 19, 
+   "ItemType": 0, 
    "Cost": 2, 
    "TypeCard": "Item", 
-   "Desc": "Augmente l'intelligence de la cible de 1", 
-   "ItemType": 0
-  },
-
-
-  
+   "Desc": "Augmente l'intelligence de la cible de 1"
+  }, 
   {
    "Stats": {
-    "hp": 0,
     "pre": -1, 
     "int": 0, 
     "res": 0, 
@@ -398,18 +389,17 @@
     "spe": -1, 
     "def": 0
    }, 
-   "Name": "Epée d'acier", 
+   "Name": "Ep\u00e9e d'acier", 
+   "Durability": 3, 
    "idCard": 20, 
+   "WeaponType": 0, 
+   "ItemType": 1, 
    "Cost": 2, 
    "TypeCard": "Weapon", 
-   "Desc": "Epée d'acier", 
-   "ItemType": 1,
-   "WeaponType": 0,
-   "Durability" : 3 
+   "Desc": "Ep\u00e9e d'acier"
   }, 
   {
    "Stats": {
-    "hp": 0,
     "pre": -1, 
     "int": 0, 
     "res": 0, 
@@ -420,17 +410,16 @@
     "def": 0
    }, 
    "Name": "Hache d'acier", 
+   "Durability": 3, 
    "idCard": 21, 
+   "WeaponType": 1, 
+   "ItemType": 1, 
    "Cost": 2, 
    "TypeCard": "Weapon", 
-   "Desc": "Hache d'acier", 
-   "ItemType": 1,
-   "WeaponType": 1,
-   "Durability" : 3 
+   "Desc": "Hache d'acier"
   }, 
   {
    "Stats": {
-    "hp": 0,
     "pre": 1, 
     "int": 0, 
     "res": 0, 
@@ -441,17 +430,16 @@
     "def": 0
    }, 
    "Name": "Lance d'acier", 
+   "Durability": 3, 
    "idCard": 22, 
+   "WeaponType": 2, 
+   "ItemType": 1, 
    "Cost": 2, 
    "TypeCard": "Weapon", 
-   "Desc": "Lance d'acier", 
-   "ItemType": 1,
-   "WeaponType": 2,
-   "Durability" : 3 
+   "Desc": "Lance d'acier"
   }, 
   {
    "Stats": {
-    "hp": 0,
     "pre": -1, 
     "int": 0, 
     "res": 0, 
@@ -462,17 +450,16 @@
     "def": 0
    }, 
    "Name": "Arc d'acier", 
+   "Durability": 3, 
    "idCard": 23, 
+   "WeaponType": 3, 
+   "ItemType": 1, 
    "Cost": 2, 
    "TypeCard": "Weapon", 
-   "Desc": "Arc d'acier", 
-   "ItemType": 1,
-   "WeaponType": 3,
-   "Durability" : 3 
+   "Desc": "Arc d'acier"
   }, 
   {
    "Stats": {
-    "hp": 0,
     "pre": -1, 
     "int": 2, 
     "res": 1, 
@@ -483,17 +470,16 @@
     "def": 0
    }, 
    "Name": "Tome mystique", 
+   "Durability": 3, 
    "idCard": 24, 
+   "WeaponType": 4, 
+   "ItemType": 1, 
    "Cost": 2, 
    "TypeCard": "Weapon", 
-   "Desc": "Tome mystique", 
-   "ItemType": 1,
-   "WeaponType": 4,
-   "Durability" : 3
+   "Desc": "Tome mystique"
   }, 
   {
    "Stats": {
-    "hp": 0,
     "pre": -1, 
     "int": 2, 
     "res": 1, 
@@ -504,18 +490,15 @@
     "def": 0
    }, 
    "Name": "Tome mystique", 
+   "Durability": 3, 
    "idCard": 25, 
+   "WeaponType": 4, 
+   "ItemType": 1, 
    "Cost": 2, 
    "TypeCard": "Weapon", 
-   "Desc": "Tome mystique", 
-   "ItemType": 1,
-   "WeaponType": 4,
-   "Durability" : 3
+   "Desc": "Tome mystique"
   }
- ],
-
-
- 
+ ], 
  "Decks": [
   {
    "Name": "first", 
@@ -536,36 +519,26 @@
   {
    "Name": "PremierDeck", 
    "CardList": [
+    20, 
+    10, 
+    1, 
+    13, 
     2, 
-    9, 
-    12, 
-    12, 
-    8, 
-    12, 
-    0, 
-    11, 
-    11, 
-    0, 
+    2, 
     5, 
-    11, 
-    11, 
-    7, 
     5, 
+    13, 
+    17, 
+    23, 
+    15, 
     2, 
-    9, 
-    11, 
-    11, 
-    5, 
-    8, 
-    6, 
-    3, 
-    2, 
-    12, 
-    2, 
+    4, 
     3, 
     9, 
-    3, 
-    8
+    19, 
+    14, 
+    11, 
+    13
    ]
   }
  ]

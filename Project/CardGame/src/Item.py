@@ -17,7 +17,7 @@ class Item(Card):
     
     def __init__(self, params):
         Card.__init__(self, params)
-        self.stats = Stats(params)
+        self.stats = Stats(params.get("Stats"))
         
     def useItem(self, servant):
         servant.stats.hp += self.stats.hp

@@ -18,7 +18,7 @@ class Weapon(Card):
     
     def __init__(self, params):
         Card.__init__(self, params)
-        self.stats = Stats(params)
+        self.stats = Stats(params.get("Stats"))
         self.durability = params.get("Durability")
         self.weaponType = params.get("WeaponType")
         
