@@ -1,5 +1,7 @@
 # -*- coding : utf-8 -*-
 
+from Stats import Stats
+
 class Card:
     """
     Classe mère pour Serviteur et Item
@@ -13,6 +15,7 @@ class Card:
         self.name = params.get("Name")
         self.description = params.get("Desc")
         self.cost = params.get("Cost")
+        self.stats = Stats(params.get("Stats"))
         
     def destroyCard(self):
         """

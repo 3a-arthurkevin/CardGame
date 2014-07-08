@@ -4,7 +4,6 @@ from random import *
 
 from Card import Card
 from Item import *
-from Stats import Stats
 from Utils.Enum import enum
 
 
@@ -57,7 +56,6 @@ class Servant(Card):
     
     def __init__(self, params):
         Card.__init__(self, params)
-        self.stats = Stats(params.get("Stats"))
         self.level = params.get("Level")
         self.experience = params.get("Exp")
         self.classType = params.get("ClassType")

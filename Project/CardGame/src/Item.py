@@ -1,7 +1,6 @@
 # -*- coding : utf-8 -*-
 
 from Utils.Enum import enum
-from Stats import Stats
 from Card import *
 
 """
@@ -20,7 +19,6 @@ class Item(Card):
         Information utilise à un item
         """
         Card.__init__(self, params)
-        self.stats = Stats(params.get("Stats"))
         
     def useItem(self, servant):
         """

@@ -1,7 +1,6 @@
 # -*- coding : utf-8 -*-
 
 from Utils.Enum import enum
-from Stats import Stats
 from Card import *
 
 """
@@ -28,7 +27,6 @@ class Weapon(Card):
         Information qualifiant une armes
         """
         Card.__init__(self, params)
-        self.stats = Stats(params.get("Stats"))
         self.durability = params.get("Durability")
         self.weaponType = params.get("WeaponType")
         

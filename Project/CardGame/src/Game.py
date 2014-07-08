@@ -223,7 +223,6 @@ class Game:
         
         
         mainPlayer.addManaForPlayerTurn()
-        print("Mana restant : ", mainPlayer.mana)
         
         mainPlayer.setCanFightForServantsOnBoard()
         
@@ -244,14 +243,14 @@ class Game:
             
             #Mode poser ses cartes
             while(putCardMode):
-                print("""---- MODE POSAGE DE CARTE ----
-                Quel action voulez vous faire :
+                print("\n---- MODE POSAGE DE CARTE ----\n")
+                print("Mana restant : ", mainPlayer.mana, "\n"), 
+                print("""Quel action voulez vous faire : 
                 -1) Voir le terrain
                 0) Voir la main
                 1) Poser une carte sur le terrain
                 2) Passer en mode attaquer
-                3) Mettre fin au tour
-                """)
+                3) Mettre fin au tour""")
                 
                 try:
                     choice = int(input("Choix : "))
@@ -274,17 +273,17 @@ class Game:
                     putCardMode = False
                 else:
                     print("Choix invalide")
-                    print("Mana restant : ", mainPlayer.mana)
             
             #Mode attacquer
             while(attackMode):
-                print("""---- MODE ATTAQUE ----
-                Quel action voulez vous faire :
+                print("\n---- MODE ATTAQUE ----\n")
+                print("Vos points de vie : ", mainPlayer.lifePoint)
+                print("Point de vie de", attackablePlayer.name, " : ", attackablePlayer.lifePoint, "\n")
+                print("""Quel action voulez vous faire :
                 0) Voir le terrain
                 1) Attaquer un serviteur
                 2) Attaquer l'adversaire
-                3) Mettre fin au tour
-                """)
+                3) Mettre fin au tour""")
                 try:
                     choice = int(input("Choix : "))
                 except:
@@ -364,8 +363,6 @@ class Game:
         if(player.putServantInBoard(servant)):
             player.useMana(servant.cost)
             print("Serviteur posé sur le terrain")
-            print("Mana restant : ", player.mana)
-            #player.mana -=
         else:
             print("Impossible de poser plus de Serviteur sur le terrain")
             
@@ -404,7 +401,6 @@ class Game:
                 player.useMana(item.cost)
                 print("Item utilisé")
                 player.removeItemFromBoard(item)
-                print("Mana restant : ", player.mana)
             else:
                 print("Choix invalide")
         
@@ -448,7 +444,6 @@ class Game:
                         player.putWeaponOnBoard(weapon, slotIndex)
                         player.useMana(weapon.cost)
                         print("Arme équipée")
-                        print("Mana restant : ", player.mana)
                     else:
                         print("Ce servant ne peux pas équiper ce type arme")
                 
