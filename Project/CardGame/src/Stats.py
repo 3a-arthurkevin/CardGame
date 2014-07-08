@@ -22,7 +22,7 @@ class Stats:
 
     def __init__(self, params = {}):
         '''
-        Constructor
+        initialise les attributs en les récupérant dans le dictionnaire params
         '''
         self.hp = params.get("hp", 0)
         self.strength = params.get("str", 0)
@@ -34,6 +34,9 @@ class Stats:
         self.critical = params.get("cri", 0)
         
     def __str__(self):
+        """
+        Fonction de display
+        """
         return  "hp : "  + str(self.hp)             + " | " + \
                 "atk : " + str(self.strength)       + " | " + \
                 "int : " + str(self.intelligence)   + " | " + \

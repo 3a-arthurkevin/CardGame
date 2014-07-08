@@ -4,6 +4,9 @@ from Utils.Enum import enum
 from Stats import Stats
 from Card import *
 
+"""
+Enumération des type d'arme disponible dans le jeu
+"""
 WeaponType = enum("WeaponType",
                   "SWORD", "AXE", "LANCE", "BOW", "EMAGIC", "LMAGIC", "NONE")
 
