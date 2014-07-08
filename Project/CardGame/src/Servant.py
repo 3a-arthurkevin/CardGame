@@ -1,10 +1,12 @@
 # -*- coding : utf-8 -*-
 
-from Utils.Enum import enum
-from Card import Card
-from Stats import Stats
-from Item import *
 from random import *
+
+from Card import Card
+from Item import *
+from Stats import Stats
+from Utils.Enum import enum
+
 
 ClassType = enum("ClassType",
                  "SWORDMASTER", "WARRIOR", "HALBARDIER", "ARCHER", "PEGASUS", "MAGE", "PRIEST")
