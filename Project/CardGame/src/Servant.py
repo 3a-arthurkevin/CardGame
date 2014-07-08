@@ -35,6 +35,9 @@ tabBonusBetweenClassAndWeapon = {ClassType.PEGASUS      :  {"stronger" : WeaponT
                                  ClassType.MAGE         :  {"stronger" : WeaponType.NONE,  "weaker" : WeaponType.NONE},
                                  ClassType.PRIEST       :  {"stronger" : WeaponType.NONE,  "weaker" : WeaponType.NONE}}
 
+"""
+Permet d'avoir un nom associer pour indiquer les armes équipables (un des attributs dans le init du servant)
+"""
 tabGetWeaponTypeFromClassType = {ClassType.PEGASUS      : "Lance",
                                  ClassType.SWORDMASTER  : "Epée",
                                  ClassType.WARRIOR      : "Hache",
@@ -151,7 +154,7 @@ class Servant(Card):
     def battleBetweenServant(self, servantEnemy):
         """
         Fonction récupérant toutes les infos des servants
-        Et traite tout le combat
+        Et traite tout le combat entre 2 servants
         """
         dicData = self.getBattleData(servantEnemy)
         dicDataAttacker = dicData.get("dataAttacker")
@@ -269,7 +272,7 @@ class Servant(Card):
         if(self.stats.hp <= 0):
             self.killed()
         elif(self.level == 1):
-            self.checkWeapon()
+            #self.checkWeapon()
             earnedXp = self.earnedExperience(servantEnemy)
             self.experience += self.earnedExperience(servantEnemy)
             if(self.experience > 100):
@@ -280,7 +283,7 @@ class Servant(Card):
         if(servantEnemy.stats.hp <= 0):
             servantEnemy.killed()
         elif(servantEnemy.level == 1):
-            servantEnemy.checkWeapon()
+            #servantEnemy.checkWeapon()
             earnedXp = servantEnemy.earnedExperience(self)
             servantEnemy.experience += servantEnemy.earnedExperience(self)
             if(servantEnemy.experience > 100):
@@ -290,15 +293,10 @@ class Servant(Card):
             
     
     def killed(self):
+        """
+        Affichage dans la console pour indiquer que le servant est mort
+        """
         print(self.name, "just died")
-    
-    def checkWeapon(self):
-        if(self.weaponEquipped):
-            self.weaponEquipped.durability -= 1
-            if(self.weaponEquipped.durability <= 0):
-                return False
-        return True
-    
     
     def earnedExperience(self, servantEnemy):
         """
@@ -317,6 +315,9 @@ class Servant(Card):
         
         
     def __str__(self):
+        """
+        Fonction affichant les infos sur un servant (ses stats et stat amre équipée)
+        """
         equipableWeapon = tabGetWeaponTypeFromClassType[self.classType]
         return "Name : " + self.name + "\n" + \
                 "Description : " + self.description + "\n" + \
@@ -339,7 +340,7 @@ class Servant(Card):
     def levelUp(self):
         """
         Fonction appelé lors d'un level up --> à remplacer par l'utilisation d'un item à utilisation direct
-        car point de stat gagné spécifique selon la class
+        car point de stat gagné spécifique selon la class --> amélioration
         --> crée fonction useItem
         
         if(self.classType == ClassType.SWORDMASTER):
@@ -371,24 +372,37 @@ class Servant(Card):
         self.experience = 100
         self.level = 2
         self.name += "++"
-    
-    def checkWeaponState(self):
-        if(self.weaponEquipped):
-            self.weaponEquipped.useWeapon()
-            if(self.weaponEquipped.durability == 0):
-                self.unequipped()
+
         
     def equipWeapon(self, weapon):
         """
         Fonction appeler pour equiper le servant d'une arme
         """
         self.weaponEquipped = weapon
+       
+    def checkWeapon(self):
+        """
+        Fonction vérifiant si le servant a une arme d'équipé
+            Si oui, enlever 1 pts de durabilité
+        Renvoie True si aucune arme équipé ou si l'arme a encore de la durabilité, Faux si arme équipé et plus de durabilité
+        """
+        if(self.weaponEquipped):
+            self.weaponEquipped.durability -= 1
+            if(self.weaponEquipped.durability <= 0):
+                return False
+        return True
         
-    def unequipped(self):
+    def unequippedWeapon(self):
+        """
+        Fonction qui déséquipe une arme du serviteur
+        """
+        print("The weapon", self.weaponEquipped.name, "goes to the graveyard")
         self.weaponEquipped = None
-        print("The weapon is broken...")
         
     def attackPlayer(self, playerAttacked):
+        """
+        Fonction gérant une attaque d'un de ses serviteurs contre l'adversaire
+        """
         damageToApply = 0
         
         if(self.classType == ClassType.MAGE):

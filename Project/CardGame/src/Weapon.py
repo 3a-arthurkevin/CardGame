@@ -25,7 +25,7 @@ class Weapon(Card):
     
     def __init__(self, params):
         """
-        Création d'une arme
+        Information qualifiant une armes
         """
         Card.__init__(self, params)
         self.stats = Stats(params.get("Stats"))
@@ -40,6 +40,6 @@ class Weapon(Card):
         
     def __str__(self):
         """
-        fonction d'affichage d'une arme
+        fonction d'affichage des infos d'une arme
         """
-        return Card.__str__(self) + self.stats.__str__()
+        return Card.__str__(self) + self.stats.__str__() + "\nDurabilité : " + str(self.durability)

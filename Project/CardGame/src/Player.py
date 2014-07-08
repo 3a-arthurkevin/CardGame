@@ -232,7 +232,7 @@ class Player:
     def removeItemFromBoard(self, item):
         """
         Fonction retirant un card autre que Servant passée en paramètre
-        Utilisé lorsque l'item n'est plus equipé/ lorsqu'il est utilisé
+        Utilisé lorsque l'item ou arme n'est plus equipé/lorsqu'il est utilisé
         """
         index = self.findItemInBoard(item)
         if(index >= 0):
