@@ -2,6 +2,7 @@
 
 import copy
 import random
+from goto import goto, label #Trololololol
 
 from Card import Card
 from Item import Item
@@ -60,11 +61,15 @@ class Game:
         print("Création du joueur : ", player.name)
         
         try:
-            choose = input("Voulez-vous utiliser un deck existant ? (Y/N)")
+            choose = int(input("""Que voulez vous faire ?
+            1) Charger un deck existant
+            2) Choisir chaque carte de son deck
+            3) Laisser notre super algorithme de la mort qui tue construire un deck imbattable pour vous
+            """))
         except:
-            choose = -100
+            choose = -1
         
-        if choose == "Y":
+        if choose == 1:
             deck = self.getDeck()
             
             if deck != None:
@@ -73,15 +78,25 @@ class Game:
             
             else:
                 print("Error lors de la récupération d'un deck existant")
-        
-        
-        if choose != "N" and choose != "Y":
-            print("Choix invalide\n")
+                
+        elif choose == 3:
+            deck = self.getRandomDeck()
             
-        print("Création d'un nouveau deck")
+            if deck != None:
+                player.cardsList = deck
+                goto .save
+            
+            else:
+                print("Error lors de la génération aléatoire du deck")
         
+        if choose != 2:
+            print("Erreur dans la saisie du choix")
+        
+        print("Création d'un nouveau deck")
         player.createDeck(self.cards)
         
+        
+        label .save
         try:
             choose = input("Voulez-vous sauvegarder votre deck ? (Y/N)")
         except:
@@ -96,6 +111,17 @@ class Game:
             
         print("Le deck ne sera pas sauvegardé")
         return
+    
+    def getRandomDeck(self):
+        """
+        Créer un deck aléatoire pour le joueur
+        """
+        deck = []
+        
+        for i in range(Player.totalCardIntoDeck):
+            deck.append(copy.deepcopy(self.cards[random.randint(0, len(self.cards) - 1)]))
+        
+        return deck
     
     def getDeck(self):
         """
