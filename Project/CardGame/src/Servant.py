@@ -48,6 +48,7 @@ tabGetWeaponTypeFromClassType = {ClassType.PEGASUS      : "Lance",
                                  ClassType.MAGE         : "Magie élémentaire",
                                  ClassType.PRIEST       : "Magie blache"}
 
+
 class Servant(Card):
     """
     Derive de Card 
