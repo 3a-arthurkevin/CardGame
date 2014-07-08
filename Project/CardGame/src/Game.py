@@ -226,7 +226,7 @@ class Game:
         card = mainPlayer.hand[len(mainPlayer.hand) - 1]
         #card.destroyCard()
 
-        print("vous avez tiré la carte :\n", card,)
+        print("vous avez tiré la carte :\n", card)
         
         putCardMode = True
         attackMode = False
@@ -339,7 +339,6 @@ class Game:
                         player.useMana(servant.cost)
                         print("Serviteur posé sur le terrain")
                         print("Mana restant : ", player.mana)
-                        #player.mana -=
                     else:
                         print("Impossible de poser plus de Serviteur sur le terrain")
                 

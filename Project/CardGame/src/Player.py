@@ -89,7 +89,7 @@ class Player:
     def takeCardFromDeck(self):
         """
         Pioche une carte dans le deck 
-        si il y en reste
+        si il en reste
         si le joueur n'a pas atteint la limite de carte en main maximum
         """
         
