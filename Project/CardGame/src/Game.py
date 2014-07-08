@@ -4,6 +4,7 @@ import copy
 import random
 from goto import goto, label #Trololololol
 
+from Utils.CleanScreen import cleanScreen
 from Card import Card
 from Item import Item
 from Player import Player
@@ -58,6 +59,8 @@ class Game:
         Création d'un deck en choississant chaque carte qui le composera.
         Récupération d'un deck stocké dans le fichier de configuration
         """
+        
+        cleanScreen()
         print("Création du joueur : ", player.name)
         
         try:
@@ -191,11 +194,12 @@ class Game:
         '''Chaque appel de cette fonction fait avancer la partie d'un tour pour chaque joueur
         retourne un booleen si le tour a mis fin a la partie
         '''            
-        
+        cleanScreen()
         self.turn(self.players[0], self.players[1])
         if self.players[0].hasLoose(self.players[1].name) or self.players[1].hasLoose(self.players[0].name):
             return False
         
+        cleanScreen()
         self.turn(self.players[1], self.players[0])
         if self.players[0].hasLoose(self.players[1].name) or self.players[1].hasLoose(self.players[0].name):
             return False
@@ -254,6 +258,8 @@ class Game:
                 except:
                     choice = -100
                 
+                cleanScreen()
+                
                 if(choice == -1):
                     self.seeBoard(mainPlayer, attackablePlayer)
                 elif choice == 0:
@@ -283,6 +289,8 @@ class Game:
                     choice = int(input("Choix : "))
                 except:
                     choice = -100
+                
+                cleanScreen()
                 
                 if(choice == 0):
                     self.seeBoard(mainPlayer, attackablePlayer)
