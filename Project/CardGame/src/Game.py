@@ -107,7 +107,7 @@ class Game:
             for idCard in jsonDeck["CardList"]:
                 card = [c for c in self.cards if c.idCard == idCard]
                 if len(card) > 0:
-                    deck.append(copy.copy(card[0]))
+                    deck.append(copy.deepcopy(card[0]))
                 
         if len(deck) == Player.totalCardIntoDeck:
             return deck
@@ -198,13 +198,14 @@ class Game:
             
             #Mode poser ses cartes
             while(putCardMode):
-                print("""Quel action voulez vous faire :
-                      -1) Voir le terrain
-                      0) Voir la main
-                      1) Poser une carte
-                      2) Passer en mode attaquer
-                      3) Mettre fin au tour
-                      """)
+                print("""---- MODE POSAGE DE CARTE ----
+                Quel action voulez vous faire :
+                -1) Voir le terrain
+                0) Voir la main
+                1) Poser une carte sur le terrain
+                2) Passer en mode attaquer
+                3) Mettre fin au tour
+                """)
                 
                 try:
                     choice = int(input("Choix : "))
@@ -229,12 +230,13 @@ class Game:
             
             #Mode attacquer
             while(attackMode):
-                print("""Quel action voulez vous faire :
-                      0) Voir le terrain
-                      1) Attaquer un serviteur
-                      2) Attaquer l'adversaire
-                      3) Mettre fin au tour
-                      """)
+                print("""---- MODE ATTAQUE ----
+                Quel action voulez vous faire :
+                0) Voir le terrain
+                1) Attaquer un serviteur
+                2) Attaquer l'adversaire
+                3) Mettre fin au tour
+                """)
                 try:
                     choice = int(input("Choix : "))
                 except:
