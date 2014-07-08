@@ -97,7 +97,7 @@ class Player:
             return False
         
         if(not self.findFreeSlotInHand()):
-            del self.hand[0]
+            del self.hand[len(self.hand)-1]
         
         self.hand.append(self.deck.get())     
             

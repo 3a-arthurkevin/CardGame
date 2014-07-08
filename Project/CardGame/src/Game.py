@@ -17,7 +17,6 @@ class Game:
     Elle s'occupe de l'instanciation des player et de lancer les actions relative au jeu (Tour, création de deck)
     '''
 
-
     def __init__(self, params):
         '''
         Initialisation d'une partie
@@ -34,6 +33,9 @@ class Game:
         self.setupDeck()
     
     def setupCard(self):
+        """
+        Création de la liste des cartes disponible dans le jeu
+        """
         cards = self.config.get("Cards")
         
         for jsonCard in cards:
@@ -49,6 +51,12 @@ class Game:
         return
     
     def setupPlayer(self, player):
+        """
+        Création du deck du joueur.
+        Deux possibilité possible
+        Création d'un deck en choississant chaque carte qui le composera.
+        Récupération d'un deck stocké dans le fichier de configuration
+        """
         print("Création du joueur : ", player.name)
         
         try:
@@ -90,7 +98,10 @@ class Game:
         return
     
     def getDeck(self):
-        
+        """
+        Récupère le deck dans le fichier de configuration en fonction du nom du deck
+        Si le deck récupéré comporte des erreurs la fonction retourne None
+        """
         self.deck = self.config.get("Decks", None)
         
         if len(self.deck) <= 0:
@@ -118,6 +129,11 @@ class Game:
         return None
     
     def saveDeck(self, player):
+        """
+        Sauvegarde du deck dans le fichier de configuration
+        Le deck sauvegardé est associé à un nom
+        Si le nom est déjà présent dans le fichier de configuration le deck est écrasé 
+        """
         
         if len(player.cardsList) < Player.totalCardIntoDeck:
             print("Le nombre de carte dans le deck du joueur n'est pas suffisant")
@@ -255,6 +271,12 @@ class Game:
                     print("Choix invalide")
             
     def putCard(self, player):
+        """
+        Pose une carte sur le terrain pour le player reçu en paramètre
+        La fonction affiche la liste des carte dans la main
+        Demande la carte a poser sur le board et vérifi si l'utilisateur peut posé la carte choisit 
+        """
+        
         if(player.mana <= 0):
             print("Vous n'avez pas assez de mana pour poser des cartes")
             return
@@ -382,12 +404,11 @@ class Game:
             print("Choix invalide")
         return
         
-    """
-    récupérer la liste des servant canAttack du mainPlayer
-    et traiter avec
-    """
     def attackServant(self, mainPlayer, attackablePlayer):
-        
+        """
+        récupérer la liste des servant canAttack du mainPlayer
+        et traiter avec
+        """
         lstServantAttackable = attackablePlayer.getServantOnBoard()
         nbServantAttackable = len(lstServantAttackable)
         
@@ -466,7 +487,10 @@ class Game:
         return
     
     def attackPlayer(self, mainPlayer, attackablePlayer):
-        
+        """
+        Fonction qui fait attaquer attackablePlayer par mainPlayer
+        La fonction fait les vérification de possibilité d'attquer (serviteur sur le board, ...)
+        """
         if(attackablePlayer.countServantOnBoard() > 0):
             print("Impossible d'attaquer directement ", attackablePlayer.name, " car il est proteger par ses serviteurs !")
             return
