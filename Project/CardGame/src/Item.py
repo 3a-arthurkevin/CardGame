@@ -16,10 +16,16 @@ ItemType = enum(
 class Item(Card):
     
     def __init__(self, params):
+        """
+        Information utilise à un item
+        """
         Card.__init__(self, params)
         self.stats = Stats(params.get("Stats"))
         
     def useItem(self, servant):
+        """
+        Fonction qui ajoute les effets de l'objet sur un servant passé en paramètre
+        """
         servant.stats.hp += self.stats.hp
         servant.stats.strength += self.stats.strength
         servant.stats.intelligence += self.stats.intelligence

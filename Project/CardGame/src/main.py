@@ -15,7 +15,7 @@ if __name__ == '__main__':
     playerOneName = "Arthur"
     playerTwoName = "Kevin"
     
-    print("スパ　カド　フィタ に　ようこそ　!!!!!!!")
+    print("スーパ　ガード　ファイタ に　ようこそ　!!!!!!!\n")
     
     game = Game({"playerName1" : playerOneName, "playerName2" : playerTwoName})
     

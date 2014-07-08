@@ -276,7 +276,7 @@ class Game:
         """
         Pose une carte sur le terrain pour le player reçu en paramètre
         La fonction affiche la liste des carte dans la main
-        Demande la carte a poser sur le board et vérifi si l'utilisateur peut posé la carte choisit 
+        Demande la carte a poser sur le board et vérifie si l'utilisateur peut posé la carte choisi
         """
         
         if(player.mana <= 0):
@@ -307,104 +307,124 @@ class Game:
             if(player.hand[choice-1].cost <= player.mana):
                 
                 if(type(player.hand[choice-1]) is Servant):
-                    servant = player.hand[choice-1]
-                    
-                    if(player.putServantInBoard(servant)):
-                        player.useMana(servant.cost)
-                        print("Serviteur posé sur le terrain")
-                        print("Mana restant : ", player.mana)
-                        #player.mana -=
-                    else:
-                        print("Impossible de poser plus de Serviteur sur le terrain")
+                    self.putServant(player, choice-1)
                 
                 elif(type(player.hand[choice-1]) is Item):
-                    item = player.hand[choice-1]
-                    lstServantOnBoard = player.getServantOnBoard()
-                    nbServantOnBoard = len(lstServantOnBoard)
-                    
-                    if(nbServantOnBoard <= 0):
-                        print("Impossible d'utiliser un item, aucun serviteur sur le terrain")
-                        return
-                        
-                    if(player.canPutItemInBoard()):
-                        
-                        print("Utiliser l'item sur : ")
-                        print("-1) Annuler l'action")
-                        
-                        for i in range(nbServantOnBoard):
-                            print(i+1,")", lstServantOnBoard[i].name)
-                        
-                        try:
-                            servantChoice = int(input("Choix : "))
-                        except:
-                            servantChoice = -100
-                            
-                        if(servantChoice == -1):
-                            return
-            
-                        elif(servantChoice >= 1 and servantChoice <= nbServantOnBoard):
-                            player.putItemInBoard(item)
-                            item.useItem(lstServantOnBoard[servantChoice-1])
-                            player.useMana(item.cost)
-                            print("Item utilisé")
-                            player.removeItemFromBoard(item)
-                            print("Mana restant : ", player.mana)
-                        else:
-                            print("Choix invalide")
-                    
-                    else:
-                        print("Pas de place sur le terrain pour utiliser un item")
+                    self.putItem(player, choice-1)
                 
                 elif(type(player.hand[choice-1]) is Weapon):
-                    slotIndex = player.findFreeSlotForItem()
-                    
-                    if(slotIndex >= 0):
-                        lstServantOnBoard = player.getServantOnBoard()
-                        nbServantOnBoard = len(lstServantOnBoard)
-                        
-                        if(nbServantOnBoard > 0):
-                            print("Sur quel serviteur voulez vous équiper l'arme :")
-                            print("-1) Annuler l'action")
-                            for i in range(nbServantOnBoard):
-                                print(i+1,")", " équiper sur ", lstServantOnBoard[i].name)
-                                
-                            try:
-                                servantChoice = int(input("Choix : "))
-                            except:
-                                servantChoice = -100
-                                
-                            if(servantChoice == -1):
-                                return
-            
-                            elif(servantChoice >= 1 and servantChoice <= nbServantOnBoard):
-                                
-                                weapon = player.hand[choice-1]
-                                servant = lstServantOnBoard[servantChoice-1]
-
-                                if(servant.weaponEquipped != None):
-                                    print("Ce servant a deja une arme d'équipée")
-                                elif(servant.weaponType == weapon.weaponType):
-                                    servant.equipWeapon(weapon)
-                                    player.putWeaponOnBoard(weapon, slotIndex)
-                                    player.useMana(weapon.cost)
-                                    print("Arme équipée")
-                                    print("Mana restant : ", player.mana)
-                                else:
-                                    print("Ce servant ne peux pas équiper ce type arme")
-                            
-                            else:
-                                print("Choix invalide")
-                                
-                        else:
-                            print("Impossible d'équiper une arme si aucun servant se trouve sur le terrain")
-                    else:
-                        print("Plus assez de place sur le terrain pour équiper une arme")
+                    self.putWeapon(player, choice-1)
             else:
                 print("Vous n'avez pas assez de mana pour utiliser cette carte")
         
         else:
             print("Choix invalide")
         return
+    
+    def putServant(self, player, index):
+        """
+        Fonction prenant le player qui pose la carte et l'index de la carte à poser dans la main du joueur
+        S'occupe de la procédure pour poser un serviteur sur le plateau
+        """
+        servant = player.hand[index]
+        if(player.putServantInBoard(servant)):
+            player.useMana(servant.cost)
+            print("Serviteur posé sur le terrain")
+            print("Mana restant : ", player.mana)
+            #player.mana -=
+        else:
+            print("Impossible de poser plus de Serviteur sur le terrain")
+            
+    def putItem(self, player, index):
+        """
+        Fonction prenant le player qui pose la carte et l'index de la carte à poser dans la main du joueur
+        S'occupe de la procédure pour poser un item sur le plateau
+        """
+        item = player.hand[index]
+        lstServantOnBoard = player.getServantOnBoard()
+        nbServantOnBoard = len(lstServantOnBoard)
+        
+        if(nbServantOnBoard <= 0):
+            print("Impossible d'utiliser un item, aucun serviteur sur le terrain")
+            return
+            
+        if(player.canPutItemInBoard()):
+            
+            print("Utiliser l'item sur : ")
+            print("-1) Annuler l'action")
+            
+            for i in range(nbServantOnBoard):
+                print(i+1,")", lstServantOnBoard[i].name)
+            
+            try:
+                servantChoice = int(input("Choix : "))
+            except:
+                servantChoice = -100
+                
+            if(servantChoice == -1):
+                return
+
+            elif(servantChoice >= 1 and servantChoice <= nbServantOnBoard):
+                player.putItemInBoard(item)
+                item.useItem(lstServantOnBoard[servantChoice-1])
+                player.useMana(item.cost)
+                print("Item utilisé")
+                player.removeItemFromBoard(item)
+                print("Mana restant : ", player.mana)
+            else:
+                print("Choix invalide")
+        
+        else:
+            print("Pas de place sur le terrain pour utiliser un item")
+            
+    def putWeapon(self, player, index):
+        """
+        Fonction prenant le player qui pose la carte et l'index de la carte à poser dans la main du joueur
+        S'occupe de la procédure pour équiper une amre sur un serviteur/poser carte arme sur le plateau
+        """
+        slotIndex = player.findFreeSlotForItem()
+        
+        if(slotIndex >= 0):
+            lstServantOnBoard = player.getServantOnBoard()
+            nbServantOnBoard = len(lstServantOnBoard)
+            
+            if(nbServantOnBoard > 0):
+                print("Sur quel serviteur voulez vous équiper l'arme :")
+                print("-1) Annuler l'action")
+                for i in range(nbServantOnBoard):
+                    print(i+1,")", " équiper sur ", lstServantOnBoard[i].name)
+                    
+                try:
+                    servantChoice = int(input("Choix : "))
+                except:
+                    servantChoice = -100
+                    
+                if(servantChoice == -1):
+                    return
+
+                elif(servantChoice >= 1 and servantChoice <= nbServantOnBoard):
+                    
+                    weapon = player.hand[index]
+                    servant = lstServantOnBoard[servantChoice-1]
+
+                    if(servant.weaponEquipped != None):
+                        print("Ce servant a deja une arme d'équipée")
+                    elif(servant.weaponType == weapon.weaponType):
+                        servant.equipWeapon(weapon)
+                        player.putWeaponOnBoard(weapon, slotIndex)
+                        player.useMana(weapon.cost)
+                        print("Arme équipée")
+                        print("Mana restant : ", player.mana)
+                    else:
+                        print("Ce servant ne peux pas équiper ce type arme")
+                
+                else:
+                    print("Choix invalide")
+                    
+            else:
+                print("Impossible d'équiper une arme si aucun servant se trouve sur le terrain")
+        else:
+            print("Plus assez de place sur le terrain pour équiper une arme")
         
     def attackServant(self, mainPlayer, attackablePlayer):
         """
@@ -454,26 +474,9 @@ class Game:
                         servantAttacked = lstServantAttackable[choiceServantToAttack-1]
                         
                         servantAttacker.battleBetweenServant(servantAttacked)
-                        
-                        if(servantAttacker.weaponEquipped):
-                            if(not servantAttacker.checkWeapon()):
-                                mainPlayer.removeItemFromBoard(servantAttacker.weaponEquipped)
-                                #servantAttacker.weaponEquipped = None
-                        if(servantAttacker.stats.hp <= 0):
-                            mainPlayer.removeServantFromBoard(servantAttacker)
-                            print("Il reste ", mainPlayer.lifePoint, "point de vie à ", mainPlayer.name)
-                            if(mainPlayer.hasLoose(attackablePlayer.name)):
-                                return True
-                         
-                        if(servantAttacked.weaponEquipped):
-                            if(not servantAttacked.checkWeapon()):
-                                attackablePlayer.removeItemFromBoard(servantAttacked.weaponEquipped)
-
-                        if(servantAttacked.stats.hp <= 0):
-                            attackablePlayer.removeServantFromBoard(servantAttacked)
-                            print("Il reste ", attackablePlayer.lifePoint, "point de vie à ", attackablePlayer.name)
-                            if(attackablePlayer.hasLoose(mainPlayer.name)):
-                                return True
+                            
+                        self.weaponAndDeathManagerForServantAfterBattle(mainPlayer, attackablePlayer, servantAttacker)
+                        self.weaponAndDeathManagerForServantAfterBattle(attackablePlayer, mainPlayer, servantAttacked)
 
                     else:
                         print("Choix invalide")
@@ -488,13 +491,30 @@ class Game:
 
         return
     
+    def weaponAndDeathManagerForServantAfterBattle(self, playerAttacker, playerAttacked, servant):
+        self.weaponServantManagerAfterBattle(playerAttacker, servant)
+        self.deathServantManagerForServantAfterBattle(playerAttacker, playerAttacked, servant)
+    
+    def weaponServantManagerAfterBattle(self, player, servant):
+        if(not servant.checkWeapon()):
+            player.removeItemFromBoard(servant.weaponEquipped)
+            servant.unequippedWeapon()
+            
+    def deathServantManagerForServantAfterBattle(self, playerAttacker, playerAttacked, servant):
+        if(servant.stats.hp <= 0):
+            playerAttacker.removeItemFromBoard(servant.weaponEquipped)
+            playerAttacker.removeServantFromBoard(servant)
+            if(playerAttacker.hasLoose(playerAttacked.name)):
+                return True
+        return
+            
     def attackPlayer(self, mainPlayer, attackablePlayer):
         """
         Fonction qui fait attaquer attackablePlayer par mainPlayer
         La fonction fait les vérification de possibilité d'attquer (serviteur sur le board, ...)
         """
         if(attackablePlayer.countServantOnBoard() > 0):
-            print("Impossible d'attaquer directement ", attackablePlayer.name, " car il est proteger par ses serviteurs !")
+            print("Impossible d'attaquer directement ", attackablePlayer.name, " car il est protegé par ses serviteurs !")
             return
         
         lstServantUsable = mainPlayer.getServantsCanFight()
@@ -516,6 +536,7 @@ class Game:
                 
             elif(servantAttacker >= 1 and servantAttacker <= nbServantMain):
                 lstServantUsable[servantAttacker-1].attackPlayer(attackablePlayer)
+                self.weaponServantManagerAfterBattle(mainPlayer, lstServantUsable[servantAttacker-1])
                 if(attackablePlayer.hasLoose(mainPlayer.name)):
                     return True
                 return
