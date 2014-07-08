@@ -82,7 +82,7 @@ class Player:
                 else:
                     print("Choix invalide")
             
-            self.cardsList.append(copy.copy(cards[choose-1]))
+            self.cardsList.append(copy.deepcopy(cards[choose-1]))
         
         return True
     

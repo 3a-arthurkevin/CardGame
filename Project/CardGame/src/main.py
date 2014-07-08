@@ -14,8 +14,8 @@ if __name__ == '__main__':
     """
     playerOneName = "Arthur"
     playerTwoName = "Kevin"
-    
-    print("スーパ　ガード　ファイタ に　ようこそ　!!!!!!!\n")
+
+    print("\\o----o Bienvenu dans SuperCardFighter o----o//")
     
     game = Game({"playerName1" : playerOneName, "playerName2" : playerTwoName})
     
