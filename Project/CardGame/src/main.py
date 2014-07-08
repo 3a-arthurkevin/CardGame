@@ -15,6 +15,8 @@ if __name__ == '__main__':
     playerOneName = "Arthur"
     playerTwoName = "Kevin"
     
+    print("スパ　カド　フィタ に　ようこそ　!!!!!!!")
+    
     game = Game({"playerName1" : playerOneName, "playerName2" : playerTwoName})
     
     game.players[0].drawCardForBegining()
