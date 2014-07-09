@@ -24,6 +24,7 @@ class Game:
         Initialisation d'une partie
         Création des player
         '''
+        self.useGoto = False
         self.config = Config.loadConfig()
         self.cards = []
         self.setupCard()
@@ -87,7 +88,10 @@ class Game:
             
             if deck != None:
                 player.cardsList = deck
-                goto .tyrionIsDead
+                if self.useGoto:
+                    goto .tyrionIsDead
+                else:
+                    self.chooseSaveDeck(player)
             
             else:
                 print("Error lors de la génération aléatoire du deck")
@@ -99,20 +103,25 @@ class Game:
         player.createDeck(self.cards)
         
         
-        label .tyrionIsDead
-        try:
-            choose = input("Voulez-vous sauvegarder votre deck ? (Y/N)")
-        except:
-            choose = -100
+        if self.useGoto:
+            label .tyrionIsDead
+            try:
+                choose = input("Voulez-vous sauvegarder votre deck ? (Y/N)")
+            except:
+                choose = -100
         
-        if choose == "Y":
-            self.saveDeck(player)
-            return
+            if choose == "Y":
+                self.saveDeck(player)
+                return
         
-        elif choose != "N":
-            print("Choix invalide")
+            elif choose != "N":
+                print("Choix invalide")
             
-        print("Le deck ne sera pas sauvegardé")
+                print("Le deck ne sera pas sauvegardé")
+                
+        else:
+            self.chooseSaveDeck(player)
+               
         return
     
     def getRandomDeck(self):
@@ -156,6 +165,22 @@ class Game:
             print("Erreur dans le deck")
             
         return None
+    
+    def chooseSaveDeck(self, player):
+        try:
+            choose = input("Voulez-vous sauvegarder votre deck ? (Y/N)")
+        except:
+            choose = -100
+        
+        if choose == "Y":
+            self.saveDeck(player)
+            return
+        
+        elif choose != "N":
+            print("Choix invalide")
+            
+        print("Le deck ne sera pas sauvegardé")
+        return
     
     def saveDeck(self, player):
         """

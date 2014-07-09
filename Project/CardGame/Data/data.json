@@ -265,10 +265,10 @@
    }, 
    "Name": "Potion de vie", 
    "idCard": 13, 
-   "ItemType": 0, 
    "Cost": 3, 
    "TypeCard": "Item", 
-   "Desc": "Redonne 5 pv \u00e0 la cible"
+   "Desc": "Redonne 5 pv \u00e0 la cible", 
+   "ItemType": 0
   }, 
   {
    "Stats": {
@@ -283,10 +283,10 @@
    }, 
    "Name": "Cape mystique", 
    "idCard": 14, 
-   "ItemType": 0, 
    "Cost": 2, 
    "TypeCard": "Item", 
-   "Desc": "Augmente la r\u00e9sistance de la cible de 1"
+   "Desc": "Augmente la r\u00e9sistance de la cible de 1", 
+   "ItemType": 0
   }, 
   {
    "Stats": {
@@ -301,10 +301,10 @@
    }, 
    "Name": "Bouclier d'acier", 
    "idCard": 15, 
-   "ItemType": 0, 
    "Cost": 2, 
    "TypeCard": "Item", 
-   "Desc": "Augmente la d\u00e9fense de la cible de 1"
+   "Desc": "Augmente la d\u00e9fense de la cible de 1", 
+   "ItemType": 0
   }, 
   {
    "Stats": {
@@ -319,10 +319,10 @@
    }, 
    "Name": "Bras d'acier", 
    "idCard": 16, 
-   "ItemType": 0, 
    "Cost": 2, 
    "TypeCard": "Item", 
-   "Desc": "Augmente la force de la cible de 1"
+   "Desc": "Augmente la force de la cible de 1", 
+   "ItemType": 0
   }, 
   {
    "Stats": {
@@ -337,10 +337,10 @@
    }, 
    "Name": "Botte de p\u00e9gase", 
    "idCard": 17, 
-   "ItemType": 0, 
    "Cost": 2, 
    "TypeCard": "Item", 
-   "Desc": "Augmente la vitesse de la cible de 1"
+   "Desc": "Augmente la vitesse de la cible de 1", 
+   "ItemType": 0
   }, 
   {
    "Stats": {
@@ -355,10 +355,10 @@
    }, 
    "Name": "Oeil de faucon", 
    "idCard": 18, 
-   "ItemType": 0, 
    "Cost": 2, 
    "TypeCard": "Item", 
-   "Desc": "Augmente la pr\u00e9cision de la cible de 1"
+   "Desc": "Augmente la pr\u00e9cision de la cible de 1", 
+   "ItemType": 0
   }, 
   {
    "Stats": {
@@ -373,10 +373,10 @@
    }, 
    "Name": "Esprit mystique", 
    "idCard": 19, 
-   "ItemType": 0, 
    "Cost": 2, 
    "TypeCard": "Item", 
-   "Desc": "Augmente l'intelligence de la cible de 1"
+   "Desc": "Augmente l'intelligence de la cible de 1", 
+   "ItemType": 0
   }, 
   {
    "Stats": {
@@ -394,9 +394,9 @@
    "idCard": 20, 
    "WeaponType": 0, 
    "Cost": 2, 
-   "Name": "Ep\u00e9e d'acier", 
    "TypeCard": "Weapon", 
-   "Desc": "Ep\u00e9e d'acier"
+   "Desc": "Ep\u00e9e d'acier", 
+   "Name": "Ep\u00e9e d'acier"
   }, 
   {
    "Stats": {
@@ -414,9 +414,9 @@
    "idCard": 21, 
    "WeaponType": 1, 
    "Cost": 2, 
-   "Name": "Hache d'acier", 
    "TypeCard": "Weapon", 
-   "Desc": "Hache d'acier"
+   "Desc": "Hache d'acier", 
+   "Name": "Hache d'acier"
   }, 
   {
    "Stats": {
@@ -434,9 +434,9 @@
    "idCard": 22, 
    "WeaponType": 2, 
    "Cost": 2, 
-   "Name": "Lance d'acier", 
    "TypeCard": "Weapon", 
-   "Desc": "Lance d'acier"
+   "Desc": "Lance d'acier", 
+   "Name": "Lance d'acier"
   }, 
   {
    "Stats": {
@@ -454,9 +454,9 @@
    "idCard": 23, 
    "WeaponType": 3, 
    "Cost": 2, 
-   "Name": "Arc d'acier", 
    "TypeCard": "Weapon", 
-   "Desc": "Arc d'acier"
+   "Desc": "Arc d'acier", 
+   "Name": "Arc d'acier"
   }, 
   {
    "Stats": {
@@ -474,9 +474,9 @@
    "idCard": 24, 
    "WeaponType": 4, 
    "Cost": 2, 
-   "Name": "Tome mystique", 
    "TypeCard": "Weapon", 
-   "Desc": "Tome mystique"
+   "Desc": "Tome mystique", 
+   "Name": "Tome mystique"
   }, 
   {
    "Stats": {
@@ -494,9 +494,9 @@
    "idCard": 25, 
    "WeaponType": 4, 
    "Cost": 2, 
-   "Name": "Tome mystique", 
    "TypeCard": "Weapon", 
-   "Desc": "Tome mystique"
+   "Desc": "Tome mystique", 
+   "Name": "Tome mystique"
   }
  ], 
  "Decks": [
@@ -589,6 +589,31 @@
     3, 
     23, 
     15
+   ]
+  }, 
+  {
+   "Name": "QuatriemeDeck", 
+   "CardList": [
+    3, 
+    16, 
+    11, 
+    10, 
+    23, 
+    1, 
+    7, 
+    20, 
+    5, 
+    24, 
+    11, 
+    20, 
+    12, 
+    8, 
+    10, 
+    22, 
+    16, 
+    24, 
+    7, 
+    11
    ]
   }
  ]
