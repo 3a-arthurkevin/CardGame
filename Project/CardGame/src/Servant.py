@@ -160,19 +160,6 @@ class Servant(Card):
         dicData = self.getBattleData(servantEnemy)
         dicDataAttacker = dicData.get("dataAttacker")
         dicDataDefender = dicData.get("dataDefender")
-
-        """
-        Tour de l'attaquant
-            On fait du randint pour avoir savoir si le servant touchera la cible et/ou si il fera un coup critique
-            Si le randInt Critique est compris entre 1 et le critique de stat --> dommage*3 et lancement de l'attaque
-            Sinon, si le randInt de Touche est comprise entre 1 et la précision  --> lancement de l'attaque
-            Sinon attaque manqué
-        Tour du défenseur
-            Verification si le défenseur est en vie
-                Si oui --> Meme schéma que l'attaquant
-        Donner l'expérience du combat si serviteurs vivants
-        Détruire si serviteurs morts (avoir 0 hp)
-        """
         
         damageAttacker = dicDataAttacker.get("dmg")
         damageDefender = dicDataDefender.get("dmg")

@@ -24,6 +24,9 @@ class Player:
         self.mana = 0
         
     def displayHand(self):
+        """
+        Fonction permettant d'afficher ce que le joueur a comme carte dans sa main
+        """
         if(len(self.hand) <= 0):
             print("Aucune Carte en main")
         else:
@@ -33,6 +36,10 @@ class Player:
                 print("-----")
     
     def useMana(self, manaValue):
+        """
+        Fonction qui enlève le mana passé en paramètre au joueur courant
+        --> fonction appelé lors d'un possage de carte
+        """
         self.mana -= manaValue
     
     def addManaForPlayerTurn(self):
@@ -113,6 +120,9 @@ class Player:
         
     
     def countServantOnBoard(self):
+        """
+        Fontion qui retourne le nombre de serviteur sur le plateau du joueur courant
+        """
         i = 0
         for elem in self.servantsOnBoard:
             if(elem != None):
@@ -120,6 +130,9 @@ class Player:
         return i
     
     def countItemOnBoard(self):
+        """
+        Fontion qui retourne le nombre d'item sur le plateau du joueur courant
+        """
         i = 0
         for elem in self.itemOnBoard:
             if(elem != None):
@@ -127,6 +140,9 @@ class Player:
         return i
     
     def getServantOnBoard(self):
+        """
+        Fontion qui retourne la liste des serviteurs présent sur le plateau du joueur courant
+        """
         lstServantOnBoard = []
         for elem in self.servantsOnBoard:
             if(elem != None):
@@ -134,6 +150,9 @@ class Player:
         return lstServantOnBoard
             
     def getItemOnBoard(self):
+        """
+        Fontion qui retourne la liste des objets présent sur le plateau du joueur courant
+        """
         lstItemOnBoard = []
         for elem in self.itemOnBoard:
             if(elem != None):

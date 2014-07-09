@@ -1,7 +1,7 @@
 ﻿Documentation dans laquelle se trouvent les élèments suivant
 	- Comment lancer le jeu (GoTo line 7)
 	- Les régles du jeu (GoTo line 17)
-	- Comment joueur (GoTo line )
+	- Comment joueur (GoTo line 95)
 	
 	
 1 - Comment lancer le jeu
@@ -93,5 +93,17 @@
 
 		
 3 - Comment joueur
-
-	
+	Le jeu est découpé en plusieurs partie
+		- Initialisation d'une partie
+			Ou on a le choix de créer un deck soit en tirant plusieurs carte au hasard, ou en prendrant un deck formé aléatoirement.
+			Il est possible de sauvegarder un des deck crée et de le charger au début d'une futur partie
+			Contrairemenr aux autres, lors de la pose des cartes, il est possible de voir ses cartes en main
+		-Combat
+			Un combat est découpé en plusieurs phases
+				_Poser ses carte
+					dans cette phase, le joueur doit poser ses cartes selon les points de mana qu'il a, et le coût des cartes qu'il a en main qu'il veut poser
+				_Attaquer
+					dans cette phase, le joueur décide d'attaquer le joueur directement avec un serviteur. Cependant, s'il le joueur a posé un serviteur sur sont terrain, vous serez obligé de tuer tout serviteurs adverses avant de pouvoir attaquer le joueur directement
+					
+					Une attaque sur un servant est soumis à toutes les règles que l'on peut voir dans la partie 2
+					Cependant ces règles ne s'applique plus lorsque l'on attaque l'adversaire directemenr. En effet, en dehors de l'usure de l'éventuelle arme équipé, un serviteur n'a pas de bonus malus, et il ne peut rater son coup et ne peut faire d'attaque critique.

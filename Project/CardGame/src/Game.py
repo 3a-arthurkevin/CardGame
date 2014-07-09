@@ -521,15 +521,31 @@ class Game:
         return
     
     def weaponAndDeathManagerForServantAfterBattle(self, playerAttacker, playerAttacked, servant):
+        """
+        Fonction appelé à la fin d'un combat entre serviteurs prenant en paramètres 
+            le joueur qui attaque, le joueur qui subit l'attaquet et le serviteur du premier joueur en paramètre
+        appellant 2 fonctions qui appliquent l'usure de l'arme et sa destruction si elle n'a plus de durabilité
+        et la mort si un serviteur n'a plus de point de vie à l'issue du combat 
+        """
         self.weaponServantManagerAfterBattle(playerAttacker, servant)
         self.deathServantManagerForServantAfterBattle(playerAttacker, playerAttacked, servant)
     
     def weaponServantManagerAfterBattle(self, player, servant):
+        """
+        Fonction qui prend en paramètre un joueur et un de ses serviteur
+        pour vérifier si le serviteur avait une arme équipé, et appliquer l'usure et/ou la cassure et l'enlever du terrain
+        si une arme est bien équipée
+        """
         if(not servant.checkWeapon()):
             player.removeItemFromBoard(servant.weaponEquipped)
             servant.unequippedWeapon()
             
     def deathServantManagerForServantAfterBattle(self, playerAttacker, playerAttacked, servant):
+        """
+        Fonction prenant en paramètre le joueur qui attaque, le joueur qui subit l'attaquer et le servant du 1er player en paramètre
+        Elle vérifie les point de vie du serviteur sont à 0 ou moins à l'issue d'un combat
+        Si oui, on retire le serviteur et on vérifie si le joueur a perdu la partie (à cause de la perte de point de vie à chaque servant qui meurt)
+        """
         if(servant.stats.hp <= 0):
             playerAttacker.removeItemFromBoard(servant.weaponEquipped)
             playerAttacker.removeServantFromBoard(servant)
