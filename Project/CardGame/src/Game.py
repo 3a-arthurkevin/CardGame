@@ -87,7 +87,7 @@ class Game:
             
             if deck != None:
                 player.cardsList = deck
-                goto .save
+                goto .tyrionIsDead
             
             else:
                 print("Error lors de la génération aléatoire du deck")
@@ -99,7 +99,7 @@ class Game:
         player.createDeck(self.cards)
         
         
-        label .save
+        label .tyrionIsDead
         try:
             choose = input("Voulez-vous sauvegarder votre deck ? (Y/N)")
         except:
